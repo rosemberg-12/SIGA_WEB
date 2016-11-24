@@ -2,18 +2,15 @@
 
 /**
  * Created by PhpStorm.
- * User: Brian Alexis Sierra Ferrer
- * Date: 22/11/16
- * Time: 05:57 PM
+ * User: W7HOME
+ * Date: 23/11/2016
+ * Time: 08:54 PM
  */
-class Usuario
+class TipoBeneficiario
 {
     private $id;
-    private $nick;
-    private $contrasena;
-    private $estado;
+    private $descripcion;
 
     public function _GET($k){ return $this->$k; }
     public function _SET($k, $v){ return $this->$k = $v; }
-
 }

@@ -14,13 +14,17 @@ $objPHPExcel = new PHPExcel();
 
 // Establecer propiedades
 $objPHPExcel->getProperties()
-    ->setCreator("Cattivo")
-    ->setLastModifiedBy("Cattivo")
-    ->setTitle("Documento Excel de Prueba")
-    ->setSubject("Documento Excel de Prueba")
-    ->setDescription("Demostracion sobre como crear archivos de Excel desde PHP.")
+    ->setCreator("SiGA")
+    ->setLastModifiedBy("SiGA")
+    ->setTitle("Reporte Semestral de Actividades")
+    ->setSubject("Reporte Semestral de Actividades")
+    ->setDescription("Reporte Semestral de Actividades para el MEN hecho desde la aplicacion SiGA.")
     ->setKeywords("Excel Office 2007 openxml php")
-    ->setCategory("Pruebas de Excel");
+    ->setCategory("Reporte de Excel");
+
+//Crear Hoja ACTIVIDAD_BIENESTAR
+$objPHPExcel->setActiveSheetIndex(0);
+
 
 // Agregar Informacion
 $objPHPExcel->setActiveSheetIndex(0)
