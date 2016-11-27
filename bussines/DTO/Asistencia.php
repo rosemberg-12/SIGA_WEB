@@ -13,8 +13,15 @@ class Asistencia
     private $idBeneficiario;
     private $idTipoDocumento;
     private $documentoBeneficiario;
-    private $nombresBeneficiario;
+    private $nombreBeneficiario;
     private $codigoBeneficiario;
+    private $descripcionTipoActividad;
+    private $descripcionTipoBeneficiario;
+    private $abreviaturaTipoDocumento;
+    private $descripcionActividad;
+    private $descripcionTipoPrograma;
+    private $abreviaturaDivision;
+    private $cantidadBeneficiario;
 
 
     public function _GET($k){ return $this->$k; }

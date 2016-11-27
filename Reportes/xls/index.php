@@ -8,44 +8,30 @@
 
 /** Incluir la libreria PHPExcel */
 require_once 'Classes/PHPExcel.php';
+require_once '../../fachade/FachadeReportes.php';
 
-// Crea un nuevo objeto PHPExcel
-$objPHPExcel = new PHPExcel();
+//$criterioBusqueda = array();
+//if(isset($_POST['semestre'])){ $citerioBusqueda['semestre']=$_POST['semestre'];}
+//if(isset($_POST['ano'])){ $citerioBusqueda['anoActividad']=$_POST['ano'];}
+$semestre="I";$ano=2016;
 
-// Establecer propiedades
-$objPHPExcel->getProperties()
-    ->setCreator("SiGA")
-    ->setLastModifiedBy("SiGA")
-    ->setTitle("Reporte Semestral de Actividades")
-    ->setSubject("Reporte Semestral de Actividades")
-    ->setDescription("Reporte Semestral de Actividades para el MEN hecho desde la aplicacion SiGA.")
-    ->setKeywords("Excel Office 2007 openxml php")
-    ->setCategory("Reporte de Excel");
+$objPHPExcel = new PHPExcel();// Crea un nuevo objeto PHPExcel
+$fachadaRepo = new FachadeResportes();//Crea un nuevo objeto fachada
 
-//Crear Hoja ACTIVIDAD_BIENESTAR
-$objPHPExcel->setActiveSheetIndex(0);
-
-
-// Agregar Informacion
-$objPHPExcel->setActiveSheetIndex(0)
-    ->setCellValue('A1', 'Valor 1')
-    ->setCellValue('B1', 'Valor 2')
-    ->setCellValue('C1', 'Total')
-    ->setCellValue('A2', '10')
-    ->setCellValue('B2','55')
-    ->setCellValue('C2', '=sum(A2:B2)');
-
-// Renombrar Hoja
-$objPHPExcel->getActiveSheet()->setTitle('Tecnologia Simple');
-
+$criterioBusqueda=array('semestre'=>$semestre,'anoActividad'=>$ano);//CReo el array para la consulta
+$path='../../';
+$fachadaRepo->generarInformeExcelMEN($criterioBusqueda,$objPHPExcel,$path);//Creo el cuerpo del documento de excel
 // Establecer la hoja activa, para que cuando se abra el documento se muestre primero.
 $objPHPExcel->setActiveSheetIndex(0);
 
+$filename = "indicadores $semestre semestre $ano";
+
 // Se modifican los encabezados del HTTP para indicar que se envia un archivo de Excel.
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="pruebaReal.xlsx"');
+header('Content-Disposition: attachment;filename="'.$filename.'.xls"');
 header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 exit;
+
 ?>

@@ -12,12 +12,19 @@ class Actividad
     private $idUnidad;
     private $descripcion;
     private $idTipoActividad;
+    private $semestre;
+    private $anoActividad;
     private $fechaInicio;
-    private $fechaFina;
+    private $fechaFin;
     private $idTipoPrograma;
+    private $nombreTipoPrograma;
     private $estado;
     private $dedicacion;
     private $idResponsable;
+    private $tipoDocumentoResponsable;
+    private $numeroDocumentoResponsable;
+    private $abreviaturaDivision;
+
 
     public function _GET($k){ return $this->$k; }
     public function _SET($k, $v){ return $this->$k = $v; }

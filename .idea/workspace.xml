@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6a2294c-7ac0-40de-934c-233f82a47f59" name="Default" comment="Creacion DTO de la primera Iteracion">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DTO/Actividad.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DTO/Asistencia.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DTO/TipoActividad.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DTO/TipoBeneficiario.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DTO/TipoPrograma.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DTO/Unidad.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DAO/ActividadDAO.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DAO/AsistenciaDAO.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DAO/Conection.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DAO/conexion.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/ControllerReportes.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bussines/services/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/model/README.md" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fachade/FachadeTwo.php" afterPath="$PROJECT_DIR$/fachade/FachadeReportes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Reportes/xls/index.php" afterPath="$PROJECT_DIR$/Reportes/xls/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bussines/DTO/Actividad.php" afterPath="$PROJECT_DIR$/bussines/DTO/Actividad.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bussines/DTO/Asistencia.php" afterPath="$PROJECT_DIR$/bussines/DTO/Asistencia.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bussines/DTO/Persona.php" afterPath="$PROJECT_DIR$/bussines/DTO/Persona.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bussines/DTO/Usuario.php" afterPath="$PROJECT_DIR$/bussines/DTO/Usuario.php" />
     </list>
     <list id="8a511c1f-34b8-4732-aa8a-750e95374fb8" name="Rejected commit: Default" comment="Creacion DTO de la primera Iteracion" />
@@ -31,34 +36,42 @@
     <favorites_list name="SIGA_UFPS" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Reportes/xls/index.php">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AsistenciaDAO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bussines/DAO/AsistenciaDAO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-              <folding>
-                <element signature="e#6#91#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Unidad.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bussines/DTO/Unidad.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            <state relative-caret-position="543">
+              <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Actividad.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bussines/DTO/Actividad.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Reportes/xls/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="58" selection-start-line="21" selection-start-column="4" selection-end-line="22" selection-end-column="58" />
+            <state relative-caret-position="340">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FachadeReportes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fachade/FachadeReportes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ControllerReportes.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/ControllerReportes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="534">
+              <caret line="301" column="47" selection-start-line="301" selection-start-column="47" selection-end-line="301" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -67,49 +80,44 @@
       <file leaf-file-name="Asistencia.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bussines/DTO/Asistencia.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            <state relative-caret-position="340">
+              <caret line="20" column="33" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TipoBeneficiario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bussines/DTO/TipoBeneficiario.php">
+      <file leaf-file-name="Actividad.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bussines/DTO/Actividad.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="14" selection-end-column="58" />
+            <state relative-caret-position="391">
+              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TipoActividad.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bussines/DTO/TipoActividad.php">
+      <file leaf-file-name="Conection.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bussines/DAO/Conection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
-              <folding />
+            <state relative-caret-position="255">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+              <folding>
+                <element signature="e#6#91#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TipoPrograma.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bussines/DTO/TipoPrograma.php">
+      <file leaf-file-name="ActividadDAO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bussines/DAO/ActividadDAO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Usuario.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bussines/DTO/Usuario.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="58" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="58" />
-              <folding />
+            <state relative-caret-position="495">
+              <caret line="109" column="56" selection-start-line="109" selection-start-column="30" selection-end-line="109" selection-end-column="56" />
+              <folding>
+                <marker date="1480253287751" expanded="true" signature="436:623" ph="INSERT INTO siga.actividad... " />
+                <marker date="1480253287751" expanded="true" signature="1789:1835" ph="SELECT * FRO... actividad" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bussines/DTO/Persona.php" />
         <option value="$PROJECT_DIR$/bussines/DTO/Division.php" />
         <option value="$PROJECT_DIR$/bussines/DTO/TipoDocumento.php" />
         <option value="$PROJECT_DIR$/fachade/FachadeTwo.php" />
@@ -137,14 +144,25 @@
         <option value="$PROJECT_DIR$/Archivos/ejemplo.xsl" />
         <option value="$PROJECT_DIR$/Archivos/ejemplo.xml" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/Reportes/xls/index.php" />
-        <option value="$PROJECT_DIR$/bussines/DTO/Usuario.php" />
         <option value="$PROJECT_DIR$/bussines/DTO/Unidad.php" />
-        <option value="$PROJECT_DIR$/bussines/DTO/Actividad.php" />
-        <option value="$PROJECT_DIR$/bussines/DTO/Asistencia.php" />
         <option value="$PROJECT_DIR$/bussines/DTO/TipoBeneficiario.php" />
         <option value="$PROJECT_DIR$/bussines/DTO/TipoActividad.php" />
         <option value="$PROJECT_DIR$/bussines/DTO/TipoPrograma.php" />
+        <option value="$PROJECT_DIR$/bussines/DAO/conexion.php" />
+        <option value="$PROJECT_DIR$/bussines/DTO/Usuario.php" />
+        <option value="$PROJECT_DIR$/bussines/DTO/Persona.php" />
+        <option value="$PROJECT_DIR$/bussines/DAO/UsuarioDAO.php" />
+        <option value="$PROJECT_DIR$/bussines/DAO/Asistencia.php" />
+        <option value="$PROJECT_DIR$/Reportes/pdf/index.php" />
+        <option value="$PROJECT_DIR$/model/controllerReportes.php" />
+        <option value="$PROJECT_DIR$/fachade/FachadeReportes.php" />
+        <option value="$PROJECT_DIR$/bussines/DAO/Conection.php" />
+        <option value="$PROJECT_DIR$/bussines/DTO/Actividad.php" />
+        <option value="$PROJECT_DIR$/bussines/DTO/Asistencia.php" />
+        <option value="$PROJECT_DIR$/bussines/DAO/ActividadDAO.php" />
+        <option value="$PROJECT_DIR$/Reportes/xls/index.php" />
+        <option value="$PROJECT_DIR$/bussines/DAO/AsistenciaDAO.php" />
+        <option value="$PROJECT_DIR$/model/ControllerReportes.php" />
       </list>
     </option>
   </component>
@@ -154,11 +172,12 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="800" />
-    <option name="width" value="800" />
-    <option name="height" value="860" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -205,50 +224,29 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIGA_WEB" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIGA_WEB" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bussines" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIGA_WEB" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIGA_WEB" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bussines" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DTO" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../php/php.exe" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp180\htdocs\SIGA_WEB\views" />
+    </key>
+  </component>
   <component name="RunManager" selected="PHP Script.ejemplo.php">
-    <configuration default="false" name="ejemplo.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/fachade/ejemplo.php">
+    <configuration default="false" name="ejemplo.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" singleton="true" temporary="true" path="$PROJECT_DIR$/fachade/ejemplo.php">
+      <method />
+    </configuration>
+    <configuration default="true" type="ChromiumRemoteDebugType" factoryName="Chromium Remote">
+      <method />
+    </configuration>
+    <configuration default="true" type="FirefoxRemoteDebugType" factoryName="Firefox Remote">
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -340,35 +338,41 @@
       <workItem from="1479944048716" duration="65000" />
       <workItem from="1479944388092" duration="93000" />
       <workItem from="1479944555899" duration="1883000" />
-      <workItem from="1479948046639" duration="3461000" />
+      <workItem from="1479948046639" duration="12899000" />
+      <workItem from="1480032594876" duration="9969000" />
+      <workItem from="1480043754535" duration="724000" />
+      <workItem from="1480080171288" duration="2145000" />
+      <workItem from="1480123530645" duration="687000" />
+      <workItem from="1480209498046" duration="17145000" />
+      <workItem from="1480249508847" duration="8265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13395000" />
+    <option name="totallyTimeSpent" value="61768000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="800" y="0" width="800" height="860" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30867347" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.163125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288948" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288948" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -393,6 +397,48 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Usuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/Conection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+          <folding>
+            <element signature="e#6#91#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/UsuarioDAO.php" />
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Persona.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Usuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/Conection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="37" selection-start-line="44" selection-start-column="37" selection-end-line="44" selection-end-column="37" />
+          <folding>
+            <element signature="e#6#91#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Archivos/ejemplo.xsl" />
     <entry file="file://$PROJECT_DIR$/Archivos/ejemplo.xml" />
     <entry file="file://$PROJECT_DIR$/fachade/ejemplo.php" />
@@ -407,22 +453,14 @@
     <entry file="file://$PROJECT_DIR$/Archivos/ejemplo.xml" />
     <entry file="file://$PROJECT_DIR$/fachade/ejemplo.php" />
     <entry file="file://$PROJECT_DIR$/Archivos/ejemplo.xsl" />
-    <entry file="file://$PROJECT_DIR$/fachade/FachadeTwo.php">
+    <entry file="file://$PROJECT_DIR$/fachade/FachadeReportes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fachade/ejemplo.php" />
-    <entry file="file://$PROJECT_DIR$/bussines/DTO/Persona.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bussines/DTO/TipoDocumento.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -442,79 +480,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.375/mysqlAXML-1.0.php" />
-    <entry file="file://$PROJECT_DIR$/fachade/FachadeTwo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.php" />
     <entry file="file://$PROJECT_DIR$/HTTPPost.php" />
     <entry file="file://$PROJECT_DIR$/fachade/ejemplo.php" />
     <entry file="file://$PROJECT_DIR$/Archivos/ejemplo.xml" />
     <entry file="file://$PROJECT_DIR$/Archivos/ejemplo.xsl" />
-    <entry file="file://$PROJECT_DIR$/Reportes/xls/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-          <folding>
-            <element signature="e#6#91#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bussines/DTO/Unidad.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bussines/DTO/Usuario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="58" selection-start-line="15" selection-start-column="4" selection-end-line="16" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bussines/DTO/Actividad.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="58" selection-start-line="21" selection-start-column="4" selection-end-line="22" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bussines/DTO/Asistencia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bussines/DTO/TipoBeneficiario.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="14" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bussines/DTO/TipoActividad.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -522,6 +500,120 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/TipoActividad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Unidad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/conexion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/UsuarioDAO.php" />
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Usuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Persona.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reportes/pdf/index.php" />
+    <entry file="file://$PROJECT_DIR$/model/control_Actividad.php" />
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/Conection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding>
+            <element signature="e#6#91#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fachade/FachadeReportes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reportes/xls/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Actividad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/ActividadDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="109" column="56" selection-start-line="109" selection-start-column="30" selection-end-line="109" selection-end-column="56" />
+          <folding>
+            <marker date="1480253287751" expanded="true" signature="436:623" ph="INSERT INTO siga.actividad... " />
+            <marker date="1480253287751" expanded="true" signature="1789:1835" ph="SELECT * FRO... actividad" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PhpStorm2016.2/idea.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DTO/Asistencia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bussines/DAO/AsistenciaDAO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ControllerReportes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="301" column="47" selection-start-line="301" selection-start-column="47" selection-end-line="301" selection-end-column="47" />
           <folding />
         </state>
       </provider>

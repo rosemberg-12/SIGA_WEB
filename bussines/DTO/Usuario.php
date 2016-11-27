@@ -12,6 +12,7 @@ class Usuario
     private $nick;
     private $contrasena;
     private $estado;
+    private $persona;
 
     public function _GET($k){ return $this->$k; }
     public function _SET($k, $v){ return $this->$k = $v; }

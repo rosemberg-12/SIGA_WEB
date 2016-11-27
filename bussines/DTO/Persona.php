@@ -8,7 +8,6 @@
  */
 class Persona
 {
-    private $id;
     private $nombre;
     private $apellido;
     private $idTipoDocumento;
