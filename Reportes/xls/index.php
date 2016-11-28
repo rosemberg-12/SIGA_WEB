@@ -11,12 +11,12 @@ require_once 'Classes/PHPExcel.php';
 require_once '../../fachade/FachadeReportes.php';
 
 //$criterioBusqueda = array();
-//if(isset($_POST['semestre'])){ $citerioBusqueda['semestre']=$_POST['semestre'];}
-//if(isset($_POST['ano'])){ $citerioBusqueda['anoActividad']=$_POST['ano'];}
-$semestre="I";$ano=2016;
+if(isset($_POST['semestre'])){ $semestre=$_POST['semestre'];}
+if(isset($_POST['ano'])){ $ano=$_POST['ano'];}
+//$semestre="I";$ano=2016;
 
 $objPHPExcel = new PHPExcel();// Crea un nuevo objeto PHPExcel
-$fachadaRepo = new FachadeResportes();//Crea un nuevo objeto fachada
+$fachadaRepo = new FachadeReportes();//Crea un nuevo objeto fachada
 
 $criterioBusqueda=array('semestre'=>$semestre,'anoActividad'=>$ano);//CReo el array para la consulta
 $path='../../';

@@ -84,8 +84,6 @@ class ActividadDAO
         $consulta.= " ORDER BY acti.acti_id ; ";
 
         $result = $conexion->prepare($consulta);
-        //        $result->bindParam($criterioBusqueda['semestre']);
-//        $result->bindParam($criterioBusqueda['anoActividad']);
         $result->execute(array($criterioBusqueda['semestre'],$criterioBusqueda['anoActividad']));
 
         $lista = array();
