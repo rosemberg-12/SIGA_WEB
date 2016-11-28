@@ -8,7 +8,7 @@
  */
 class ControllerReportes
 {
-
+    /* ==========================  EXCEL  ========================== */
     private $listaCarrerras = array('121'=>'ADMINISTRACION DE EMPRESAS DIURNO',
         '125'=>'ADMINISTRACION DE EMPRESAS NOCTURNO',
         '079'=>'ADMINISTRACION DE LOS SERVICIOS DE LA SALUD',
