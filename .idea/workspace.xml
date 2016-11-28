@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6a2294c-7ac0-40de-934c-233f82a47f59" name="Default" comment="Creacion DTO de la primera Iteracion">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/ControllerSession.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bussines/DAO/UsuarioDAO.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/gestion-usuarios.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/principal.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bussines/DAO/Conection.php" afterPath="$PROJECT_DIR$/bussines/DAO/Conection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fachade/FachadeOne.php" afterPath="$PROJECT_DIR$/fachade/FachadeOne.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SIGA_UFPS.iml" afterPath="$PROJECT_DIR$/.idea/SIGA_UFPS.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="f6a2294c-7ac0-40de-934c-233f82a47f59" name="Default" comment="Creacion DTO de la primera Iteracion" />
     <list id="8a511c1f-34b8-4732-aa8a-750e95374fb8" name="Rejected commit: Default" comment="Creacion DTO de la primera Iteracion" />
     <ignored path="SIGA_UFPS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,7 +48,7 @@
       <file leaf-file-name="principal.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/principal.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.7419899" vertical-offset="682" max-vertical-offset="1275">
+            <state line="69" column="0" selection-start="1887" selection-end="1887" vertical-scroll-proportion="0.8279933" vertical-offset="682" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -811,7 +796,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/principal.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.7419899" vertical-offset="682" max-vertical-offset="1275">
+        <state line="69" column="0" selection-start="1887" selection-end="1887" vertical-scroll-proportion="0.8279933" vertical-offset="682" max-vertical-offset="1275">
           <folding />
         </state>
       </provider>
