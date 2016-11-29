@@ -13,12 +13,12 @@ class ControllerDivision
      * @param $path rita para acceder archivos
      * @return string codigo HTML para mostrar la informacion
      */
-    public function listarDivisiones($path){
+    public function listarDivisiones(){
         include_once ($path.'bussines/DAO/DivisionDAO.php');
         include_once ($path.'model/General.php');
 
         $divisionDAO =new DivisionDAO();
-        $listaDivisiones = $divisionDAO->listarDivisiones($path);
+        $listaDivisiones = $divisionDAO->listarDivisiones();
 
         $table = " <table border='1'> ";
         $table.= " <thead> ";

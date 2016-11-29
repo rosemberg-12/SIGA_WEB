@@ -14,14 +14,14 @@ class ControllerUsuario
      * @param $path rita para acceder archivos
      * @return string codigo HTML para mostrar la informacion
      */
-    public function listarUsuarios($path){
-        include_once ($path.'bussines/DAO/UsuarioDAO.php');
-        include_once ($path.'model/General.php');
+    public function listarUsuarios(){
+        include_once ('../bussines/DAO/UsuarioDAO.php');
+        include_once ('../model/General.php');
 
         $usuarioDAO =new UsuarioDAO();
-        $listaUsuarios = $usuarioDAO->listarUsuarios($path);
+        $listaUsuarios = $usuarioDAO->listarUsuarios();
 
-        $table = " <table border='1'> ";
+        $table = " <table id='tabla-usuarios' class='table table-bordered table-hover'> ";
         $table.= " <thead> ";
         $table.= " <tr> ";
         $table.= " <td>NOMBRE</td> ";
@@ -29,7 +29,7 @@ class ControllerUsuario
         $table.= " <td>DOCUMENTO</td> ";
         $table.= " <td>ESTADO</td> ";
         $table.= " <td>ACCIONES</td> ";
-        $table.= " <tr> ";
+        $table.= " </tr> ";
         $table.= " </thead> ";
 
         if(count($listaUsuarios)>0){

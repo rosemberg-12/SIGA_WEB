@@ -8,15 +8,17 @@
  */
 class DivisionDAO
 {
+
+
     /**
      * Metodo para listar las divisiones registradas en el sistema
      * @param $path rita para acceder archivo
      * @return array lista con la informacion solicitada
      */
-    public function listarDivisiones($path){
-        include ($path.'bussines/DAO/Conection.php');
-        require_once ($path.'bussines/DTO/Division.php');
-        require_once ($path.'bussines/DTO/Persona.php');
+    public function listarDivisiones(){
+        include ('../DAO/Conection.php');
+        require_once ('../DTO/Division.php');
+        require_once ('../DTO/Persona.php');
 
         $consulta = " SELECT divi.*, pers.* ";
         $consulta.= " FROM siga.division divi ";

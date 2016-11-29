@@ -25,7 +25,6 @@ public function iniciarSesion($documento, $contrasena, $tipo){
     $usuario->_SET("contrasena", $contrasena);
     $usuarioDao= new UsuarioDAO();
     $resultado=false;
-
     switch($tipo){
         case 1:
             if(strcmp($usuario->_GET("nick"), "administrador" )==0 && strcmp($usuario->_GET("contrasena"), "ufpsBienestar" )==0)

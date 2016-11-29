@@ -1,8 +1,12 @@
 <?php
 require_once '../bussines/DTO/Usuario.php';
 require_once '../bussines/DTO/Persona.php';
+require_once '../fachade/FachadeOne.php';
+
+
 session_start();
 
+$facade = new FachadeOne();
 
 
 ?>

@@ -73,13 +73,12 @@ class UsuarioDAO
 
 
     public function iniciarSesionEncargadoUni($usuario){
-        include_once ('Conection.php');
-        $consulta="SELECT persona.usu_id, persona.pers_nombre, persona.pers_apellido, persona.pers_numdocumento
+     include_once ('Conection.php');
+     $consulta="SELECT persona.usu_id, persona.pers_nombre, persona.pers_apellido, persona.pers_numdocumento
      from persona, usuario
      where usuario.usu_nick=? AND usuario.usu_pass=? AND usuario.usu_id= persona.usu_id";
         $result = $conexion->prepare($consulta);
         $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena')));
-
         $usuario->_SET("id",false);
         foreach ($result as $row){
             $persona=new Persona();
@@ -92,7 +91,7 @@ class UsuarioDAO
 
         if($usuario->_GET("id")!=false){
             $consulta="Select COUNT(*) from unidad where unidad.unid_coordinador=". $usuario->_GET('id');
-            $result = Conection::$_conexion->prepare($consulta);
+            $result = $conexion->prepare($consulta);
             $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena')));
             $cantidadDivisiones=$result->fetchColumn();
             if($cantidadDivisiones>0){
@@ -145,14 +144,14 @@ class UsuarioDAO
      * @param $path ruta para el acceso de los archivos desde donde se envia la solicitud
      * @return array lista con la informacion de los usuario registrados en el sistema
      */
-    public function listarUsuarios($path){
-        include ($path.'bussines/DAO/Conection.php');
-        require_once ($path.'bussines/DTO/Usuario.php');
-        require_once ($path.'bussines/DTO/Persona.php');
+    public function listarUsuarios(){
+        include ('Conection.php');
+        require_once ('../bussines/DTO/Usuario.php');
+        require_once ('../bussines/DTO/Persona.php');
 
         $consulta = " SELECT usu.*, pers.*, tido.tido_abreviatura ";
         $consulta.= " FROM siga.usuario usu ";
-        $consulta.= " LEFT JOIN siga.persona pers ON (pers.pers_usu_id = usu.usu_id) ";
+        $consulta.= " LEFT JOIN siga.persona pers ON (pers.usu_id = usu.usu_id) ";
         $consulta.= " LEFT JOIN siga.tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
 
         $result = $conexion->query($consulta);
@@ -170,7 +169,7 @@ class UsuarioDAO
 
             $persona = new Persona();
 
-            $persona->_SET('idUsuario',$row['pers_usu_id']);
+            $persona->_SET('idUsuario',$row['usu_id']);
             $persona->_SET('nombre',$row['pers_nombre']);
             $persona->_SET('apellido',$row['pers_apellido']);
             $persona->_SET('idTipoDocumento',$row['tido_id']);

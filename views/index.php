@@ -4,9 +4,6 @@ require_once '../bussines/DTO/Usuario.php';
 session_start();
 $muestra="";
 
-if(isset($_SESSION['usuario'])){
-    header("Location: principal.php");
-}
 
 if( ( isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['rol']) ) )
 {
@@ -17,7 +14,7 @@ if( ( isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['r
     $var=$facade->iniciarSesion($_POST['documento'],$_POST['password'], $_POST['rol']);
 
     if($var===true){
-        header("Location: principal.php");
+       header("Location: principal.php");
     }
     else{
         $muestra= '<script type="text/javascript">alertify.error("'.$var.'");</script>';
@@ -79,8 +76,8 @@ if( ( isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['r
                                                         <option value>Seleccione el rol</option>
                                                         <option value="1">Administrador</option>
                                                         <option value="2">Encargado de división</option>
-                                                        <option value="2">Encargado de unidad</option>
-                                                        <option value="2">Encargado de actividad</option>   .
+                                                        <option value="3">Encargado de unidad</option>
+                                                        <option value="4">Encargado de actividad</option>   .
                                                     </select>
                                                   </div>
 

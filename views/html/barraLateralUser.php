@@ -11,7 +11,11 @@
                             <p><?php
                                 require_once '../bussines/DTO/Usuario.php';
                                 require_once '../bussines/DTO/Persona.php';
-
+                                echo  $_SESSION['tipo_usuario'];
+                           if( $_SESSION['tipo_usuario'] == 1){
+                                echo $_SESSION['usuario']->_GET('nick');
+                            }
+                                else
                             echo $_SESSION['usuario']->_GET('persona')->_GET('nombre')." ".$_SESSION['usuario']->_GET('persona')->_GET('apellido');?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -51,7 +55,7 @@
                         </li>';}
                             ?>
                         <?php
-                        if( $_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 ){
+                        if( $_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2  || $_SESSION['tipo_usuario']==3){
                             echo '<li class="treeview" >
                             <a href="gestion-unidad.php">
                                 <i class="fa fa-files-o"></i>

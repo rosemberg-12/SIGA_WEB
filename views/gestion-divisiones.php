@@ -57,7 +57,7 @@ $facade = new FachadeOne();
 
                                 <div class="box-body">
 
-                                    <?php echo $facade->listarUsuarios();?>
+                                    <?php echo $facade->listarDivisiones();?>
 
                                 </div><!-- /.box-body -->
 
