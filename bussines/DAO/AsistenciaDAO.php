@@ -18,7 +18,6 @@ class AsistenciaDAO
     public function listarAsistenciaResportePorSemestreAno($criterioBusqueda,$path){
         include($path.'bussines/DAO/Conection.php');
         require_once ($path.'bussines/DTO/Asistencia.php');
-        //Conection::getInstance();
 
         $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
         $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
@@ -116,7 +115,6 @@ class AsistenciaDAO
     public function listarAsistenciaResportePorCarrera($criterioBusqueda,$path){
         include($path.'bussines/DAO/Conection.php');
         require_once ($path.'bussines/DTO/Asistencia.php');
-        //Conection::getInstance();
 
         $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
         $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
@@ -173,7 +171,6 @@ class AsistenciaDAO
     public function listarAsistenciaReportePorActividad($criterioBusqueda,$path){
         include($path.'bussines/DAO/Conection.php');
         require_once ($path.'bussines/DTO/Asistencia.php');
-        //Conection::getInstance();
 
         $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
         $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
