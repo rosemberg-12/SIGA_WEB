@@ -9,6 +9,21 @@
 class DivisionDAO
 {
 
+    public function asignarJefeDivision($jefe, $division){
+        try {
+
+            include_once ('../../bussines/DAO/Conection.php');
+            $consulta ='UPDATE division SET divi_jefe="'.$jefe.'" WHERE divi_id="'.$division.'"';
+            echo $consulta."<br>";
+            $result=$conexion->prepare($consulta);
+            $result->execute();
+
+            return "0";
+        } catch (Exception $e) {
+            echo "1";
+        }
+    }
+
     public function actualizarDiv($nombre,$abr, $estado, $id){
 
         try {

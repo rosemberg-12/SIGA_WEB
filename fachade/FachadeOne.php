@@ -8,6 +8,12 @@
  */
 class FachadeOne
 {
+    public function asignarJefeDivision($jefe, $division){
+        require_once('../../model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->asignarJefeDivision($jefe, $division);
+    }
+
     public function  actualizarDiv($nombre, $abr, $estado, $id){
         require_once('../../model/ControllerDivision.php');
         $cDivision = new ControllerDivision();
@@ -92,6 +98,12 @@ class FachadeOne
         require_once ('../model/ControllerUnidad.php');
         $cUnidad = new ControllerUnidad();
         return $cUnidad->listarUnidadesPorDivision($idDivision);
+    }
+
+    public function cargarAllUsers($selected, $divi){
+        require_once("../".'model/ControllerUsuario.php');
+        $cDivision = new ControllerUsuario();
+        return $cDivision->cargarAllUsers($selected, $divi);
     }
 
 }

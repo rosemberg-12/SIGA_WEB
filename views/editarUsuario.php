@@ -10,7 +10,7 @@ $cc="";
 $de="";
 $ce="";
 $ca="";
-$vi="";
+$ci="";
 $activo="";
 $inactivo="";
 
@@ -48,7 +48,7 @@ if(isset($_GET['user'])){
         $ca="selected";
     }
     elseif(strcmp($value,"7")==0){
-        $ti="selected";
+        $ci="selected";
     }
 
     if(strcmp($estado,"A")==0){

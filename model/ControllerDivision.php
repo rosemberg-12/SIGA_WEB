@@ -9,6 +9,13 @@
 class ControllerDivision
 {
 
+    public function asignarJefeDivision($jefe, $division){
+        include_once ('../../bussines/DAO/DivisionDAO.php');
+
+        $usuarioDAO =new DivisionDAO();
+        return  $usuarioDAO->asignarJefeDivision($jefe, $division);
+    }
+
     public function actualizarDiv($nombre, $abr, $estado , $id){
 
         include_once ('../../bussines/DAO/DivisionDAO.php');
