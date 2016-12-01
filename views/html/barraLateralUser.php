@@ -1,5 +1,5 @@
 
-<aside class="main-sidebar" style="position:fixed;">
+<aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <!-- Panel usuario -->
@@ -11,7 +11,7 @@
                             <p><?php
                                 require_once '../bussines/DTO/Usuario.php';
                                 require_once '../bussines/DTO/Persona.php';
-                                echo  $_SESSION['tipo_usuario'];
+
                            if( $_SESSION['tipo_usuario'] == 1){
                                 echo $_SESSION['usuario']->_GET('nick');
                             }
@@ -39,7 +39,7 @@
                         <?php
                        if( $_SESSION['tipo_usuario']==1  ){
                        echo '<li class="treeview" >
-                            <a href="gestion-divisiones.php">
+                            <a href="gestion-division.php">
                                 <i class="fa fa-files-o"></i>
                                 <span>Gestion de divisiones (Administrador)</span>
                             </a>                            

@@ -9,8 +9,8 @@
 //    private $usuario = "ufps_69" ;//usuario para la conexion a  la BB sandbox
 //    private $clave = "ufps_po";//clave del usuario para la conexion a la BD sandbox
     /*===========================*/
-    $user = "siga" ;//usuario para la conexion a  la BD
-    $clave = "sigaUFPS2016";//clave del usuario para la conexion a la BD
+    $user = "root" ;//usuario para la conexion a  la BD
+    $clave = "";//clave del usuario para la conexion a la BD
     $conexion;//Variable para realizar los llamados fuera de la clase
 
 
@@ -19,6 +19,7 @@
         {
             $conexion = new PDO('mysql:host=localhost;dbname=siga', $user, $clave);
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         }
         catch (Exception $e)
         {

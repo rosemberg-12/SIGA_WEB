@@ -59,15 +59,4 @@ class FachadeOne
         return $cUnidad->listarUnidadesPorDivision($idDivision);
     }
 
-
-    /**
-     * Metodo para lsitar Asistencias por una actividad especifica
-     * @param $idActividad identificador de la actividad
-     * @return string codigoHTML con la informacion
-     */
-    public function listarAsistencias($idActividad){
-        require_once ('../model/ControllerAsistencia.php');
-        $cAsistencia = new ControllerAsistencia();
-        return $cAsistencia->listarAsistenciaPorActividad($idActividad);
-    }
 }

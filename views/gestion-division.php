@@ -5,8 +5,17 @@ require_once '../fachade/FachadeOne.php';
 
 
 session_start();
+$muestra="";
+if(isset($_GET['estado'])){
+
+    if($_GET['estado']==0)
+        $muestra= '<script type="text/javascript">alertify.success("Operación completada");</script>';
+    else
+        $muestra= '<script type="text/javascript">alertify.error("Ha ocurrido un error");</script>';
+}
 
 $facade = new FachadeOne();
+
 
 ?>
 
@@ -43,7 +52,7 @@ $facade = new FachadeOne();
                     <br>
 
                     <div class="login-logo titulo" style="color: #fff;">
-                        <a href="#" style="color:#dd4b39">Administrar Novedades</a>
+                       <b><a href="#" style="color:#dd4b39">Gestión de divisiones</a></b>
                     </div><!-- /.login-logo -->
                     <br>
                     <br>
@@ -51,13 +60,20 @@ $facade = new FachadeOne();
                     <br>
 
                     <div class="row">
+                        <div class="col-xs-12" style="display: flex;  justify-content: center; padding-bottom: 50px" >
+                            <div class="col-xs-6" >
 
+                                <a href="registrar-division.php" class="btn btn-info btn-block btn-flat">Crear nueva división</a>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
                         <div class="col-xs-12">
                             <div class="box">
 
                                 <div class="box-body">
 
-                                    <?php echo $facade->listarDivisiones();?>
+                                    <?php echo $facade->listarDivisiones("../");?>
 
                                 </div><!-- /.box-body -->
 
@@ -105,6 +121,7 @@ $facade = new FachadeOne();
         <script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js" type="text/javascript"></script>
 
         <script src="js/jszip.js" type="text/javascript"></script>
+        <?php echo $muestra;?>
 
     </body>
 

@@ -5,13 +5,13 @@ session_start();
 $muestra="";
 
 
-if( ( isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['rol']) ) )
+if( ( isset($_POST['tipodoc'])  && isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['rol']) ) )
 {
     require_once '../fachade/FachadeOne.php';
 
     $facade = new FachadeOne();
 
-    $var=$facade->iniciarSesion($_POST['documento'],$_POST['password'], $_POST['rol']);
+    $var=$facade->iniciarSesion($_POST['tipodoc'], $_POST['documento'],$_POST['password'], $_POST['rol']);
 
     if($var===true){
        header("Location: principal.php");
@@ -50,9 +50,7 @@ if( ( isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['r
             <!-- Columna derecha. contiene navbar y la ruta de la pagina -->
             <div class="content-wrapper inicio">
                 <!-- Encabezado -->
-                
-
-                <!-- Contenido Principal de la pagina -->
+                                <!-- Contenido Principal de la pagina -->
                 <section class="content">
                     <!-- Incluir aqui el contenido-->
                         <div class="login-box">
@@ -62,6 +60,18 @@ if( ( isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['r
                                       <div class="login-box-body" style="border-style: solid; border-width: 1px; border-color: black">
                                         <p class="login-box-msg">Logueate para iniciar sesión</p>
                                                 <form action="index.php" method="post" id="login">
+                                                    <div class="form-group has-feedback">
+                                                        <select class="form-control" id="tipodoc"name="tipodoc" required="">
+                                                            <option value>Seleccione el tipo de documento</option>
+                                                            <option value="1">Pasaporte</option>
+                                                            <option value="2">Tarjeta de Identidad</option>
+                                                            <option value="3">Cedula de ciudadania</option>
+                                                            <option value="4">Documento de identidad extrajera</option>
+                                                            <option value="5">Cedula de extrajeria</option>
+                                                            <option value="6">Certificado cabildo</option>
+                                                            <option value="7">Visa de extrajeria</option>
+                                                        </select>
+                                                    </div>
                                                   <div class="form-group has-feedback">
                                                     <input type="text" class="form-control" placeholder="Documento" name="documento" id="documento" required="" title="Número de Documento">
                                                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -95,9 +105,6 @@ if( ( isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['r
                                                   </div>
 
                                                 </form>
-
-                                        <br>
-
                                       </div><!-- /.login-box-body -->
                         </div>
                 </section><!-- /.contenido principal-->

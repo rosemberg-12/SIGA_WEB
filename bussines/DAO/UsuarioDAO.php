@@ -7,6 +7,57 @@
  */
 class UsuarioDAO
 {
+
+    public function actualizarUsuario($nombre, $apellido, $tipoDoc, $doc, $pass,$id, $estado){
+
+        try {
+
+            include_once ('../../bussines/DAO/Conection.php');
+            $consulta ='UPDATE Usuario SET usu_pass="'.$pass.'", usu_nick="'.$doc.'", usu_estado="'.$estado.'" WHERE usu_id="'.$id.'"';
+            echo $consulta."<br>";
+            $result=$conexion->prepare($consulta);
+            $result->execute();
+
+            $consulta ='UPDATE persona SET pers_nombre="'.$nombre.'", pers_apellido="'.$apellido.'", pers_numdocumento="'.$doc.'", tido_id="'.$tipoDoc.'" WHERE usu_id="'.$id.'"';
+            $result=$conexion->prepare($consulta);
+            $result->execute();
+
+            return "0";
+        } catch (Exception $e) {
+            echo "1";
+        }
+
+
+    }
+
+    public function crearUsuario($nombre, $apellido, $tipoDoc, $doc, $pass){
+
+       try {
+
+            include_once ('../../bussines/DAO/Conection.php');
+            $consulta='INSERT INTO Usuario(usu_pass, usu_nick, usu_estado, usu_registradopor) VALUES(?,?,?,?)';
+            $result=$conexion->prepare($consulta);
+
+            $result->execute(array($pass,$doc,"A",1));
+
+            $consulta="Select MAX(Usuario.usu_id) from Usuario";
+            $result=$conexion->prepare($consulta);
+            $result->execute(array());
+            $id=$result->fetchColumn();
+
+
+            $consulta='INSERT INTO persona(usu_id,pers_nombre, pers_apellido, pers_numdocumento, tido_id, pers_registradopor) VALUES(?,?,?,?,?,?)';
+            $result=$conexion->prepare($consulta);
+
+            $result->execute(array($id,$nombre,$apellido, $doc,$tipoDoc, 1));
+
+            return "0";
+       } catch (Exception $e) {
+           return "1";
+       }
+
+
+    }
     /**
      * Metodo para registrar una nueva actividad
      * @param $actividad datos a registrar
@@ -16,7 +67,7 @@ class UsuarioDAO
         include_once ($path.'bussines/DAO/Conection.php');
 
         Conection::getInstance();
-        $consulta =" INSERT INTO siga.actividad (unid_id,acti_descripcion,tiac_id,acti_semestre,acti_ano,acti_fechainicio,acti_fechafin,acti_dedicacion,tipr_id,acti_estado,acti_responsable,acti_registradopor) ";
+        $consulta =" INSERT INTO actividad (unid_id,acti_descripcion,tiac_id,acti_semestre,acti_ano,acti_fechainicio,acti_fechafin,acti_dedicacion,tipr_id,acti_estado,acti_responsable,acti_registradopor) ";
         $consulta .=" VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
         $result = Conection::$_conexion->prepare($consulta);
         $result->execute(array(
@@ -38,13 +89,14 @@ class UsuarioDAO
     }
 
 
- public function iniciarSesionEncargadoDiv($usuario){
+ public function iniciarSesionEncargadoDiv($usuario, $tipo){
      include_once ('Conection.php');
      $consulta="SELECT persona.usu_id, persona.pers_nombre, persona.pers_apellido, persona.pers_numdocumento
      from persona, usuario
-     where usuario.usu_nick=? AND usuario.usu_pass=? AND usuario.usu_id= persona.usu_id";
+     where usuario.usu_nick=? AND usuario.usu_pass=? AND usuario.usu_estado='A' AND usuario.usu_id=persona.usu_id AND persona.tido_id=?";
+
      $result = $conexion->prepare($consulta);
-     $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena')));
+     $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena'), $tipo));
      $usuario->_SET("id",false);
      foreach ($result as $row){
          $persona=new Persona();
@@ -71,14 +123,14 @@ class UsuarioDAO
      }
  }
 
-
-    public function iniciarSesionEncargadoUni($usuario){
-     include_once ('Conection.php');
-     $consulta="SELECT persona.usu_id, persona.pers_nombre, persona.pers_apellido, persona.pers_numdocumento
+    public function iniciarSesionEncargadoUni($usuario, $tipo){
+        include_once ('Conection.php');
+        $consulta="SELECT persona.usu_id, persona.pers_nombre, persona.pers_apellido, persona.pers_numdocumento
      from persona, usuario
-     where usuario.usu_nick=? AND usuario.usu_pass=? AND usuario.usu_id= persona.usu_id";
+     where usuario.usu_nick=? AND usuario.usu_pass=? AND usuario.usu_estado='A' AND usuario.usu_id=persona.usu_id AND persona.tido_id=?";
+
         $result = $conexion->prepare($consulta);
-        $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena')));
+        $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena'), $tipo));
         $usuario->_SET("id",false);
         foreach ($result as $row){
             $persona=new Persona();
@@ -88,7 +140,6 @@ class UsuarioDAO
             $usuario->_SET("id",$row[0]);
             $usuario->_SET("persona",$persona);
         }
-
         if($usuario->_GET("id")!=false){
             $consulta="Select COUNT(*) from unidad where unidad.unid_coordinador=". $usuario->_GET('id');
             $result = $conexion->prepare($consulta);
@@ -106,13 +157,14 @@ class UsuarioDAO
         }
     }
 
-    public function iniciarSesionEncargadoAct($usuario){
+    public function iniciarSesionEncargadoAct($usuario, $tipo){
         include_once ('Conection.php');
         $consulta="SELECT persona.usu_id, persona.pers_nombre, persona.pers_apellido, persona.pers_numdocumento
      from persona, usuario
-     where usuario.usu_nick=? AND usuario.usu_pass=? AND usuario.usu_id= persona.usu_id";
+     where usuario.usu_nick=? AND usuario.usu_pass=? AND usuario.usu_estado='A' AND usuario.usu_id=persona.usu_id AND persona.tido_id=?";
+
         $result = $conexion->prepare($consulta);
-        $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena')));
+        $result->execute(array($usuario->_GET('nick'), $usuario->_GET('contrasena'), $tipo));
         $usuario->_SET("id",false);
         foreach ($result as $row){
             $persona=new Persona();
@@ -150,9 +202,9 @@ class UsuarioDAO
         require_once ('../bussines/DTO/Persona.php');
 
         $consulta = " SELECT usu.*, pers.*, tido.tido_abreviatura ";
-        $consulta.= " FROM siga.usuario usu ";
-        $consulta.= " LEFT JOIN siga.persona pers ON (pers.usu_id = usu.usu_id) ";
-        $consulta.= " LEFT JOIN siga.tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
+        $consulta.= " FROM usuario usu ";
+        $consulta.= " LEFT JOIN persona pers ON (pers.usu_id = usu.usu_id) ";
+        $consulta.= " LEFT JOIN tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
 
         $result = $conexion->query($consulta);
         //$result->excute();

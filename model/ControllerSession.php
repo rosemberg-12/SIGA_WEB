@@ -14,12 +14,11 @@ class ControllerSession
      * @param $contrasena contraseña del usuario
      * @param $tipo tipo de usuario con el que va a entrar
      */
-public function iniciarSesion($documento, $contrasena, $tipo){
+public function iniciarSesion($tipo, $documento, $contrasena, $tipoDoc){
 
     require_once '../bussines/DTO/Usuario.php';
     require_once '../bussines/DTO/Persona.php';
     require_once '../bussines/DAO/UsuarioDAO.php';
-
     $usuario= new Usuario();
     $usuario->_SET("nick",$documento);
     $usuario->_SET("contrasena", $contrasena);
@@ -33,13 +32,13 @@ public function iniciarSesion($documento, $contrasena, $tipo){
                 $resultado="Datos de administrador invalidos";
             break;
         case 2:
-            $resultado= $usuarioDao->iniciarSesionEncargadoDiv($usuario);
+            $resultado= $usuarioDao->iniciarSesionEncargadoDiv($usuario, $tipoDoc);
             break;
         case 3:
-            $resultado=$usuarioDao->iniciarSesionEncargadoUni($usuario);
+            $resultado=$usuarioDao->iniciarSesionEncargadoUni($usuario, $tipoDoc);
             break;
         case 4:
-            $resultado=$usuarioDao->iniciarSesionEncargadoAct($usuario);
+            $resultado=$usuarioDao->iniciarSesionEncargadoAct($usuario, $tipoDoc);
             break;
     }
     if ($resultado==true){
