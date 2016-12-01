@@ -14,7 +14,7 @@ class Unidad
     private $abreviatura;
     private $codigo;
     private $estado;
-    private $idCoordinador;
+    private $coordinador;
 
     public function _GET($k){ return $this->$k; }
     public function _SET($k, $v){ return $this->$k = $v; }

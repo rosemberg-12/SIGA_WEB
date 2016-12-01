@@ -249,12 +249,13 @@ class ControllerReportes
             }else{
                 $codigo='0'.$actividad->_GET('id').$actividad->_GET('abreviaturaDivision');
             }
+
             // Agregar Encabezado
             $objPHPExcel->setActiveSheetIndex(2)
                 ->setCellValue('A'.$i, 'VB')
                 ->setCellValue('B'.$i, $codigo)
-                ->setCellValue('C'.$i, $actividad->_GET('tipoDocumentoResponsable'))
-                ->setCellValue('D'.$i, $actividad->_GET('numeroDocumentoResponsable'))
+                ->setCellValue('C'.$i, $actividad->_GET('responsable')->_GET('abreviaturaTipoDocumento'))
+                ->setCellValue('D'.$i, $actividad->_GET('responsable')->_GET('numeroDocumento'))
                 ->setCellValue('E'.$i, $actividad->_GET('dedicacion'));
             $i++;
         }

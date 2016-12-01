@@ -15,10 +15,9 @@ class ActividadDAO
     public function registrarActividad($actividad,$path){
         include_once ($path.'bussines/DAO/Conection.php');
 
-        Conection::getInstance();
         $consulta =" INSERT INTO siga.actividad (unid_id,acti_descripcion,tiac_id,acti_semestre,acti_ano,acti_fechainicio,acti_fechafin,acti_dedicacion,tipr_id,acti_estado,acti_responsable,acti_registradopor) ";
         $consulta .=" VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
-        $result = Conection::$_conexion->prepare($consulta);
+        $result = $conexion->prepare($consulta);
         $result->execute(array(
             $actividad->_GET('idUnidad'),
             $actividad->_GET('descripcion'),
@@ -33,7 +32,7 @@ class ActividadDAO
             $actividad->_GET('idResponsable'),
             $_SESSION['idUsuario']
         ));
-        Conection::closeInstance();
+        $conexion = null;
         return "Registro de Actividad exitoso";
     }
 
@@ -45,16 +44,15 @@ class ActividadDAO
     public function consultarActividad($idActividad,$path){
         include_once ($path.'bussines/DAO/Conection.php');
         require_once ($path.'bussines/DTO/Actividad.php');
-        Conection::getInstance();
-        $consulta = "SELECT * FROM siga.actividad WHERE acti_id = ?";
-        $result = Conection::$_conexion->prepare($consulta);
-        $result->bindParam($idActividad);
-        $result->execute();
+
+        $consulta = " SELECT * FROM siga.actividad WHERE acti_id = ? ";
+        $result = $conexion->prepare($consulta);
+        $result->execute(array($idActividad));
 
         foreach ($result as $row){
          $actividad= $row[0];
         }
-        Conection::closeInstance();
+        $conexion = null;
         return $actividad;
     }
 
@@ -67,14 +65,15 @@ class ActividadDAO
     public function listarActividadesReportePorSemestreAno($criterioBusqueda,$path){
         include ($path.'bussines/DAO/Conection.php');
         require_once ($path.'bussines/DTO/Actividad.php');
+        require_once ($path.'bussines/DTO/Persona.php');
 
         $consulta = " SELECT acti.acti_id, acti.unid_id, acti.acti_descripcion, acti.tiac_id, acti.acti_semestre, ";
         $consulta.= " acti.acti_ano, SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechainicio, ' ', 1), ' ', -1) AS acti_fechainicio, ";
         $consulta.= " SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechafin, ' ', 1), ' ', -1) AS acti_fechafin, acti.acti_dedicacion, ";
         $consulta.= " acti.tipr_id, acti.acti_estado, acti.acti_responsable, divi.divi_abreviatura, ";
-        $consulta.= " tipr.tipr_descripcion, tiac.tiac_descripcion, tido.tido_abreviatura, pers.pers_numdocumento ";
+        $consulta.= " tipr.tipr_descripcion, tiac.tiac_descripcion, tido.tido_abreviatura, pers.* ";
         $consulta.= " FROM siga.actividad acti ";
-        $consulta.= " INNER JOIN siga.persona pers ON (pers.pers_usu_id = acti.acti_responsable) ";
+        $consulta.= " INNER JOIN siga.persona pers ON (pers.usu_id = acti.acti_responsable) ";
         $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
         $consulta.= " INNER JOIN siga.unidad unid ON (unid.unid_id = acti.unid_id) ";
         $consulta.= " INNER JOIN siga.division divi ON (divi.divi_id = unid.divi_id) ";
@@ -104,8 +103,81 @@ class ActividadDAO
             $actividad->_SET('abreviaturaDivision',$row['divi_abreviatura']);
             $actividad->_SET('descripcionTipoPrograma',$row['tipr_descripcion']);
             $actividad->_SET('descripcionTipoActividad',$row['tiac_descripcion']);
-            $actividad->_SET('tipoDocumentoResponsable',$row['tido_abreviatura']);
-            $actividad->_SET('numeroDocumentoResponsable',$row['pers_numdocumento']);
+
+            $responsable = new Persona();
+
+            $responsable->_SET('idUsuario',$row['usu_id']);
+            $responsable->_SET('idTipoDocumento',$row['tido_id']);
+            $responsable->_SET('abreviaturaTipoDocumento',$row['tido_abreviatura']);
+            $responsable->_SET('nombre',$row['pers_nombre']);
+            $responsable->_SET('apellido',$row['pers_apellido']);
+
+            $actividad->_SET('responsable',$responsable);
+
+            $lista[] = $actividad;
+        }
+        $conexion = null;
+        return $lista;
+    }
+
+    /**
+     * Metodo para listar actividades de una unidad especifica
+     * @param $idUnidad identificador de la unidad
+     * @return array lista con la informacion solicitada
+     */
+    public function listarActividadesPorUnidad($idUnidad){
+        include ('../bussines/DAO/Conection.php');
+        require_once ('../bussines/DTO/Actividad.php');
+        require_once ('../bussines/DTO/Persona.php');
+
+        $consulta = " SELECT acti.acti_id, acti.unid_id, acti.acti_descripcion, acti.tiac_id, acti.acti_semestre, ";
+        $consulta.= " acti.acti_ano, SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechainicio, ' ', 1), ' ', -1) AS acti_fechainicio, ";
+        $consulta.= " SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechafin, ' ', 1), ' ', -1) AS acti_fechafin, acti.acti_dedicacion, ";
+        $consulta.= " acti.tipr_id, acti.acti_estado, acti.acti_responsable, divi.divi_abreviatura, ";
+        $consulta.= " tipr.tipr_descripcion, tiac.tiac_descripcion, tido.tido_abreviatura, pers.* ";
+        $consulta.= " FROM siga.actividad acti ";
+        $consulta.= " INNER JOIN siga.persona pers ON (pers.usu_id = acti.acti_responsable) ";
+        $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
+        $consulta.= " INNER JOIN siga.unidad unid ON (unid.unid_id = acti.unid_id) ";
+        $consulta.= " INNER JOIN siga.division divi ON (divi.divi_id = unid.divi_id) ";
+        $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
+        $consulta.= " INNER JOIN siga.tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
+        $consulta.= " WHERE acti.unid_id = ? ";
+        $consulta.= " ORDER BY acti.acti_fechainicio, acti.acti_id ; ";
+
+        $result = $conexion->prepare($consulta);
+        $result->execute(array($idUnidad));
+
+        $lista = array();
+
+        foreach ($result as $row){
+            $actividad = new Actividad();
+
+            $actividad->_SET('id',$row['acti_id']);
+            $actividad->_SET('idUnidad',$row['unid_id']);
+            $actividad->_SET('descripcion',$row['acti_descripcion']);
+            $actividad->_SET('idTipoActividad',$row['tiac_id']);
+            $actividad->_SET('semestre',$row['acti_semestre']);
+            $actividad->_SET('anoActividad',$row['acti_ano']);
+            $actividad->_SET('fechaInicio',$row['acti_fechainicio']);
+            $actividad->_SET('fechaFin',$row['acti_fechafin']);
+            $actividad->_SET('dedicacion',$row['acti_dedicacion']);
+            $actividad->_SET('idTipoPrograma',$row['tipr_id']);
+            $actividad->_SET('estado',$row['acti_estado']);
+            $actividad->_SET('idResponsable',$row['acti_responsable']);
+            $actividad->_SET('abreviaturaDivision',$row['divi_abreviatura']);
+            $actividad->_SET('descripcionTipoPrograma',$row['tipr_descripcion']);
+            $actividad->_SET('descripcionTipoActividad',$row['tiac_descripcion']);
+
+            $responsable = new Persona();
+
+            $responsable->_SET('idUsuario',$row['usu_id']);
+            $responsable->_SET('idTipoDocumento',$row['tido_id']);
+            $responsable->_SET('abreviaturaTipoDocumento',$row['tido_abreviatura']);
+            $responsable->_SET('nombre',$row['pers_nombre']);
+            $responsable->_SET('apellido',$row['pers_apellido']);
+
+            $actividad->_SET('responsable',$responsable);
 
             $lista[] = $actividad;
         }

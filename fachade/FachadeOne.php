@@ -37,4 +37,26 @@ class FachadeOne
         return $cDivision->listarDivisiones($path);
     }
 
+    /**
+     * Metodo para listar las actividad de una unidad especifica
+     * @param $idUnidad identificador d ela unidad
+     * @return string codigoHTML a mostrar
+     */
+    public function listarActividades($idUnidad){
+        require_once ('../model/ControllerActividad.php');
+        $cActividad = new ControllerActividad();
+        return $cActividad->listarActividadPorUnidad($idUnidad);
+    }
+
+    /**
+     * Metodo para listar unidades de una division especifica
+     * @param $idDivision identificador de la division
+     * @return string codigoHTML con la informacion
+     */
+    public function listarUnidades($idDivision){
+        require_once ('../model/ControllerUnidad.php');
+        $cUnidad = new ControllerUnidad();
+        return $cUnidad->listarUnidadesPorDivision($idDivision);
+    }
+
 }
