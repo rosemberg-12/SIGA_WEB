@@ -249,12 +249,13 @@ class ControllerReportes
             }else{
                 $codigo='0'.$actividad->_GET('id').$actividad->_GET('abreviaturaDivision');
             }
+
             // Agregar Encabezado
             $objPHPExcel->setActiveSheetIndex(2)
                 ->setCellValue('A'.$i, 'VB')
                 ->setCellValue('B'.$i, $codigo)
-                ->setCellValue('C'.$i, $actividad->_GET('tipoDocumentoResponsable'))
-                ->setCellValue('D'.$i, $actividad->_GET('numeroDocumentoResponsable'))
+                ->setCellValue('C'.$i, $actividad->_GET('responsable')->_GET('abreviaturaTipoDocumento'))
+                ->setCellValue('D'.$i, $actividad->_GET('responsable')->_GET('numeroDocumento'))
                 ->setCellValue('E'.$i, $actividad->_GET('dedicacion'));
             $i++;
         }
@@ -321,4 +322,66 @@ class ControllerReportes
             }
         }
     }
+
+    /**
+     * Metodo para listar Asistencia por un criterio especifico
+     * @param $criterioBusqueda array que contiene los valor del criterio a buscar
+     * @param $path riuta de acceso
+     * @return string con el codigo de la tabla a mostrar
+     */
+    public function listarAsistenciaReportePDF($criterioBusqueda, $path){
+        include_once ($path.'bussines/DAO/AsistenciaDAO.php');
+        $asistenciaDAO = new AsistenciaDAO();
+
+        /*  $criterioBusqueda['tipo'] == 1 -> Carrera
+         *  $criterioBusqueda['tipo'] == 2 -> Actividad
+         *  $criterioBusqueda['tipo'] == 3 -> Año y Semestre(opcional)
+         */
+        if($criterioBusqueda['tipo'] == 1){
+            $listaAsistencia = $asistenciaDAO->listarAsistenciaResportePorCarrera($criterioBusqueda,$path);
+        }elseif ($criterioBusqueda['tipo'] == 2) {
+            $listaAsistencia = $asistenciaDAO->listarAsistenciaReportePorActividad($criterioBusqueda, $path);
+        }elseif ($criterioBusqueda['tipo'] == 3) {
+            $listaAsistencia = $asistenciaDAO->listarAsistenciaResportePorSemestreAno($criterioBusqueda, $path);
+        }
+
+        $table = " <table id='tabla-usuarios' class='table table-bordered table-hover'> ";
+        $table.= " <thead> ";
+        $table.= " <tr> ";
+        $table.= " <th style='text-align: center'>ACTIVIDAD</th> ";
+        $table.= " <th style='text-align: center'>TIPO BENEFICIARIO</th> ";
+        $table.= " <th style='text-align: center'>DOCUMENTO</th> ";
+        $table.= " <th style='text-align: center'>NOMBRE COMPLETO</th> ";
+        $table.= " <th style='text-align: center'>CODIGO</th> ";
+        $table.= " <th style='text-align: center'>CARRERA</th> ";
+        $table.= " </tr> ";
+        $table.= " </thead> ";
+
+        if(count($listaAsistencia)>0){
+            $table.= " <tbody> ";
+            foreach ($listaAsistencia as $asistencia){
+                $nombreC= $this->getNombreCarrera($asistencia->_GET('codigoBeneficiario'));
+                $table.= " <tr> ";
+                $table.= " <td style='text-align: center'>".$asistencia->_GET('descripcionActividad')."</td> ";
+                $table.= " <td style='text-align: center'>".$asistencia->_GET('descripcionTipoBeneficiario')."</td> ";
+                $table.= " <td style='text-align: center'>".$asistencia->_GET('abreviaturaTipoDocumento')." ".$asistencia->_GET('documentoBeneficiario')."</td> ";
+                $table.= " <td style='text-align: center'>".$asistencia->_GET('nombreBeneficiario')."</td> ";
+                $table.= " <td style='text-align: center'>".$asistencia->_GET('codigoBeneficiario')."</td> ";
+                $table.= " <td style='text-align: center'>".$nombreC."</td> ";
+                $table.= " </tr> ";
+            }
+            $table.= " </tbody> ";
+        }else{
+            $table.= " <tbody> ";
+            $table.= " <tr> ";
+            $table.= " <td colspan='6'>No hay registros en el sistema</td>";
+            $table.= " </tr> ";
+            $table.= " </tbody> ";
+        }
+
+        $conexion = null;
+        return $table;
+    }
+
+
 }

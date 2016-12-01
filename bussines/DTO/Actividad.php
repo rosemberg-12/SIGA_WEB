@@ -20,9 +20,7 @@ class Actividad
     private $nombreTipoPrograma;
     private $estado;
     private $dedicacion;
-    private $idResponsable;
-    private $tipoDocumentoResponsable;
-    private $numeroDocumentoResponsable;
+    private $responsable;
     private $abreviaturaDivision;
 
 
