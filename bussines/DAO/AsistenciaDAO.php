@@ -212,4 +212,53 @@ class AsistenciaDAO
     }
 
 
+    /**
+     * Metodo para listar asistencias por una actividad especifica
+     * @param $idActividad identificador de la actividad
+     * @return array lista con la informacion
+     */
+    public function listarAsistenciaPorActividad($idActividad){
+        include('../bussines/DAO/Conection.php');
+        require_once ('../bussines/DTO/Asistencia.php');
+
+        $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
+        $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
+        $consulta.= " FROM siga.actividad acti ";
+        $consulta.= " LEFT JOIN siga.asistencia asis ON (asis.acti_id = acti.acti_id) ";
+        $consulta.= " INNER JOIN siga.tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
+        $consulta.= " INNER JOIN siga.tipobeneficiario tibe ON (tibe.tibe_id = asis.tibe_id) ";
+        $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = asis.tido_id) ";
+        $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
+        $consulta.= " WHERE asis.acti_id = ? ";
+        $consulta.= " ORDER BY acti.acti_id DESC; ";
+
+        $result = $conexion->prepare($consulta);
+        $result->execute(array($idActividad));
+
+
+        $lista = array();
+
+        foreach ($result as $row){
+            $asistencia = new Asistencia();
+
+            $asistencia->_SET('descripcionTipoActividad',$row['tiac_descripcion']);
+            $asistencia->_SET('descripcionTipoBeneficiario',$row['tibe_descripcion']);
+            $asistencia->_SET('abreviaturaTipoDocumento',$row['tido_abreviatura']);
+            $asistencia->_SET('id',$row['asis_id']);
+            $asistencia->_SET('idActividad',$row['acti_id']);
+            $asistencia->_SET('idTipoBeneficiario',$row['tibe_id']);
+            $asistencia->_SET('idTipoDocumento',$row['tido_id']);
+            $asistencia->_SET('documentoBeneficiario',$row['asis_documento']);
+            $asistencia->_SET('nombreBeneficiario',$row['asis_nombrebeneficiario']);
+            $asistencia->_SET('codigoBeneficiario',$row['asis_codigobeneficiario']);
+            $asistencia->_SET('descripcionActividad',$row['acti_descripcion']);
+            $asistencia->_SET('descripcionTipoPrograma',$row['tipr_descripcion']);
+
+            $lista[] = $asistencia;
+        }
+        $conexion = null;
+        return $lista;
+    }
+
+
 }
