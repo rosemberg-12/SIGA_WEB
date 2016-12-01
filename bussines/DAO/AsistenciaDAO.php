@@ -22,12 +22,12 @@ class AsistenciaDAO
 
         $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
         $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
-        $consulta.= " FROM siga.actividad acti ";
-        $consulta.= " LEFT JOIN siga.asistencia asis ON (asis.acti_id = acti.acti_id) ";
-        $consulta.= " INNER JOIN siga.tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
-        $consulta.= " INNER JOIN siga.tipobeneficiario tibe ON (tibe.tibe_id = asis.tibe_id) ";
-        $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = asis.tido_id) ";
-        $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
+        $consulta.= " FROM actividad acti ";
+        $consulta.= " LEFT JOIN asistencia asis ON (asis.acti_id = acti.acti_id) ";
+        $consulta.= " INNER JOIN tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
+        $consulta.= " INNER JOIN tipobeneficiario tibe ON (tibe.tibe_id = asis.tibe_id) ";
+        $consulta.= " INNER JOIN tipodocumento tido ON (tido.tido_id = asis.tido_id) ";
+        $consulta.= " INNER JOIN tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
         $consulta.= " WHERE acti.acti_semestre = ? AND acti.acti_ano = ? ";
         $consulta.= " ORDER BY acti.acti_id; ";
 
@@ -68,11 +68,11 @@ class AsistenciaDAO
         require_once ($path.'bussines/DTO/Asistencia.php');
 
         $consulta = " SELECT tibe.tibe_descripcion, asis.acti_id, divi.divi_abreviatura ,count(asis.acti_id) as cantidad ";
-        $consulta.= " FROM siga.asistencia asis ";
-        $consulta.= " INNER JOIN siga.actividad acti ON (acti.acti_id = asis.acti_id) ";
-        $consulta.= " INNER JOIN siga.unidad unid ON (unid.unid_id = acti.unid_id) ";
-        $consulta.= " INNER JOIN siga.division divi ON (divi.divi_id = unid.divi_id) ";
-        $consulta.= " INNER JOIN siga.tipobeneficiario tibe ON (tibe.tibe_id = asis.tibe_id) ";
+        $consulta.= " FROM asistencia asis ";
+        $consulta.= " INNER JOIN .actividad acti ON (acti.acti_id = asis.acti_id) ";
+        $consulta.= " INNER JOIN unidad unid ON (unid.unid_id = acti.unid_id) ";
+        $consulta.= " INNER JOIN division divi ON (divi.divi_id = unid.divi_id) ";
+        $consulta.= " INNER JOIN tipobeneficiario tibe ON (tibe.tibe_id = asis.tibe_id) ";
         $consulta.= " WHERE acti.acti_semestre = ? AND acti.acti_ano = ? ";
         $consulta.= " GROUP BY tibe.tibe_descripcion, acti.acti_descripcion ";
         $consulta.= " ORDER BY asis.acti_id; ";

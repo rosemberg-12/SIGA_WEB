@@ -16,7 +16,7 @@ class ActividadDAO
         include_once ($path.'bussines/DAO/Conection.php');
 
         Conection::getInstance();
-        $consulta =" INSERT INTO siga.actividad (unid_id,acti_descripcion,tiac_id,acti_semestre,acti_ano,acti_fechainicio,acti_fechafin,acti_dedicacion,tipr_id,acti_estado,acti_responsable,acti_registradopor) ";
+        $consulta =" INSERT INTO actividad (unid_id,acti_descripcion,tiac_id,acti_semestre,acti_ano,acti_fechainicio,acti_fechafin,acti_dedicacion,tipr_id,acti_estado,acti_responsable,acti_registradopor) ";
         $consulta .=" VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
         $result = Conection::$_conexion->prepare($consulta);
         $result->execute(array(
@@ -46,7 +46,7 @@ class ActividadDAO
         include_once ($path.'bussines/DAO/Conection.php');
         require_once ($path.'bussines/DTO/Actividad.php');
         Conection::getInstance();
-        $consulta = "SELECT * FROM siga.actividad WHERE acti_id = ?";
+        $consulta = "SELECT * FROM actividad WHERE acti_id = ?";
         $result = Conection::$_conexion->prepare($consulta);
         $result->bindParam($idActividad);
         $result->execute();
@@ -73,13 +73,13 @@ class ActividadDAO
         $consulta.= " SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechafin, ' ', 1), ' ', -1) AS acti_fechafin, acti.acti_dedicacion, ";
         $consulta.= " acti.tipr_id, acti.acti_estado, acti.acti_responsable, divi.divi_abreviatura, ";
         $consulta.= " tipr.tipr_descripcion, tiac.tiac_descripcion, tido.tido_abreviatura, pers.pers_numdocumento ";
-        $consulta.= " FROM siga.actividad acti ";
-        $consulta.= " INNER JOIN siga.persona pers ON (pers.pers_usu_id = acti.acti_responsable) ";
-        $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
-        $consulta.= " INNER JOIN siga.unidad unid ON (unid.unid_id = acti.unid_id) ";
-        $consulta.= " INNER JOIN siga.division divi ON (divi.divi_id = unid.divi_id) ";
-        $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
-        $consulta.= " INNER JOIN siga.tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
+        $consulta.= " FROM actividad acti ";
+        $consulta.= " INNER JOIN persona pers ON (pers.pers_usu_id = acti.acti_responsable) ";
+        $consulta.= " INNER JOIN tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
+        $consulta.= " INNER JOIN unidad unid ON (unid.unid_id = acti.unid_id) ";
+        $consulta.= " INNER JOIN division divi ON (divi.divi_id = unid.divi_id) ";
+        $consulta.= " INNER JOIN tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
+        $consulta.= " INNER JOIN tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
         $consulta.= " WHERE acti.acti_semestre = ? AND acti.acti_ano = ? ";
         $consulta.= " ORDER BY acti.acti_id ; ";
 

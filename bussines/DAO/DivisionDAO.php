@@ -9,6 +9,40 @@
 class DivisionDAO
 {
 
+    public function actualizarDiv($nombre,$abr, $estado, $id){
+
+        try {
+
+            include_once ('../../bussines/DAO/Conection.php');
+            $consulta ='UPDATE division SET divi_nombre="'.$nombre.'", divi_abreviatura="'.$abr.'", divi_estado="'.$estado.'" WHERE divi_id="'.$id.'"';
+            echo $consulta."<br>";
+            $result=$conexion->prepare($consulta);
+            $result->execute();
+
+            return "0";
+        } catch (Exception $e) {
+            echo "1";
+        }
+
+
+    }
+
+    public function crearDivision($nombre, $abreviatura ){
+        try {
+
+            include_once ('../../bussines/DAO/Conection.php');
+            $consulta='INSERT INTO division(divi_nombre, divi_abreviatura, divi_jefe, divi_registradopor, divi_estado) VALUES(?,?,?,?,?)';
+            $result=$conexion->prepare($consulta);
+
+            $result->execute(array($nombre,$abreviatura,1,1, "A"));
+
+
+            return "0";
+        } catch (Exception $e) {
+            return "1";
+        }
+    }
+
 
     /**
      * Metodo para listar las divisiones registradas en el sistema
@@ -16,13 +50,13 @@ class DivisionDAO
      * @return array lista con la informacion solicitada
      */
     public function listarDivisiones(){
-        include ('../DAO/Conection.php');
-        require_once ('../DTO/Division.php');
-        require_once ('../DTO/Persona.php');
+        include ('../bussines/DAO/Conection.php');
+        require_once ('../bussines/DTO/Division.php');
+        require_once ('../bussines/DTO/Persona.php');
 
         $consulta = " SELECT divi.*, pers.* ";
-        $consulta.= " FROM siga.division divi ";
-        $consulta.= " INNER JOIN siga.persona pers ON (pers.pers_usu_id = divi.divi_jefe) ";
+        $consulta.= " FROM division divi ";
+        $consulta.= " INNER JOIN persona pers ON (pers.usu_id = divi.divi_jefe) ";
 
         $result = $conexion->query($consulta);
 
@@ -35,8 +69,10 @@ class DivisionDAO
             $division->_SET('nombre',$row['divi_nombre']);
             $division->_SET('abreviatura',$row['divi_abreviatura']);
 
+            $division->_SET('estado',$row['divi_estado']);
+
             $jefe = new Persona();
-            $jefe->_SET('idUsuario',$row['pers_usu_id']);
+            $jefe->_SET('idUsuario',$row['usu_id']);
             $jefe->_SET('nombre',$row['pers_nombre']);
             $jefe->_SET('apellido',$row['pers_apellido']);
             $jefe->_SET('idTipoDocumento',$row['tido_id']);

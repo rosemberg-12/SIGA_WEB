@@ -8,10 +8,33 @@
  */
 class FachadeOne
 {
-    public function iniciarSesion($documento, $contrasena, $tipo){
+    public function  actualizarDiv($nombre, $abr, $estado, $id){
+        require_once('../../model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->actualizarDiv($nombre, $abr, $estado, $id);
+    }
+    public function  actualizarUser($nombre, $apellido, $tipoDoc, $doc, $pass,$id , $estado){
+        require_once('../../model/ControllerUsuario.php');
+        $cDivision = new ControllerUsuario();
+        return $cDivision->actualizarUser($nombre, $apellido, $tipoDoc, $doc, $pass,$id, $estado );
+    }
+
+    public function  crearUser($nombre, $apellido, $tipoDoc, $doc, $pass ){
+        require_once('../../model/ControllerUsuario.php');
+        $cDivision = new ControllerUsuario();
+        return $cDivision->crearUser($nombre, $apellido, $tipoDoc, $doc, $pass );
+    }
+
+    public function  crearDivision($nombre, $abreviatura ){
+        require_once('../../model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->crearDivision($nombre, $abreviatura );
+    }
+
+    public function iniciarSesion($tipoDocumento ,$documento, $contrasena, $tipo){
         require_once('../model/ControllerSession.php');
         $controlador = new ControllerSession();
-        return $controlador->iniciarSesion($documento, $contrasena, $tipo);
+        return $controlador->iniciarSesion($tipo, $documento, $contrasena, $tipoDocumento);
     }
 
 
@@ -36,5 +59,17 @@ class FachadeOne
         $cDivision = new ControllerDivision();
         return $cDivision->listarDivisiones($path);
     }
+    public function getUserInformation($id, $path){
+        require_once($path.'model/ControllerUsuario.php');
+        $cDivision = new ControllerUsuario();
+        return $cDivision->getUserInformation($id, $path);
+    }
+
+    public function getDivInformation($id, $path){
+        require_once($path.'model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->getDivInformation($id, $path);
+    }
+
 
 }

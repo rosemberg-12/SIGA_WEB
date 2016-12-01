@@ -479,6 +479,3 @@ $.AdminLTE.boxWidget = {
     });
   };
 }(jQuery));
-$(document).ready(function() {
-    $('#empleados').DataTable();
-} );

@@ -11,6 +11,7 @@ class Division
     private $id;
     private $nombre;
     private $abreviatura;
+    private $estado;
     private $jefe;
 
     public function _GET($k){ return $this->$k; }
