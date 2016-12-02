@@ -3,38 +3,20 @@ require_once '../bussines/DTO/Usuario.php';
 require_once '../bussines/DTO/Persona.php';
 require_once '../fachade/FachadeOne.php';
 
-$activo="";
-$inactivo="";
 
 session_start();
+$muestra="";
+if(isset($_GET['estado'])){
 
-if(isset($_GET['divi'])){
-    include_once ('../model/General.php');
-
-    $id_divi= ($_GET['divi']);
-    $facade = new FachadeOne();
-
-    $division=$facade->getDivInformation($id_divi, "../");
-
-    if($division==null){
-        header("Location: gestion-division.php");
-    }
-
-    $estado=$division->_GET('estado');
-
-    if(strcmp($estado,"A")==0){
-        $activo="selected";
-
-    }
-    else{
-        $inactivo="selected";
-    }
-
-
-
+    if($_GET['estado']==0)
+        $muestra= '<script type="text/javascript">alertify.success("Operación completada");</script>';
+    else
+        $muestra= '<script type="text/javascript">alertify.error("Ha ocurrido un error");</script>';
 }
 
 $facade = new FachadeOne();
+
+$comboDivisiones=$facade->cargarDivisionesGestionDivision();
 
 ?>
 
@@ -65,45 +47,60 @@ $facade = new FachadeOne();
                 <!-- Encabezado -->
 
 
-                <!-- Contenido Principal de la pagina-->
+                <!-- Contenido Principal de la pagina -->
                 <section class="content">
                     <!-- Incluir aqui el contenido-->
                     <br>
 
                     <div class="login-logo titulo" style="color: #fff;">
-                        <b><a href="#" style="color:#dd4b39">Editar Division</a></b>
+                       <b><a href="#" style="color:#dd4b39">Gestionar división</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptEditarDivision.php" method="post">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre de la división</label>
-                                    <input type="text" class="form-control" value='<?php echo $division->_GET('nombre'); ?>' placeholder="Nombre de la división" id="div_name" name="div_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Abreviatura de la división</label>
-                                    <input type="text" class="form-control" value='<?php echo $division->_GET('abreviatura'); ?>' placeholder="Abreviatura de la división" id="div_abr" name="div_abr" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                    <select class="form-control" id=rol name="div_status" required="">
-                                        <option value>Seleccione el estado de la división</option>
-                                        <option value="A" <?php echo $activo;?>>Activo</option>
-                                        <option value="D" <?php echo $inactivo;?>>Inactivo</option>
-                                    </select>
-                                </div>
+                    <div class="row">
 
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Actualizar</button>
-                                <input type="hidden" value='<?php echo $_GET['divi']; ?>' name="divi"/>
-                            </form>
 
+                        <div class="col-xs-12" style="display: flex;  justify-content: center;">
+                            <div class="col-xs-8">
+
+                                <div class="box">
+                                    <div class="box-body">
+                                        <div style="text-align: center;"><h3>Seleccione la división a gestionar</h3> </div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="division1" name="division1" required="">
+                                                <?php echo $comboDivisiones ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="col-xs-12" style="display: flex;  justify-content: center;">
+                            <div class="col-xs-10">
+                                <div class="box">
+                                    <div class="box-body">
+                                        <div id="detalles" name="detalles" style="padding-left: 20px;">
+                                            <p><b>Nombre de la división:  </b> <span id="nombre_div"></span></p>
+                                            <p><b>Nombre del encargado :</b><span id="nombre_encargado"></span></p>
+                                            <p><b>Abreviatura:</b><span id="abr_div"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="botonCrearUnidad" name="botonCrearUnidad"></div>
+
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div id="tabla-unidadesD" name="tabla-unidadesD" class="box-body">
+
+                                </div>
+                            </div>
+                        </div>
+
+                                </div><!-- /.row -->
 
                 </section><!-- /.contenido principal-->
 
@@ -144,6 +141,7 @@ $facade = new FachadeOne();
         <script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js" type="text/javascript"></script>
 
         <script src="js/jszip.js" type="text/javascript"></script>
+        <?php echo $muestra;?>
 
     </body>
 

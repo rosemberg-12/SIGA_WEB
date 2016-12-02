@@ -9,9 +9,49 @@
 class ControllerDivision
 {
 
+    public function cargarDivisionesGestionDivision(){
+        include_once ("../".'bussines/DAO/DivisionDAO.php');
+        include_once ("../".'model/General.php');
+
+        $divisionDAO =new DivisionDAO();
+        $listaDivisiones = $divisionDAO->listarDivisiones();
+        $listaComboDivisiones=Array();
+
+        $usuario=$_SESSION['usuario'];
+
+        if(strcmp($_SESSION['tipo_usuario']+"", "1")==0){
+            $listaComboDivisiones=$listaDivisiones;
+        }
+        else{
+            foreach ($listaDivisiones as $div) {
+                $idJefeDiv=$div->_GET('jefe')->_GET('idUsuario');
+                $idCurrentyUser=$usuario->_GET('id');
+
+                if(strcmp($idJefeDiv, $idCurrentyUser)==0){
+                    $listaComboDivisiones[]=$div;
+                }
+            }
+        }
+        $concat="<option value='-1'>Seleccione uno</option>";
+
+        foreach ($listaComboDivisiones as $div) {
+            if(strcmp(($div->_GET('estado')),'A')==0)
+            $concat.='<option value="'.$div->_GET('id').'">'.$div->_GET('nombre').'</option>';
+        }
+
+        if(empty($concat)){
+            return "<option value='-1'>No hay Divisiones para cargar</option>";
+        }
+
+        return $concat;
+
+
+
+
+    }
+
     public function asignarJefeDivision($jefe, $division){
         include_once ('../../bussines/DAO/DivisionDAO.php');
-
         $usuarioDAO =new DivisionDAO();
         return  $usuarioDAO->asignarJefeDivision($jefe, $division);
     }
@@ -50,8 +90,25 @@ class ControllerDivision
         }
 
         return null;
+    }
+
+    public function getDivInformationService($id, $path){
+        include_once ($path.'bussines/DAO/DivisionDAO.php');
+        include_once ($path.'model/General.php');
+
+        $divisionDAO =new DivisionDAO();
+        $listaDivisiones = $divisionDAO->listarDivisionesService($path);
 
 
+        $index=0;
+        while($index<count($listaDivisiones)){
+            if( $listaDivisiones[$index]->_GET('id')==$id ){
+                return  $listaDivisiones[$index];
+            }
+            $index++;
+        }
+
+        return null;
     }
 
 

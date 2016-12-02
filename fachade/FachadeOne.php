@@ -8,10 +8,28 @@
  */
 class FachadeOne
 {
+    public function cargarDivisionesGestionDivision(){
+        require_once('../model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->cargarDivisionesGestionDivision();
+    }
+
     public function asignarJefeDivision($jefe, $division){
         require_once('../../model/ControllerDivision.php');
         $cDivision = new ControllerDivision();
         return $cDivision->asignarJefeDivision($jefe, $division);
+    }
+
+    public function asignarCoordinadorUnidad($jefe, $uni){
+        require_once('../../model/ControllerUnidad.php');
+        $cDivision = new ControllerUnidad();
+        return $cDivision->asignarCoordinadorUnidad($jefe, $uni);
+    }
+
+    public function actualizarUnid($nombre, $abr, $codigo, $estado, $id){
+        require_once('../../model/ControllerUnidad.php');
+        $cDivision = new ControllerUnidad();
+        return $cDivision->actualizarUnid($nombre, $abr, $codigo, $estado, $id);
     }
 
     public function  actualizarDiv($nombre, $abr, $estado, $id){
@@ -29,6 +47,12 @@ class FachadeOne
         require_once('../../model/ControllerUsuario.php');
         $cDivision = new ControllerUsuario();
         return $cDivision->crearUser($nombre, $apellido, $tipoDoc, $doc, $pass );
+    }
+
+    public function  crearUnidad($nombre, $abreviatura, $cod, $divi){
+        require_once('../../model/ControllerUnidad.php');
+        $cDivision = new ControllerUnidad();
+        return $cDivision->crearUnidad($nombre, $abreviatura, $cod, $divi);
     }
 
     public function  crearDivision($nombre, $abreviatura ){
@@ -65,6 +89,8 @@ class FachadeOne
         $cDivision = new ControllerDivision();
         return $cDivision->listarDivisiones($path);
     }
+
+
     public function getUserInformation($id, $path){
         require_once($path.'model/ControllerUsuario.php');
         $cDivision = new ControllerUsuario();
@@ -75,6 +101,18 @@ class FachadeOne
         require_once($path.'model/ControllerDivision.php');
         $cDivision = new ControllerDivision();
         return $cDivision->getDivInformation($id, $path);
+    }
+
+    public function getDivInformationServices($id, $path){
+        require_once($path.'model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->getDivInformationService($id, $path);
+    }
+
+    public function getUnidadInformation($id, $path){
+        require_once($path.'model/ControllerUnidad.php');
+        $cDivision = new ControllerUnidad();
+        return $cDivision->getUnidadInformation($id, $path);
     }
 
 
@@ -100,10 +138,28 @@ class FachadeOne
         return $cUnidad->listarUnidadesPorDivision($idDivision);
     }
 
+
+    /**
+     * Metodo para listar unidades de una division especifica
+     * @param $idDivision identificador de la division
+     * @return string codigoHTML con la informacion
+     */
+    public function listarUnidadesServices($idDivision, $path){
+        require_once ($path.'model/ControllerUnidad.php');
+        $cUnidad = new ControllerUnidad();
+        return $cUnidad->listarUnidadesPorDivisionServices($idDivision, $path);
+    }
+
     public function cargarAllUsers($selected, $divi){
         require_once("../".'model/ControllerUsuario.php');
         $cDivision = new ControllerUsuario();
         return $cDivision->cargarAllUsers($selected, $divi);
+    }
+
+    public function cargarAllUsersForUnidad($selected, $unid){
+        require_once("../".'model/ControllerUsuario.php');
+        $cDivision = new ControllerUsuario();
+        return $cDivision->cargarAllUsersForUnidad($selected, $unid);
     }
 
 }

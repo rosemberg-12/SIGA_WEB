@@ -8,19 +8,19 @@ $inactivo="";
 
 session_start();
 
-if(isset($_GET['divi'])){
+if(isset($_GET['unid'])){
     include_once ('../model/General.php');
 
-    $id_divi= ($_GET['divi']);
+    $id_unid= ($_GET['unid']);
     $facade = new FachadeOne();
 
-    $division=$facade->getDivInformation($id_divi, "../");
+    $unidad=$facade->getUnidadInformation($id_unid, "../");
 
-    if($division==null){
-        header("Location: gestion-division.php");
+    if($unidad==null){
+        header("Location: gestionar-division.php");
     }
 
-    $estado=$division->_GET('estado');
+    $estado=$unidad->_GET('estado');
 
     if(strcmp($estado,"A")==0){
         $activo="selected";
@@ -71,7 +71,7 @@ $facade = new FachadeOne();
                     <br>
 
                     <div class="login-logo titulo" style="color: #fff;">
-                        <b><a href="#" style="color:#dd4b39">Editar Division</a></b>
+                        <b><a href="#" style="color:#dd4b39">Editar Unidad</a></b>
                     </div><!-- /.login-logo -->
                     <br>
                     <div class="box" style="width: 70%; margin: 3% auto;">
@@ -79,27 +79,32 @@ $facade = new FachadeOne();
 
                         </div><!-- /.box-header -->
                         <div class="login-box-body">
-                            <form role="form" action="scripts/scriptEditarDivision.php" method="post">
+                            <form role="form" action="scripts/scriptEditarUnidad.php" method="post">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Nombre de la división</label>
-                                    <input type="text" class="form-control" value='<?php echo $division->_GET('nombre'); ?>' placeholder="Nombre de la división" id="div_name" name="div_name" required>
+                                    <label>Nombre de la Unidad</label>
+                                    <input type="text" class="form-control" value='<?php echo $unidad->_GET('nombre'); ?>' placeholder="Nombre de la unidad" id="unid_name" name="unid_name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Abreviatura de la división</label>
-                                    <input type="text" class="form-control" value='<?php echo $division->_GET('abreviatura'); ?>' placeholder="Abreviatura de la división" id="div_abr" name="div_abr" required>
+                                    <label>Abreviatura de la Unidad</label>
+                                    <input type="text" class="form-control" value='<?php echo $unidad->_GET('abreviatura'); ?>' placeholder="Abreviatura de la Unidad" id="unid_abr" name="unid_abr" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Codigo de la Unidad</label>
+                                    <input type="text" class="form-control" value='<?php echo $unidad->_GET('codigo'); ?>' placeholder="Codigo de la Unidad" id="unid_cod" name="unid_cod" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Estado</label>
-                                    <select class="form-control" id=rol name="div_status" required="">
-                                        <option value>Seleccione el estado de la división</option>
+                                    <select class="form-control" id=rol name="unid_status" required="">
+                                        <option value>Seleccione el estado de la unidad</option>
                                         <option value="A" <?php echo $activo;?>>Activo</option>
                                         <option value="D" <?php echo $inactivo;?>>Inactivo</option>
+
                                     </select>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-block btn-flat">Actualizar</button>
-                                <input type="hidden" value='<?php echo $_GET['divi']; ?>' name="divi"/>
+                                <input type="hidden" value='<?php echo $_GET['unid']; ?>' name="unid"/>
                             </form>
 
                         </div>

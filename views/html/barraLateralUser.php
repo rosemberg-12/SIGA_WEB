@@ -48,7 +48,7 @@
                         <?php
                         if( $_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 ){
                         echo '<li class="treeview" >
-                            <a href="gestion-division.php">
+                            <a href="gestionar-division.php">
                                 <i class="fa fa-files-o"></i>
                                 <span>Gestion de división</span>
                             </a>
@@ -57,7 +57,7 @@
                         <?php
                         if( $_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2  || $_SESSION['tipo_usuario']==3){
                             echo '<li class="treeview" >
-                            <a href="gestion-unidad.php">
+                            <a href="gestionar-unidad.php">
                                 <i class="fa fa-files-o"></i>
                                 <span>Gestion de unidad</span>
                             </a>
@@ -65,7 +65,7 @@
                         <?php
                         if( $_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 || $_SESSION['tipo_usuario']==3 || $_SESSION['tipo_usuario']==4){
                             echo '<li class="treeview" >
-                             <a href="gestion-actividad.php">
+                             <a href="gestionar-actividad.php">
                                 <i class="fa fa-files-o"></i>
                                 <span>Gestion de actividad</span>
                             </a>
