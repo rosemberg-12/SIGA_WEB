@@ -197,4 +197,16 @@ class FachadeOne
         return $cDivision->getComboPrograma();
     }
 
+
+    /**
+     * Metodo para registrar asistencia
+     * @param $asistencia
+     * @return string
+     */
+    public function registrarAsistencia($asistencia){
+       require_once ('../model/ControllerAsistencia.php');
+        $cAsistencia = new ControllerAsistencia();
+        return $cAsistencia->registrarAsistencia($asistencia);
+    }
+
 }

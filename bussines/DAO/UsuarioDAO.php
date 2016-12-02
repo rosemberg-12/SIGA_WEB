@@ -58,6 +58,7 @@ class UsuarioDAO
 
 
     }
+
     /**
      * Metodo para registrar una nueva actividad
      * @param $actividad datos a registrar

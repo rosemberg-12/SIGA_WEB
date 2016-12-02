@@ -260,5 +260,40 @@ class AsistenciaDAO
         return $lista;
     }
 
+    /**
+     * Metddo para registra asistencia
+     * @param $asistencia
+     * @return string
+     */
+    public function registrarAsistencia($asistencia){
+        try{
+            session_start();
+            if($_SESSION['tipo_usuario']==1){
+                $registradopor=1;
+            }
+            else{
+                $registradopor=$_SESSION['usuario']->_GET('id');
+            }
 
+            include('../bussines/DAO/Conection.php');
+
+            $consulta = " INSERT INTO `siga`.`asistencia`(`acti_id`, `tibe_id`, `tido_id`, `asis_documento`, `asis_nombrebeneficiario`, `asis_codigobeneficiario`, `asis_registradopor`) ";
+            $consulta.= " VALUES (?,?,?,?,?,?,?); ";
+
+            $result = $conexion->prepare($consulta);
+            $result->execute(array($asistencia['idActividad'],
+                $asistencia['idTipoBeneficiario'],
+                $asistencia['idTipoDocumento'],
+                $asistencia['documentoBeneficiario'],
+                $asistencia['nombreBeneficiario'],
+                $asistencia['codigoBeneficiario'],
+                $registradopor));
+
+            $conexion = null;
+            return "0";
+        }catch (Exception $e){
+            return "1";
+        }
+
+    }
 }

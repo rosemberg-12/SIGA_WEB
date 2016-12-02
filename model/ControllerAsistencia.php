@@ -60,4 +60,16 @@ class ControllerAsistencia
 
         return $table;
     }
+
+    /**
+     * Metodo para registrar asistencia
+     * @param $asistencia
+     * @return string
+     */
+    public function registrarAsistencia($asistencia){
+        include_once ('../../bussines/DAO/AsistenciaDAO.php');
+
+        $asistenciaDAO =new AsistenciaDAO();
+        return $asistenciaDAO->registrarAsistencia($asistencia);
+    }
 }
