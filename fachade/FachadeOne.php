@@ -14,6 +14,12 @@ class FachadeOne
         return $cDivision->cargarDivisionesGestionDivision();
     }
 
+    public function cargarComboUnidades($id_div, $path){
+        require_once($path.'model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->cargarComboUnidad($id_div, $path);
+    }
+
     public function asignarJefeDivision($jefe, $division){
         require_once('../../model/ControllerDivision.php');
         $cDivision = new ControllerDivision();
@@ -41,6 +47,13 @@ class FachadeOne
         require_once('../../model/ControllerUsuario.php');
         $cDivision = new ControllerUsuario();
         return $cDivision->actualizarUser($nombre, $apellido, $tipoDoc, $doc, $pass,$id, $estado );
+    }
+
+
+    public function  crearActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $uni ){
+        require_once('../../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->crearActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $uni);
     }
 
     public function  crearUser($nombre, $apellido, $tipoDoc, $doc, $pass ){
@@ -124,7 +137,18 @@ class FachadeOne
     public function listarActividades($idUnidad){
         require_once ('../model/ControllerActividad.php');
         $cActividad = new ControllerActividad();
-        return $cActividad->listarActividadPorUnidad($idUnidad);
+        return $cActividad->listarActividadPorUnidad($idUnidad, "../");
+    }
+
+    /**
+     * Metodo para listar las actividad de una unidad especifica
+     * @param $idUnidad identificador d ela unidad
+     * @return string codigoHTML a mostrar
+     */
+    public function listarActividadesServices($idUnidad, $path){
+        require_once ($path.'model/ControllerActividad.php');
+        $cActividad = new ControllerActividad();
+        return $cActividad->listarActividadPorUnidad($idUnidad, $path);
     }
 
     /**
@@ -160,6 +184,17 @@ class FachadeOne
         require_once("../".'model/ControllerUsuario.php');
         $cDivision = new ControllerUsuario();
         return $cDivision->cargarAllUsersForUnidad($selected, $unid);
+    }
+
+    public function getComboTipoActividad(){
+        require_once('../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->getComboTipoActividad();
+    }
+    public function getComboPrograma(){
+        require_once('../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->getComboPrograma();
     }
 
 }

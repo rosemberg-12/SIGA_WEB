@@ -7,6 +7,64 @@
  */
 class ActividadDAO
 {
+
+
+    public function getTipoActividades(){
+
+        /*===========================*/
+        $user = "root" ;//usuario para la conexion a  la BD
+        $clave = "";//clave del usuario para la conexion a la BD
+        $conexion="";//Variable para realizar los llamados fuera de la clase
+
+        try
+        {
+            $conexion = new PDO('mysql:host=localhost;dbname=siga', $user, $clave);
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        }
+        catch (Exception $e)
+        {
+            die("Unable to connect: " . $e->getMessage());
+        }
+        //include_once ('../bussines/DAO/Conection.php');
+        include_once ('../bussines/DTO/TipoActividad.php');
+
+        $consulta= "Select * from tipoactividad";
+        $result = $conexion->prepare($consulta);
+        $result->execute(array());
+        $tactividades=array();
+
+        foreach ($result as $row){
+
+            $tactividad= new TipoActividad();
+            $tactividad->_SET("id",$row[0]);
+            $tactividad->_SET("descripcion",$row[1]);
+            $tactividades[]=$tactividad;
+        }
+        $conexion=null;
+        return $tactividades;
+    }
+
+    public function getProg(){
+        include_once ('../bussines/DAO/Conection.php');
+        include_once ('../bussines/DTO/TipoPrograma.php');
+
+        $consulta= "Select * from tipoprograma";
+        $result = $conexion->prepare($consulta);
+        $result->execute(array());
+        $tactividades=array();
+
+        foreach ($result as $row){
+
+            $tactividad= new TipoPrograma();
+            $tactividad->_SET("id",$row[0]);
+            $tactividad->_SET("descripcion",$row[1]);
+            $tactividades[]=$tactividad;
+        }
+        $conexion=null;
+        return $tactividades;
+    }
+
     /**
      * Metodo para registrar una nueva actividad
      * @param $actividad datos a registrar
@@ -125,10 +183,10 @@ class ActividadDAO
      * @param $idUnidad identificador de la unidad
      * @return array lista con la informacion solicitada
      */
-    public function listarActividadesPorUnidad($idUnidad){
-        include ('../bussines/DAO/Conection.php');
-        require_once ('../bussines/DTO/Actividad.php');
-        require_once ('../bussines/DTO/Persona.php');
+    public function listarActividadesPorUnidad($idUnidad,$path){
+        include ($path.'bussines/DAO/Conection.php');
+        require_once ($path.'bussines/DTO/Actividad.php');
+        require_once ($path.'bussines/DTO/Persona.php');
 
         $consulta = " SELECT acti.acti_id, acti.unid_id, acti.acti_descripcion, acti.tiac_id, acti.acti_semestre, ";
         $consulta.= " acti.acti_ano, SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechainicio, ' ', 1), ' ', -1) AS acti_fechainicio, ";

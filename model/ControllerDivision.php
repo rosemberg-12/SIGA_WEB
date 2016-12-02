@@ -9,44 +9,137 @@
 class ControllerDivision
 {
 
-    public function cargarDivisionesGestionDivision(){
-        include_once ("../".'bussines/DAO/DivisionDAO.php');
-        include_once ("../".'model/General.php');
+    public function cargarComboUnidad($divi, $path){
+        $procesar="";
 
-        $divisionDAO =new DivisionDAO();
-        $listaDivisiones = $divisionDAO->listarDivisiones();
-        $listaComboDivisiones=Array();
 
         $usuario=$_SESSION['usuario'];
 
-        if(strcmp($_SESSION['tipo_usuario']+"", "1")==0){
-            $listaComboDivisiones=$listaDivisiones;
-        }
-        else{
-            foreach ($listaDivisiones as $div) {
-                $idJefeDiv=$div->_GET('jefe')->_GET('idUsuario');
-                $idCurrentyUser=$usuario->_GET('id');
+        if($_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 ||$_SESSION['tipo_usuario']==3){
+            include_once ($path.'bussines/DAO/UnidadDAO.php');
+            include_once ($path.'model/General.php');
 
-                if(strcmp($idJefeDiv, $idCurrentyUser)==0){
-                    $listaComboDivisiones[]=$div;
+            $unidadDAO = new UnidadDAO();
+            $listaUnidades = $unidadDAO->listarUnidadesPorDivisionServices($divi, $path);
+
+            if($_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 ){
+                $procesar=$listaUnidades;
+            }
+            elseif($_SESSION['tipo_usuario']==3){
+                $listaAux=array();
+
+                foreach ($listaUnidades as $unid) {
+                    $idCoordinadorU=$unid->_GET('coordinador')->_GET('idUsuario');
+
+                    $idCurrentyUser=$usuario->_GET('id');
+
+                    if(strcmp($idCoordinadorU, $idCurrentyUser)==0){
+                        $listaAux[]=$unid;
+                    }
                 }
+
+                $procesar=$listaAux;
             }
         }
+        elseif ($_SESSION['tipo_usuario']==4){
+            include_once ($path.'bussines/DAO/UnidadDAO.php');
+            include_once ($path.'model/General.php');
+
+            $unidadDAO = new UnidadDAO();
+            $listaUnidades = $unidadDAO->listarUnidadesEncargadoActividad($divi, $usuario->_GET('id'), $path);
+
+            $procesar=$listaUnidades;
+        }
+
         $concat="<option value='-1'>Seleccione uno</option>";
 
-        foreach ($listaComboDivisiones as $div) {
-            if(strcmp(($div->_GET('estado')),'A')==0)
-            $concat.='<option value="'.$div->_GET('id').'">'.$div->_GET('nombre').'</option>';
+        foreach ($procesar as $unid) {
+            if(strcmp(($unid->_GET('estado')),'A')==0)
+                $concat.='<option value="'.$unid->_GET('id').'">'.$unid->_GET('nombre').'</option>';
         }
 
         if(empty($concat)){
-            return "<option value='-1'>No hay Divisiones para cargar</option>";
+            return "<option value='-1'>No hay Unidades para cargar</option>";
         }
 
         return $concat;
 
+    }
+    public function cargarDivisionesGestionDivision(){
+        include_once ("../".'bussines/DAO/DivisionDAO.php');
+        include_once ("../".'model/General.php');
 
+        //Si es un Admon o un tipo de usuario, la primera busqueda sirve normalmente
+        /////////////////////////////////////////////////////////////////////////////
+        if($_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 ){
+            $divisionDAO =new DivisionDAO();
+            $listaDivisiones = $divisionDAO->listarDivisiones();
+            $listaComboDivisiones=Array();
 
+            $usuario=$_SESSION['usuario'];
+
+            if($_SESSION['tipo_usuario']==1){
+                $listaComboDivisiones=$listaDivisiones;
+            }
+            else{
+                foreach ($listaDivisiones as $div) {
+                    $idJefeDiv=$div->_GET('jefe')->_GET('idUsuario');
+                    $idCurrentyUser=$usuario->_GET('id');
+
+                    if(strcmp($idJefeDiv, $idCurrentyUser)==0){
+                        $listaComboDivisiones[]=$div;
+                    }
+                }
+            }
+            $concat="<option value='-1'>Seleccione uno</option>";
+
+            foreach ($listaComboDivisiones as $div) {
+                if(strcmp(($div->_GET('estado')),'A')==0)
+                    $concat.='<option value="'.$div->_GET('id').'">'.$div->_GET('nombre').'</option>';
+            }
+
+            if(empty($concat)){
+                return "<option value='-1'>No hay Divisiones para cargar</option>";
+            }
+
+            return $concat;
+        }
+
+        //Si es encargado de unidad carga las divisiones a las cuales pertenezcan las unidades que este tenga asignados
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        elseif($_SESSION['tipo_usuario']==3){
+            $divisionDAO =new DivisionDAO();
+            $idUsuario=$_SESSION['usuario']->_GET('id');
+            $listaDivisiones = $divisionDAO->listarDivisionesEncargadoUnidad($idUsuario);
+            $concat="<option value='-1'>Seleccione uno</option>";
+
+            foreach ($listaDivisiones as $div) {
+                if(strcmp(($div->_GET('estado')),'A')==0)
+                    $concat.='<option value="'.$div->_GET('id').'">'.$div->_GET('nombre').'</option>';
+            }
+
+            if(empty($concat)){
+                return "<option value='-1'>No hay Divisiones para cargar</option>";
+            }
+
+            return $concat;
+        }
+        elseif($_SESSION['tipo_usuario']==4){
+            $divisionDAO =new DivisionDAO();
+            $idUsuario=$_SESSION['usuario']->_GET('id');
+            $listaDivisiones = $divisionDAO->listarDivisionesEncargadoActividad($idUsuario);
+            $concat="";
+            foreach ($listaDivisiones as $div) {
+                if(strcmp(($div->_GET('estado')),'A')==0)
+                    $concat.='<option value="'.$div->_GET('id').'">'.$div->_GET('nombre').'</option>';
+            }
+
+            if(empty($concat)){
+                return "<option value='-1'>No hay Divisiones para cargar</option>";
+            }
+
+            return $concat;
+        }
 
     }
 

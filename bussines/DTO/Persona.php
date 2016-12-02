@@ -14,6 +14,7 @@ class Persona
     private $abreviaturaTipoDocumento;
     private $numeroDocumento;
     private $idUsuario;
+    private $id;
 
 
 

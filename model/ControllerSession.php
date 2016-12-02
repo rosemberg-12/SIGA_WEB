@@ -41,7 +41,7 @@ public function iniciarSesion($tipo, $documento, $contrasena, $tipoDoc){
             $resultado=$usuarioDao->iniciarSesionEncargadoAct($usuario, $tipoDoc);
             break;
     }
-    if ($resultado==true){
+    if ($resultado===true){
         $_SESSION['usuario']=$usuario;
         $_SESSION['tipo_usuario']=$tipo;
     }

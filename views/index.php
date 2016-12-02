@@ -4,6 +4,9 @@ require_once '../bussines/DTO/Usuario.php';
 session_start();
 $muestra="";
 
+if(isset( $_SESSION['usuario'])){
+    header("Location: principal.php");
+}
 
 if( ( isset($_POST['tipodoc'])  && isset($_POST['documento']) && isset($_POST['password']) && isset($_POST['rol']) ) )
 {

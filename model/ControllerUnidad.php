@@ -15,7 +15,6 @@ class ControllerUnidad
     }
 
     public function  crearUnidad($nombre, $abreviatura, $cod, $divi){
-
         include_once ('../../bussines/DAO/UnidadDAO.php');
 
         $unidadDao =new UnidadDAO();
@@ -151,7 +150,7 @@ class ControllerUnidad
                 $table.= " <td>".$unidad->_GET('abreviatura')."</td> ";
                 $table.= " <td>".$coordinador->_GET('nombre')." ".$coordinador->_GET('apellido')."</td> ";
                 $table.= " <td>".$estado."</td> ";
-                $table.= " <td><a href='editarUnidad.php?unid=$encrypt'>Editar</a> | <a href='asignarCoordinador.php?unid=$encrypt&jefe=".$coordinador->_GET('id')."'>Cambiar Coordinador</a></td> ";
+                $table.= " <td><a href='editarUnidad.php?unid=$encrypt'>Editar</a> | <a href='asignarCoordinador.php?unid=$encrypt&jefe=".$coordinador->_GET('idUsuario')."'>Cambiar Coordinador</a></td> ";
                 $table.= " </tr> ";
             }
             $table.= " </tbody> ";

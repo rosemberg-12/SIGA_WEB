@@ -8,30 +8,76 @@
  */
 class ControllerActividad
 {
+
+    public function  crearActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $uni ){
+
+    }
+
+    public function getComboTipoActividad(){
+        include_once ('../bussines/DAO/ActividadDAO.php');
+        $actividadDAO = new ActividadDAO();
+
+        $listadoActividades=$actividadDAO->getTipoActividades();
+        $concat="";
+
+        foreach ($listadoActividades as $ta) {
+
+                $concat.='<option value="'.$ta->_GET('id').'">'.$ta->_GET('descripcion').'</option>';
+        }
+
+        if(empty($concat)){
+            return "<option value>No hay Tipos de actividad a cargar para cargar</option>";
+        }
+
+        return "<option value>Selecciona uno</option>".$concat;
+
+    }
+
+
+    public function getComboPrograma(){
+        include_once ('../bussines/DAO/ActividadDAO.php');
+        $actividadDAO = new ActividadDAO();
+
+        $listadoActividades=$actividadDAO->getProg();
+        $concat="";
+
+        foreach ($listadoActividades as $ta) {
+
+            $concat.='<option value="'.$ta->_GET('id').'">'.$ta->_GET('descripcion').'</option>';
+        }
+
+        if(empty($concat)){
+            return "<option value>No hay Tipos de actividad a cargar para cargar</option>";
+        }
+
+        return "<option value>Selecciona uno</option>".$concat;
+
+    }
+
     /**
      * Metodo para listar las actividades de una unidad del sistema
      * @param $idUnidad identificador de la unidad
      * @return string codigoHTML con la informacion
      */
-    public function listarActividadPorUnidad($idUnidad){
-        include_once ('../bussines/DAO/ActividadDAO.php');
-        include_once ('../model/General.php');
+    public function listarActividadPorUnidad($idUnidad, $path){
+        include_once ($path.'bussines/DAO/ActividadDAO.php');
+        include_once ($path.'model/General.php');
 
         $actividadDAO = new ActividadDAO();
 
-        $listaActividad = $actividadDAO->listarActividadesPorUnidad($idUnidad);
+        $listaActividad = $actividadDAO->listarActividadesPorUnidad($idUnidad, $path);
 
-        $table = " <table id='tabla-actividades' class='table table-bordered table-hover'> ";
+        $table = " <table id='tabla-actividades' name='tabla-actividades' class='table table-bordered table-hover'> ";
         $table.= " <thead> ";
         $table.= " <tr> ";
-        $table.= " <th style='text-align: center'>ACTIVIDAD</th> ";
-        $table.= " <th style='text-align: center'>RESPONSABLE</th> ";
-        $table.= " <th style='text-align: center'>SEMESTRE</th> ";
-        $table.= " <th style='text-align: center'>AÑO</th> ";
-        $table.= " <th style='text-align: center'>FECHA INICIO</th> ";
-        $table.= " <th style='text-align: center'>FECHA FIN</th> ";
-        $table.= " <th style='text-align: center'>ESTADO</th> ";
-        $table.= " <th style='text-align: center'>ACCIONES</th> ";
+        $table.= " <th>ACTIVIDAD</th> ";
+        $table.= " <th>RESPONSABLE</th> ";
+        $table.= " <th>SEMESTRE</th> ";
+        $table.= " <th>AÑO</th> ";
+        $table.= " <th >FECHA INICIO</th> ";
+        $table.= " <th >FECHA FIN</th> ";
+        $table.= " <th >ESTADO</th> ";
+        $table.= " <th >ACCIONES</th> ";
         $table.= " </tr> ";
         $table.= " </thead> ";
 
@@ -54,7 +100,20 @@ class ControllerActividad
                 $table.= " </tr> ";
             }
             $table.= " </tbody> ";
+            $table.= " <tfoot> ";
+            $table.= " <tr> ";
+            $table.= " <th>ACTIVIDAD</th> ";
+            $table.= " <th>RESPONSABLE</th> ";
+            $table.= " <th >SEMESTRE</th> ";
+            $table.= " <th>AÑO</th> ";
+            $table.= " <th >FECHA INICIO</th> ";
+            $table.= " <th >FECHA FIN</th> ";
+            $table.= " <th >ESTADO</th> ";
+            $table.= " <th >ACCIONES</th> ";
+            $table.= " </tr> ";
+            $table.= " </tfoot> ";
         }else{
+
             $table.= " <tbody> ";
             $table.= " <tr> ";
             $table.= " <td colspan='8'>No hay registros en el sistema</td>";
