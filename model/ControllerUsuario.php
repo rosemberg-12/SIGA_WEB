@@ -53,7 +53,7 @@ class ControllerUsuario
                 $table.= " <td>".$persona->_GET('nombre')."</td> ";
                 $table.= " <td>".$persona->_GET('apellido')."</td> ";
                 $table.= " <td >".$persona->_GET('abreviaturaTipoDocumento')." ".$persona->_GET('numeroDocumento')."</td> ";
-                $table.= " <td ><a href='scripts/scriptAsignarCoordinador.php?nuevoJ=$encrypt&unid=".$unid."'>Seleccionar</a> </td> ";
+                $table.= " <td ><a href='scripts/scriptAsignarResponsable.php?nuevoJ=$encrypt&act=".$unid."'>Seleccionar</a> </td> ";
                 $table.= " </tr> ";
             }
         }

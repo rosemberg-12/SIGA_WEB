@@ -32,6 +32,12 @@ class FachadeOne
         return $cDivision->asignarCoordinadorUnidad($jefe, $uni);
     }
 
+    public function asignarResponsableActividad($jefe, $uni){
+        require_once('../../model/ControllerUnidad.php');
+        $cDivision = new ControllerUnidad();
+        return $cDivision->asignarResponsableActividad($jefe, $uni);
+    }
+
     public function actualizarUnid($nombre, $abr, $codigo, $estado, $id){
         require_once('../../model/ControllerUnidad.php');
         $cDivision = new ControllerUnidad();
@@ -49,6 +55,11 @@ class FachadeOne
         return $cDivision->actualizarUser($nombre, $apellido, $tipoDoc, $doc, $pass,$id, $estado );
     }
 
+    public function  actualizarActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $acti , $status){
+        require_once('../../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->actualizarActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $acti, $status);
+    }
 
     public function  crearActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $uni ){
         require_once('../../model/ControllerActividad.php');
@@ -128,6 +139,12 @@ class FachadeOne
         return $cDivision->getUnidadInformation($id, $path);
     }
 
+    public function getActInformation($id, $path){
+        require_once($path.'model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->getActInformation($id, $path);
+    }
+
 
     /**
      * Metodo para listar las actividad de una unidad especifica
@@ -186,15 +203,34 @@ class FachadeOne
         return $cDivision->cargarAllUsersForUnidad($selected, $unid);
     }
 
+    public function cargarAllUsersForActividad($selected, $unid){
+        require_once("../".'model/ControllerUsuario.php');
+        $cDivision = new ControllerUsuario();
+        return $cDivision->cargarAllUsersForUnidad($selected, $unid);
+    }
+
     public function getComboTipoActividad(){
         require_once('../model/ControllerActividad.php');
         $cDivision = new ControllerActividad();
         return $cDivision->getComboTipoActividad();
     }
+
+    public function getComboTipoActividadSelected($selected){
+        require_once('../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->getComboTipoActividadSelected($selected);
+    }
+
     public function getComboPrograma(){
         require_once('../model/ControllerActividad.php');
         $cDivision = new ControllerActividad();
         return $cDivision->getComboPrograma();
+    }
+
+    public function getComboProgramaSelected($selected){
+        require_once('../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->getComboProgramaSelected($selected);
     }
 
 }

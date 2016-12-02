@@ -9,8 +9,27 @@
 class ControllerActividad
 {
 
+    public function getActInformation($id, $path){
+        include_once ($path.'bussines/DAO/ActividadDAO.php');
+
+        $actdDao =new ActividadDAO();
+        $act = $actdDao->getActividadByID($id, $path);
+
+        return $act;
+    }
+    public function  actualizarActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $acti , $status){
+        include_once ('../../bussines/DAO/ActividadDAO.php');
+        $actividadDAO = new ActividadDAO();
+        $datos=array($nombre, $tipoAct, $sem, $anio, $f_ini, $f_fin, $dedic, $tipoProg, $status);
+        return $actividadDAO->actualizarActividad($datos,$acti, "../../");
+    }
+
     public function  crearActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $uni ){
 
+        include_once ('../../bussines/DAO/ActividadDAO.php');
+        $actividadDAO = new ActividadDAO();
+        $datos=array($uni, $nombre, $tipoAct, $sem, $anio, $f_ini, $f_fin, $dedic, $tipoProg);
+        return $actividadDAO->registrarActividad($datos, "../../");
     }
 
     public function getComboTipoActividad(){
@@ -33,6 +52,28 @@ class ControllerActividad
 
     }
 
+    public function getComboTipoActividadSelected($id){
+        include_once ('../bussines/DAO/ActividadDAO.php');
+        $actividadDAO = new ActividadDAO();
+
+        $listadoActividades=$actividadDAO->getTipoActividades();
+        $concat="";
+
+        foreach ($listadoActividades as $ta) {
+            if($ta->_GET('id')==$id)
+                $concat.='<option value="'.$ta->_GET('id').'" selected>'.$ta->_GET('descripcion').'</option>';
+            else
+            $concat.='<option value="'.$ta->_GET('id').'">'.$ta->_GET('descripcion').'</option>';
+        }
+
+        if(empty($concat)){
+            return "<option value>No hay Tipos de actividad a cargar para cargar</option>";
+        }
+
+        return "<option value>Selecciona uno</option>".$concat;
+
+    }
+
 
     public function getComboPrograma(){
         include_once ('../bussines/DAO/ActividadDAO.php');
@@ -44,6 +85,28 @@ class ControllerActividad
         foreach ($listadoActividades as $ta) {
 
             $concat.='<option value="'.$ta->_GET('id').'">'.$ta->_GET('descripcion').'</option>';
+        }
+
+        if(empty($concat)){
+            return "<option value>No hay Tipos de actividad a cargar para cargar</option>";
+        }
+
+        return "<option value>Selecciona uno</option>".$concat;
+
+    }
+
+    public function getComboProgramaSelected($id){
+        include_once ('../bussines/DAO/ActividadDAO.php');
+        $actividadDAO = new ActividadDAO();
+
+        $listadoActividades=$actividadDAO->getProg();
+        $concat="";
+
+        foreach ($listadoActividades as $ta) {
+            if($ta->_GET('id')==$id)
+                $concat.='<option value="'.$ta->_GET('id').'" selected>'.$ta->_GET('descripcion').'</option>';
+            else
+                $concat.='<option value="'.$ta->_GET('id').'">'.$ta->_GET('descripcion').'</option>';
         }
 
         if(empty($concat)){
@@ -96,7 +159,7 @@ class ControllerActividad
                 $table.= " <td style='text-align: center'>".$actividad->_GET('fechaInicio')."</td> ";
                 $table.= " <td style='text-align: center'>".$actividad->_GET('fechaFin')."</td> ";
                 $table.= " <td style='text-align: center'>".$actividad->_GET('estado')."</td> ";
-                $table.= " <td style='text-align: center'><a href='editarActividad.php?acti=$encrypt'>Editar</a> | <a href='cambiarResponsable.php?acti=$encrypt'>Cambiar Responsable</a></td> ";
+                $table.= " <td style='text-align: center'><a href='editarActividad.php?acti=$encrypt'>Editar</a> | <a href='asignarResponsable.php?acti=$encrypt&jefe=".$responsable->_GET('idUsuario')."'>Cambiar Responsable</a></td> ";
                 $table.= " </tr> ";
             }
             $table.= " </tbody> ";

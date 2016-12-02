@@ -8,10 +8,18 @@
  */
 class ControllerUnidad
 {
+
+
     public function asignarCoordinadorUnidad($jefe, $uni){
         include_once ('../../bussines/DAO/UnidadDAO.php');
         $unidadDAO =new UnidadDAO();
         return  $unidadDAO->asignarCoordinadorUnidad($jefe, $uni);
+    }
+
+    public function asignarResponsableActividad($jefe, $uni){
+        include_once ('../../bussines/DAO/ActividadDAO.php');
+        $actividadDAO =new ActividadDAO();
+        return  $actividadDAO->asignarResponsableActividad($jefe, $uni);
     }
 
     public function  crearUnidad($nombre, $abreviatura, $cod, $divi){

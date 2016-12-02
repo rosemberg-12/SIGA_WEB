@@ -9,6 +9,20 @@ class ActividadDAO
 {
 
 
+    public function asignarResponsableActividad($jefe, $uni){
+        try {
+            include_once ('../../bussines/DAO/Conection.php');
+            $consulta ='UPDATE actividad SET acti_responsable="'.$jefe.'" WHERE acti_id="'.$uni.'"';
+            echo $consulta."<br>";
+            $result=$conexion->prepare($consulta);
+            $result->execute();
+
+            return "0";
+        } catch (Exception $e) {
+            echo "1";
+        }
+    }
+
     public function getTipoActividades(){
 
         /*===========================*/
@@ -46,7 +60,22 @@ class ActividadDAO
     }
 
     public function getProg(){
-        include_once ('../bussines/DAO/Conection.php');
+        /*===========================*/
+        $user = "root" ;//usuario para la conexion a  la BD
+        $clave = "";//clave del usuario para la conexion a la BD
+        $conexion="";//Variable para realizar los llamados fuera de la clase
+
+        try
+        {
+            $conexion = new PDO('mysql:host=localhost;dbname=siga', $user, $clave);
+            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        }
+        catch (Exception $e)
+        {
+            die("Unable to connect: " . $e->getMessage());
+        }
+        //include_once ('../bussines/DAO/Conection.php');
         include_once ('../bussines/DTO/TipoPrograma.php');
 
         $consulta= "Select * from tipoprograma";
@@ -71,27 +100,64 @@ class ActividadDAO
      * @return string mensaje de registro
      */
     public function registrarActividad($actividad,$path){
+
+      try {
         include_once ($path.'bussines/DAO/Conection.php');
 
-        $consulta =" INSERT INTO siga.actividad (unid_id,acti_descripcion,tiac_id,acti_semestre,acti_ano,acti_fechainicio,acti_fechafin,acti_dedicacion,tipr_id,acti_estado,acti_responsable,acti_registradopor) ";
+        $consulta =" INSERT INTO siga.actividad (unid_id , acti_descripcion, tiac_id, acti_semestre,acti_ano,acti_fechainicio, acti_fechafin, acti_dedicacion, tipr_id, acti_estado, acti_responsable, acti_registradopor) ";
+
         $consulta .=" VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
         $result = $conexion->prepare($consulta);
         $result->execute(array(
-            $actividad->_GET('idUnidad'),
-            $actividad->_GET('descripcion'),
-            $actividad->_GET('idTipoActividad'),
-            $actividad->_GET('semestre'),
-            $actividad->_GET('anoActividad'),
-            $actividad->_GET('fechaInicio'),
-            $actividad->_GET('fechaFin'),
-            $actividad->_GET('dedicacion'),
-            $actividad->_GET('idTipoPrograma'),
+            $actividad[0],
+            $actividad[1],
+            $actividad[2],
+            $actividad[3],
+            $actividad[4],
+            $actividad[5],
+            $actividad[6],
+            $actividad[7],
+            $actividad[8],
             'A',
-            $actividad->_GET('idResponsable'),
-            $_SESSION['idUsuario']
+            1,
+            1
         ));
         $conexion = null;
-        return "Registro de Actividad exitoso";
+        return 0;
+      } catch (Exception $e) {
+          return 1;
+      }
+    }
+
+    /**
+     * Metodo para registrar una nueva actividad
+     * @param $actividad datos a registrar
+     * @return string mensaje de registro
+     */
+    public function actualizarActividad($actividad,$acti,$path){
+
+        try {
+            include_once ($path.'bussines/DAO/Conection.php');
+
+            $consulta =" update actividad set  acti_descripcion=?, tiac_id=?, acti_semestre=?,acti_ano=? ,acti_fechainicio=?, acti_fechafin=?, acti_dedicacion=?, tipr_id=?, acti_estado=? where acti_id=".$acti;
+
+            $result = $conexion->prepare($consulta);
+            $result->execute(array(
+                $actividad[0],
+                $actividad[1],
+                $actividad[2],
+                $actividad[3],
+                $actividad[4],
+                $actividad[5],
+                $actividad[6],
+                $actividad[7],
+                $actividad[8]
+            ));
+            $conexion = null;
+            return 0;
+        } catch (Exception $e) {
+            return 1;
+        }
     }
 
     /**
@@ -113,6 +179,70 @@ class ActividadDAO
         $conexion = null;
         return $actividad;
     }
+
+    /**
+     * Metodo para consultar una actividad por su id
+     * @param $idActividad identificador de la actividad
+     * @return mixed Resultado de la consulta
+     */
+    public function getActividadByID($idActividad,$path){
+        include_once ($path.'bussines/DAO/Conection.php');
+        require_once ($path.'bussines/DTO/Actividad.php');
+
+        $consulta = " SELECT DISTINCT acti.acti_id, acti.unid_id, acti.acti_descripcion, acti.tiac_id, acti.acti_semestre, ";
+        $consulta.= " acti.acti_ano, SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechainicio, ' ', 1), ' ', -1) AS acti_fechainicio, ";
+        $consulta.= " SUBSTRING_INDEX(SUBSTRING_INDEX(acti.acti_fechafin, ' ', 1), ' ', -1) AS acti_fechafin, acti.acti_dedicacion, ";
+        $consulta.= " acti.tipr_id, acti.acti_estado, acti.acti_responsable, divi.divi_abreviatura, ";
+        $consulta.= " tipr.tipr_descripcion, tiac.tiac_descripcion, tido.tido_abreviatura, pers.* ";
+        $consulta.= " FROM siga.actividad acti ";
+        $consulta.= " INNER JOIN siga.persona pers ON (pers.usu_id = acti.acti_responsable) ";
+        $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = pers.tido_id) ";
+        $consulta.= " INNER JOIN siga.unidad unid ON (unid.unid_id = acti.unid_id) ";
+        $consulta.= " INNER JOIN siga.division divi ON (divi.divi_id = unid.divi_id) ";
+        $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
+        $consulta.= " INNER JOIN siga.tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
+        $consulta.= " WHERE acti.acti_id = ? ";
+        $consulta.= " ORDER BY acti.acti_fechainicio, acti.acti_id ; ";
+
+        $result = $conexion->prepare($consulta);
+        $result->execute(array($idActividad));
+
+        foreach ($result as $row){
+            $actividad = new Actividad();
+
+            $actividad->_SET('id',$row['acti_id']);
+            $actividad->_SET('idUnidad',$row['unid_id']);
+            $actividad->_SET('descripcion',$row['acti_descripcion']);
+            $actividad->_SET('idTipoActividad',$row['tiac_id']);
+            $actividad->_SET('semestre',$row['acti_semestre']);
+            $actividad->_SET('anoActividad',$row['acti_ano']);
+            $actividad->_SET('fechaInicio',$row['acti_fechainicio']);
+            $actividad->_SET('fechaFin',$row['acti_fechafin']);
+            $actividad->_SET('dedicacion',$row['acti_dedicacion']);
+            $actividad->_SET('idTipoPrograma',$row['tipr_id']);
+            $actividad->_SET('estado',$row['acti_estado']);
+            $actividad->_SET('idResponsable',$row['acti_responsable']);
+            $actividad->_SET('abreviaturaDivision',$row['divi_abreviatura']);
+            $actividad->_SET('descripcionTipoPrograma',$row['tipr_descripcion']);
+            $actividad->_SET('descripcionTipoActividad',$row['tiac_descripcion']);
+
+            $responsable = new Persona();
+
+            $responsable->_SET('idUsuario',$row['usu_id']);
+            $responsable->_SET('idTipoDocumento',$row['tido_id']);
+            $responsable->_SET('abreviaturaTipoDocumento',$row['tido_abreviatura']);
+            $responsable->_SET('nombre',$row['pers_nombre']);
+            $responsable->_SET('apellido',$row['pers_apellido']);
+            $conexion = null;
+
+           $actividad->_SET('responsable',$responsable);
+
+            return $actividad;
+        }
+
+
+    }
+
 
     /**
      * Metodo para listar las actividades con la informacion necesaria para los reportes PDF y EXCEL
