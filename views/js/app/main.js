@@ -127,8 +127,49 @@ $(document).ready(function() {
             });
     });
 
+/* ========================= REPORTE EXCEL ============================== */
 
+    $("#divisionxls").change(function () {
 
+        elegido= $(this).val();
+
+        if(elegido=="-1"){
+            $("#tabla-act").html("");
+            $("#botonCrearActividad").html("");
+            $("#detalles").html(infoUnidad);
+            $("#unidad2").html("<option value='-1'>Seleccione uno</option>");
+            return;
+        }
+        $.post("scripts/scriptCargarComboUnidades.php", { division:elegido },
+            function(data){
+
+                if(data!=""){
+                    console.log(data);
+                    $("#unidadxls").html(data);
+                }
+
+            });
+    });
+
+    $("#unidadxls").change(function () {
+        elegido= $(this).val();
+
+        if(elegido=="-1"){
+            $("#tabla-act").html("");
+            $("#botonCrearActividad").html("");
+            $("#detalles").html(infoUnidad);
+
+            return;
+        }
+        $.post("scripts/scriptCargarComboActividades.php", { division:elegido },
+            function(data){
+                if(data!=""){
+                    console.log(data);
+                    $("#actividadxls").html(data);
+                }
+
+            });
+    });
 
 
 } );

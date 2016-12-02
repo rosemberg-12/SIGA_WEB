@@ -38,7 +38,7 @@ class AsistenciaDAO
         $result = $conexion->prepare($consulta);
 
         if($validar == 0){
-            $result->execute(array($criterioBusqueda['anoActividad']), $criterioBusqueda['semestre']);
+            $result->execute(array($criterioBusqueda['anoActividad'], $criterioBusqueda['semestre']));
         }else{
             $result->execute(array($criterioBusqueda['anoActividad']));
         }
