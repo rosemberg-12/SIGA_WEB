@@ -3,9 +3,6 @@ require_once '../bussines/DTO/Usuario.php';
 require_once '../bussines/DTO/Persona.php';
 require_once '../fachade/FachadeOne.php';
 
-$activo="";
-$inactivo="";
-
 session_start();
 
 $facade = new FachadeOne();
@@ -46,46 +43,29 @@ include('html/head.html');
             <br>
 
             <div class="login-logo titulo" style="color: #fff;">
-                <b><a href="#" style="color:#dd4b39">Generar Informe Semestral MEN</a></b>
+                <b><a href="#" style="color:#dd4b39">Generar Reporte PDF</a></b>
             </div><!-- /.login-logo -->
 
             <br/><br/>
             <div class="col-md-12">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="box box-success">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="box box-danger">
                         <div class="box-header"></div>
-                        <form role="form" action="scripts/scriptGenerarExcel.php" method="post">
+                        <form role="form" action="reporte-pdf.php" method="post">
                             <!-- text input -->
                             <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Seleccione el año</label>
-                                            <select class="form-control" id="ano" name="ano" required="">
-                                                <option value >Seleccione el año</option>
-                                                <option value="2016" >2016</option>
-                                                <option value="2017" >2017</option>
-                                                <option value="2018" >2018</option>
-                                                <option value="2019" >2019</option>
-                                                <option value="2020" >2020</option>
-                                                <option value="2021" >2021</option>
-                                                <option value="2022" >2022</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Seleccione tipo reporte</label>
+                                        <select class="form-control" id="tipo-reporte" name="tipo-reporte" required="">
+                                            <option value="-1">Seleccione tipo reporte</option>
+                                            <option value="1">POR PROGRAMA ACADÉMICO</option>
+                                            <option value="2">POR ACTIVIDAD</option>
+                                            <option value="3">POR SEMESTRE AÑO</option>
+                                        </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Seleccione el semestre</label>
-                                            <select class="form-control" id="semestre" name="semestre" required="">
-                                                <option value >Seleccione el semestre</option>
-                                                <option value="I" >I</option>
-                                                <option value="I" >II</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="box-footer" align="right">
-                                    <button type="submit" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Generar Excel</button>
+                                    <button type="submit" class="btn btn-primary">Continuar</button>
                                 </div>
                             </div>
 

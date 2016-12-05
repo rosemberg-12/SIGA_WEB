@@ -21,7 +21,7 @@ thead tr td, thead tr th, tfoot tr td{
 }
 .inicio{
     -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
-    background-image: url("../img/bienestar.jpg");
+    background-color: #ecf0f5;
 /*	 -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;
 	background: #F2F2F2;
 */
