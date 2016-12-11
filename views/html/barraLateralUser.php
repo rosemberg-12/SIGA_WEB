@@ -75,7 +75,7 @@
                         if( $_SESSION['tipo_usuario']==1 ){
                             echo '<li class="treeview" >
                             <a href="reporte-excel.php">
-                                <i class="fa fa-files-o"></i> <span>Generar Informe indicadores MEN</span>
+                                <i class="fa fa-file-excel-o"></i> <span>Generar Informe indicadores MEN</span>
                             </a>                            
                         </li>';
                         }
@@ -84,8 +84,8 @@
                         <?php
                         if( $_SESSION['tipo_usuario']==1 ){
                             echo '<li class="treeview" >
-                            <a href="reporte-pdf.php">
-                                <i class="fa fa-files-o"></i> <span>Generar Informe PDF</span>
+                            <a href="reportePdf.php">
+                                <i class="fa fa-file-pdf-o"></i> <span>Generar Informe PDF</span>
                             </a>                            
                         </li>';
                         }
