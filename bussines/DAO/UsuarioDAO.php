@@ -13,12 +13,12 @@ class UsuarioDAO
         try {
 
             include_once ('../../bussines/DAO/Conection.php');
-            $consulta ='UPDATE Usuario SET usu_pass="'.$pass.'", usu_nick="'.$doc.'", usu_estado="'.$estado.'" WHERE usu_id="'.$id.'"';
+            $consulta ='UPDATE siga.usuario SET usu_pass="'.$pass.'", usu_nick="'.$doc.'", usu_estado="'.$estado.'" WHERE usu_id="'.$id.'"';
             echo $consulta."<br>";
             $result=$conexion->prepare($consulta);
             $result->execute();
 
-            $consulta ='UPDATE persona SET pers_nombre="'.$nombre.'", pers_apellido="'.$apellido.'", pers_numdocumento="'.$doc.'", tido_id="'.$tipoDoc.'" WHERE usu_id="'.$id.'"';
+            $consulta ='UPDATE siga.persona SET pers_nombre="'.$nombre.'", pers_apellido="'.$apellido.'", pers_numdocumento="'.$doc.'", tido_id="'.$tipoDoc.'" WHERE usu_id="'.$id.'"';
             $result=$conexion->prepare($consulta);
             $result->execute();
 
@@ -35,7 +35,7 @@ class UsuarioDAO
        try {
 
             include_once ('../../bussines/DAO/Conection.php');
-            $consulta='INSERT INTO Usuario(usu_pass, usu_nick, usu_estado, usu_registradopor) VALUES(?,?,?,?)';
+            $consulta='INSERT INTO siga.usuario(usu_pass, usu_nick, usu_estado, usu_registradopor) VALUES(?,?,?,?)';
             $result=$conexion->prepare($consulta);
 
             $result->execute(array($pass,$doc,"A",1));
@@ -46,7 +46,7 @@ class UsuarioDAO
             $id=$result->fetchColumn();
 
 
-            $consulta='INSERT INTO persona(usu_id,pers_nombre, pers_apellido, pers_numdocumento, tido_id, pers_registradopor) VALUES(?,?,?,?,?,?)';
+            $consulta='INSERT INTO siga.persona(usu_id,pers_nombre, pers_apellido, pers_numdocumento, tido_id, pers_registradopor) VALUES(?,?,?,?,?,?)';
             $result=$conexion->prepare($consulta);
 
             $result->execute(array($id,$nombre,$apellido, $doc,$tipoDoc, 1));
@@ -58,6 +58,7 @@ class UsuarioDAO
 
 
     }
+
     /**
      * Metodo para registrar una nueva actividad
      * @param $actividad datos a registrar

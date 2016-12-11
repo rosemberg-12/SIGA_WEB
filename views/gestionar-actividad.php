@@ -29,7 +29,7 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
       ?>
 
     <body class="skin-red">
-      
+    <div class="modal"><!-- Place at bottom of page --></div>
         <div class="wrapper">
             <!-- Encabezado -->
             
@@ -58,39 +58,38 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                     <br>
 
                     <div class="row">
-                        <div class="col-xs-12" style="display: flex;  justify-content: center;">
-                            <div class="col-xs-4">
+                        <div class="col-md-12" style="display: flex;  justify-content: center;">
+                            <div class="col-md-4">
                                 <div class="box">
                                     <div class="box-body">
                                         <div style="text-align: center;"><h3>Seleccione una división</h3> </div>
                                         <div class="form-group">
-                                            <select class="form-control" id="division2" name="division2" required="">
+                                            <select class="form-control" id="division3" name="division3" required="">
                                                 <?php echo $comboDivisiones ?>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-4">
 
+                            <div class="col-md-4">
                                 <div class="box">
                                     <div class="box-body">
-                                        <div style="text-align: center;"><h3>Seleccione la unidad a gestionar</h3> </div>
+                                        <div style="text-align: center;"><h3>Seleccione la unidad</h3> </div>
                                         <div class="form-group">
-                                            <select class="form-control" id="unidad2" name="unidad2" required="">
+                                            <select class="form-control" id="unidad3" name="unidad3" required="">
                                                 <option value='-1'>Seleccione uno</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-4">
-
+                            <div class="col-md-4">
                                 <div class="box">
                                     <div class="box-body">
-                                        <div style="text-align: center;"><h3>Seleccione la unidad a gestionar</h3> </div>
+                                        <div style="text-align: center;"><h3>Seleccione la actividad a gestionar</h3> </div>
                                         <div class="form-group">
-                                            <select class="form-control" id="unidad3" name="unidad3" required="">
+                                            <select class="form-control" id="actividad3" name="actividad3" required="">
                                                 <option value='-1'>Seleccione uno</option>
                                             </select>
                                         </div>
@@ -103,7 +102,7 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                             <div class="col-xs-10">
                                 <div class="box">
                                     <div class="box-body">
-                                        <div id="detallessss" name="detallessss" style="padding-left: 20px;">
+                                        <div id="detalles" name="detalles" style="padding-left: 20px;">
                                             <p><b>Nombre de la actividad:  </b> <span id="nombre_unidad"></span></p>
                                             <p><b>Codigo de la actividad :</b><span id="codigo_unidad"></span></p>
                                             <p><b>Nombre del responsable :</b><span id="nombre_encargado"></span></p>
@@ -114,11 +113,11 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                             </div>
                         </div>
 
-                        <div id="botonCrearActividadsss" name="botonCrearActividasssd"></div>
+                        <div id="botonCrearAsistencia" name="botonCrearAsistencia"></div>
 
                         <div class="col-xs-12">
                             <div class="box">
-                                <div id="tabla-acst" name="tabla-asct" class="box-body">
+                                <div id="tabla-asis" name="tabla-asis" class="box-body">
 
                                 </div>
                             </div>

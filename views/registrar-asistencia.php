@@ -10,7 +10,7 @@ session_start();
 
     $facade = new FachadeOne();
 
- if(!isset($_GET['uni'])){
+ if(!isset($_GET['acti'])){
      header("Location: gestionar-unidad.php");
  }
 
@@ -50,7 +50,7 @@ session_start();
                     <br>
 
                     <div class="login-logo titulo" style="color: #fff;">
-                        <b><a href="#" style="color:#dd4b39">Registrar Actividad</a></b>
+                        <b><a href="#" style="color:#dd4b39">Registrar Asistencia</a></b>
                     </div><!-- /.login-logo -->
                     <br>
                     <div class="box" style="width: 70%; margin: 3% auto;">
@@ -58,65 +58,46 @@ session_start();
 
                         </div><!-- /.box-header -->
                         <div class="login-box-body">
-                            <form role="form" action="scripts/scriptCrearActividad.php" method="post">
+                            <form role="form" action="scripts/scriptCrearAsistencia.php" method="post">
                                 <!-- text input -->
+
                                 <div class="form-group">
-                                    <label>Nombre de la actividad</label>
-                                    <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="act_name" name="act_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el tipo de actividad</label>
-                                    <select class="form-control" id="tipo_act" name="tipo_act" required="">
-                                        <?php echo $facade->getComboTipoActividad();?>
+                                    <label>Seleccione el tipo de beneficiario</label>
+                                    <select class="form-control" id="tipoben"name="tipoben" required="">
+                                        <option value>Seleccione el tipo de beneficiario</option>
+                                        <option value="1">Estudiante</option>
+                                        <option value="2">Docente</option>
+                                        <option value="3">Administrativo</option>
+                                        <option value="4">Graduado</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Seleccione el programa al que pertenece la actividad</label>
-                                    <select class="form-control" id="tipo_prog" name="tipo_prog" required="">
-                                        <?php echo $facade->getComboPrograma();?>
+                                    <label>Seleccione el tipo de documento</label>
+                                    <select class="form-control" id="tipodoc"name="tipodoc" required="">
+                                        <option value>Seleccione el tipo de documento</option>
+                                        <option value="1">Pasaporte</option>
+                                        <option value="2">Tarjeta de Identidad</option>
+                                        <option value="3">Cedula de ciudadania</option>
+                                        <option value="4">Documento de identidad extrajera</option>
+                                        <option value="5">Cedula de extrajeria</option>
+                                        <option value="6">Certificado cabildo</option>
+                                        <option value="7">Visa de extrajeria</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Seleccione el año</label>
-                                    <select class="form-control" id="anio" name="anio" required="">
-                                        <option value >Seleccione el año</option>
-                                        <option value="2016" >2016</option>
-                                        <option value="2017" >2017</option>
-                                        <option value="2018" >2018</option>
-                                        <option value="2019" >2019</option>
-                                        <option value="2020" >2020</option>
-                                        <option value="2021" >2021</option>
-                                        <option value="2022" >2022</option>
-                                        <option value="2023" >2023</option>
-                                        <option value="2024" >2024</option>
-                                        <option value="2025" >2025</option>
-                                        <option value="2026" >2026</option>
-                                        <option value="2027" >2027</option>
-                                        <option value="2028" >2028</option>
-                                    </select>
+                                    <label>Ingrese el numero de documento</label>
+                                    <input type="number" class="form-control"  placeholder="Nombre de la actividad" id="doc" name="doc" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Seleccione el semestre</label>
-                                    <select class="form-control" id="sem" name="sem" required="">
-                                        <option value >Seleccione el semestre</option>
-                                        <option value="I" >I</option>
-                                        <option value="II" >II</option>
-                                    </select>
+                                    <label>Digite el nombre de la persona a inscribirse</label>
+                                    <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="nom" name="nom" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Seleccione la fecha de inicio</label>
-                                    <input type="datetime-local" class="form-control" placeholder="Fecha de inicio" id="fecha_ini" name="fecha_ini" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione la fecha de fin</label>
-                                    <input type="datetime-local" class="form-control" placeholder="Fecha de fin" id="fecha_fin" name="fecha_fin" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ingrese la dedicación</label>
-                                    <input type="number" class="form-control"  placeholder="Nombre de la actividad" id="dedic" name="dedic" required>
+                                    <label>Digite el código de la persona a inscribirse</label>
+                                    <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="cod" name="cod" required>
                                 </div>
 
-                                <input type="hidden" id="uni" name="uni" value=<?php echo "'".$_GET['uni']."'"; ?> />
+                                <input type="hidden" id="acti" name="acti" value=<?php echo "'".$_GET['acti']."'"; ?> />
 
                                 <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
 

@@ -8,7 +8,11 @@
  */
 class ControllerDivision
 {
-
+    /**  Metodo que carga el combo de unidades en base a una division seleccionada
+     * @param $divi
+     * @param $path
+     * @return string
+     */
     public function cargarComboUnidad($divi, $path){
         $procesar="";
 
@@ -65,6 +69,62 @@ class ControllerDivision
         return $concat;
 
     }
+
+    /**  Metodo que carga el combo de actividades en base a una unidad seleccionada
+     * @param $uni
+     * @param $path
+     * @return string
+     */
+
+    public function cargarComboActividad($uni, $path){
+
+        $procesar="";
+        $usuario=$_SESSION['usuario'];
+
+        include_once ($path.'bussines/DAO/ActividadDAO.php');
+        include_once ($path.'model/General.php');
+
+        $actividadDAO = new ActividadDAO();
+        $listaActividades = $actividadDAO->listarActividadesPorUnidad($uni, $path);
+
+        if($_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 ||$_SESSION['tipo_usuario']==3){
+            $procesar=$listaActividades;
+
+        }
+        elseif ($_SESSION['tipo_usuario']==4){
+            $listaAux=array();
+
+            foreach ($listaActividades as $actividad) {
+                $idCoordinadorU=$actividad->_GET('responsable')->_GET('idUsuario');
+
+                $idCurrentyUser=$usuario->_GET('id');
+
+                if(strcmp($idCoordinadorU, $idCurrentyUser)==0){
+                    $listaAux[]=$actividad;
+                }
+            }
+
+            $procesar=$listaAux;
+        }
+
+        $concat="<option value='-1'>Seleccione uno</option>";
+
+        foreach ($procesar as $unid) {
+            if(strcmp(($unid->_GET('estado')),'A')==0)
+                $concat.='<option value="'.$unid->_GET('id').'">'.$unid->_GET('descripcion').'</option>';
+        }
+
+        if(empty($concat)){
+            return "<option value='-1'>No hay Unidades para cargar</option>";
+        }
+
+        return $concat;
+
+    }
+
+    /** Metodo que carga el combo de divisiones
+     * @return string
+     */
     public function cargarDivisionesGestionDivision(){
         include_once ("../".'bussines/DAO/DivisionDAO.php');
         include_once ("../".'model/General.php');

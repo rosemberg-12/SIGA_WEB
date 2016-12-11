@@ -35,6 +35,7 @@ class ControllerUsuario
         return $table;
     }
 
+
     public function cargarAllUsersForUnidad($selected, $unid){
         include_once ('../bussines/DAO/UsuarioDAO.php');
         include_once ('../model/General.php');
@@ -60,6 +61,7 @@ class ControllerUsuario
 
         return $table;
     }
+
 
     public function actualizarUser($nombre, $apellido, $tipoDoc, $doc, $pass,$id, $estado ){
 

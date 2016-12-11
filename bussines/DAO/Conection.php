@@ -13,7 +13,10 @@
     $clave = "";//clave del usuario para la conexion a la BD
     $conexion;//Variable para realizar los llamados fuera de la clase
 
-
+//gidis.ufps.edu.co
+//22
+//mastercode
+//ufpsbienestar
 
         try
         {
@@ -25,8 +28,5 @@
         {
             die("Unable to connect: " . $e->getMessage());
         }
-
-
-
 
 ?>

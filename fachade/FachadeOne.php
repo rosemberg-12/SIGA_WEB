@@ -20,6 +20,13 @@ class FachadeOne
         return $cDivision->cargarComboUnidad($id_div, $path);
     }
 
+
+    public function cargarComboActividades($id_unit, $path){
+        require_once($path.'model/ControllerDivision.php');
+        $cDivision = new ControllerDivision();
+        return $cDivision->cargarComboActividad($id_unit, $path);
+    }
+
     public function asignarJefeDivision($jefe, $division){
         require_once('../../model/ControllerDivision.php');
         $cDivision = new ControllerDivision();
@@ -59,6 +66,10 @@ class FachadeOne
         require_once('../../model/ControllerActividad.php');
         $cDivision = new ControllerActividad();
         return $cDivision->actualizarActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $acti, $status);
+    }
+
+    public function crearAsistencia($tipoben, $tipodoc, $doc, $nom, $doc, $acti){
+
     }
 
     public function  crearActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $uni ){
@@ -145,6 +156,17 @@ class FachadeOne
         return $cDivision->getActInformation($id, $path);
     }
 
+    /**
+     * Metodo para listar las actividad de una unidad especifica
+     * @param $idUnidad identificador d ela unidad
+     * @return string codigoHTML a mostrar
+     */
+    public function listarAsistencia($idActividad, $path){
+        require_once ($path.'model/ControllerAsistencia.php');
+        $cActividad = new ControllerAsistencia();
+        return $cActividad->listarAsistenciaPorActividadServices($idActividad, $path);
+    }
+
 
     /**
      * Metodo para listar las actividad de una unidad especifica
@@ -156,6 +178,7 @@ class FachadeOne
         $cActividad = new ControllerActividad();
         return $cActividad->listarActividadPorUnidad($idUnidad, "../");
     }
+
 
     /**
      * Metodo para listar las actividad de una unidad especifica
@@ -232,5 +255,7 @@ class FachadeOne
         $cDivision = new ControllerActividad();
         return $cDivision->getComboProgramaSelected($selected);
     }
+
+
 
 }

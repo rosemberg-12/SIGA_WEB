@@ -38,7 +38,7 @@ class AsistenciaDAO
         $result = $conexion->prepare($consulta);
 
         if($validar == 0){
-            $result->execute(array($criterioBusqueda['anoActividad']), $criterioBusqueda['semestre']);
+            $result->execute(array($criterioBusqueda['anoActividad'], $criterioBusqueda['semestre']));
         }else{
             $result->execute(array($criterioBusqueda['anoActividad']));
         }
@@ -211,6 +211,53 @@ class AsistenciaDAO
         return $lista;
     }
 
+    /**
+     * Metodo para listar asistencias por una actividad especifica
+     * @param $idActividad identificador de la actividad
+     * @return array lista con la informacion
+     */
+    public function listarAsistenciaPorActividadServices($idActividad, $path){
+        include($path.'bussines/DAO/Conection.php');
+        require_once ($path.'bussines/DTO/Asistencia.php');
+
+        $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
+        $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
+        $consulta.= " FROM siga.actividad acti ";
+        $consulta.= " LEFT JOIN siga.asistencia asis ON (asis.acti_id = acti.acti_id) ";
+        $consulta.= " INNER JOIN siga.tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
+        $consulta.= " INNER JOIN siga.tipobeneficiario tibe ON (tibe.tibe_id = asis.tibe_id) ";
+        $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = asis.tido_id) ";
+        $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
+        $consulta.= " WHERE asis.acti_id = ? ";
+        $consulta.= " ORDER BY acti.acti_id DESC; ";
+
+        $result = $conexion->prepare($consulta);
+        $result->execute(array($idActividad));
+
+
+        $lista = array();
+
+        foreach ($result as $row){
+            $asistencia = new Asistencia();
+
+            $asistencia->_SET('descripcionTipoActividad',$row['tiac_descripcion']);
+            $asistencia->_SET('descripcionTipoBeneficiario',$row['tibe_descripcion']);
+            $asistencia->_SET('abreviaturaTipoDocumento',$row['tido_abreviatura']);
+            $asistencia->_SET('id',$row['asis_id']);
+            $asistencia->_SET('idActividad',$row['acti_id']);
+            $asistencia->_SET('idTipoBeneficiario',$row['tibe_id']);
+            $asistencia->_SET('idTipoDocumento',$row['tido_id']);
+            $asistencia->_SET('documentoBeneficiario',$row['asis_documento']);
+            $asistencia->_SET('nombreBeneficiario',$row['asis_nombrebeneficiario']);
+            $asistencia->_SET('codigoBeneficiario',$row['asis_codigobeneficiario']);
+            $asistencia->_SET('descripcionActividad',$row['acti_descripcion']);
+            $asistencia->_SET('descripcionTipoPrograma',$row['tipr_descripcion']);
+
+            $lista[] = $asistencia;
+        }
+        $conexion = null;
+        return $lista;
+    }
 
     /**
      * Metodo para listar asistencias por una actividad especifica
@@ -260,5 +307,40 @@ class AsistenciaDAO
         return $lista;
     }
 
+    /**
+     * Metddo para registra asistencia
+     * @param $asistencia
+     * @return string
+     */
+    public function registrarAsistencia($asistencia){
+        try{
+            session_start();
+            if($_SESSION['tipo_usuario']==1){
+                $registradopor=1;
+            }
+            else{
+                $registradopor=$_SESSION['usuario']->_GET('id');
+            }
 
+            include('../bussines/DAO/Conection.php');
+
+            $consulta = " INSERT INTO `siga`.`asistencia`(`acti_id`, `tibe_id`, `tido_id`, `asis_documento`, `asis_nombrebeneficiario`, `asis_codigobeneficiario`, `asis_registradopor`) ";
+            $consulta.= " VALUES (?,?,?,?,?,?,?); ";
+
+            $result = $conexion->prepare($consulta);
+            $result->execute(array($asistencia['idActividad'],
+                $asistencia['idTipoBeneficiario'],
+                $asistencia['idTipoDocumento'],
+                $asistencia['documentoBeneficiario'],
+                $asistencia['nombreBeneficiario'],
+                $asistencia['codigoBeneficiario'],
+                $registradopor));
+
+            $conexion = null;
+            return "0";
+        }catch (Exception $e){
+            return "1";
+        }
+
+    }
 }
