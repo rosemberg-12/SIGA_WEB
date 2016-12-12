@@ -54,14 +54,14 @@ include('html/head.html');
                 <div class="col-md-8 col-md-offset-2">
                     <div class="box box-success">
                         <div class="box-header"></div>
-                        <form role="form" action="scripts/scriptGenerarExcel.php" method="post">
+                        <form role="form" action="http://gidis.ufps.edu.co:8088/siga_reportes/xls/index.jsp" method="post">
                             <!-- text input -->
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Seleccione el año</label>
-                                            <select class="form-control" id="ano" name="ano" required="">
+                                            <select class="form-control" id="anoActividad" name="anoActividad" required="">
                                                 <option value >Seleccione el año</option>
                                                 <option value="2016" >2016</option>
                                                 <option value="2017" >2017</option>

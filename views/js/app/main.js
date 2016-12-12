@@ -103,7 +103,7 @@ $(document).ready(function() {
 
     /* ========================= Gestion Actividad ============================== */
 
-    $("#division3").change(function () {
+    $("#divisionpdf").change(function () {
 
         elegido= $(this).val();
 
@@ -111,8 +111,8 @@ $(document).ready(function() {
             $("#tabla-asis").html("");
             $("#botonCrearAsistencia").html("");
             $("#detalles").html(infoActividad);
-            $("#actividad3").html("<option value='-1'>Seleccione uno</option>");
-            $("#unidad3").html("<option value='-1'>Seleccione uno</option>");
+            $("#actividadpdf").html("<option value='-1'>Seleccione uno</option>");
+            $("#unidadpdf").html("<option value='-1'>Seleccione uno</option>");
             //$("#actividad3").html("<option value='-1'>Seleccione uno</option>");
             return;
         }
@@ -128,8 +128,8 @@ $(document).ready(function() {
                     $("#tabla-asis").html("");
                     $("#botonCrearAsistencia").html("");
                     $("#detalles").html(infoActividad);
-                    $("#unidad3").html(data);
-                    $("#actividad3").html("<option value='-1'>Seleccione uno</option>");
+                    $("#unidadpdf").html(data);
+                    $("#actividadpdf").html("<option value='-1'>Seleccione uno</option>");
                 }
             });
         cargarUnidades.always(function(){
@@ -137,14 +137,14 @@ $(document).ready(function() {
         })
     });
 
-    $("#unidad3").change(function () {
+    $("#unidadpdf").change(function () {
         elegido= $(this).val();
 
         if(elegido=="-1"){
             $("#tabla-asis").html("");
             $("#botonCrearAsistencia").html("");
             $("#detalles").html(infoActividad);
-            $("#actividad3").html("<option value='-1'>Seleccione uno</option>");
+            $("#actividadpdf").html("<option value='-1'>Seleccione uno</option>");
             return;
         }
         $body.addClass("loading");
@@ -158,7 +158,7 @@ $(document).ready(function() {
                     $("#tabla-asis").html("");
                     $("#botonCrearAsistencia").html("");
                     $("#detalles").html(infoActividad);
-                    $("#actividad3").html(data);
+                    $("#actividadpdf").html(data);
                 }
             });
 
@@ -166,7 +166,7 @@ $(document).ready(function() {
 
     });
 
-    $("#actividad3").change(function () {
+    $("#actividadpdf").change(function () {
         elegido= $(this).val();
 
         if(elegido=="-1"){
@@ -207,54 +207,5 @@ $(document).ready(function() {
         });
 
     });
-
-
-
-    /* ========================= REPORTE EXCEL ============================== */
-
-    $("#divisionxls").change(function () {
-
-        elegido= $(this).val();
-
-        if(elegido=="-1"){
-            $("#tabla-act").html("");
-            $("#botonCrearActividad").html("");
-            $("#detalles").html(infoUnidad);
-            $("#unidad2").html("<option value='-1'>Seleccione uno</option>");
-            return;
-        }
-        $.post("scripts/scriptCargarComboUnidades.php", { division:elegido },
-            function(data){
-
-                if(data!=""){
-                    console.log(data);
-                    $("#unidadxls").html(data);
-                }
-
-            });
-    });
-
-    $("#unidadxls").change(function () {
-        elegido= $(this).val();
-
-        if(elegido=="-1"){
-            $("#tabla-act").html("");
-            $("#botonCrearActividad").html("");
-            $("#detalles").html(infoUnidad);
-
-            return;
-        }
-        $.post("scripts/scriptCargarComboActividades.php", { division:elegido },
-            function(data){
-                if(data!=""){
-                    console.log(data);
-                    $("#actividadxls").html(data);
-                }
-
-            });
-    });
-
-
-
 
 } );

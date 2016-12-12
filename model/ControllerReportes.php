@@ -329,23 +329,25 @@ class ControllerReportes
      * @param $path riuta de acceso
      * @return string con el codigo de la tabla a mostrar
      */
-    public function listarAsistenciaReportePDF($criterioBusqueda, $path){
-        include_once ($path.'bussines/DAO/AsistenciaDAO.php');
+    public function listarAsistenciaReportePDF($criterioBusqueda){
+        include_once ('../bussines/DAO/AsistenciaDAO.php');
         $asistenciaDAO = new AsistenciaDAO();
-
         /*  $criterioBusqueda['tipo'] == 1 -> Carrera
          *  $criterioBusqueda['tipo'] == 2 -> Actividad
          *  $criterioBusqueda['tipo'] == 3 -> Año y Semestre(opcional)
          */
         if($criterioBusqueda['tipo'] == 1){
-            $listaAsistencia = $asistenciaDAO->listarAsistenciaResportePorCarrera($criterioBusqueda,$path);
+            $listaAsistencia = $asistenciaDAO->listarAsistenciaResportePorCarrera($criterioBusqueda);
         }elseif ($criterioBusqueda['tipo'] == 2) {
-            $listaAsistencia = $asistenciaDAO->listarAsistenciaReportePorActividad($criterioBusqueda, $path);
+            $listaAsistencia = $asistenciaDAO->listarAsistenciaReportePorActividad($criterioBusqueda);
         }elseif ($criterioBusqueda['tipo'] == 3) {
-            $listaAsistencia = $asistenciaDAO->listarAsistenciaResportePorSemestreAno($criterioBusqueda, $path);
+            $listaAsistencia = $asistenciaDAO->listarAsistenciaResportePorSemestreAno($criterioBusqueda);
         }
 
-        $table = " <table id='tabla-usuarios' class='table table-bordered table-hover'> ";
+        $table = " <div class=\"col-md-12\"> ";
+        $table.= " <div class=\"box\"> ";
+        $table.= " <div class=\"box-body\"> ";
+        $table.= " <table id='tabla-pdf' class='table table-bordered table-hover'> ";
         $table.= " <thead> ";
         $table.= " <tr> ";
         $table.= " <th style='text-align: center'>ACTIVIDAD</th> ";
@@ -378,10 +380,38 @@ class ControllerReportes
             $table.= " </tr> ";
             $table.= " </tbody> ";
         }
-
+        $table.= " </table><!-- tabla-pdf --> ";
+        $table.= " </div><!-- box-body --> ";
+        $table.= " </div><!-- box --> ";
+        $table.= " </div><!-- col-md-12 --> ";
         $conexion = null;
         return $table;
     }
 
+    public function cargarCodigoCarrera($criterioBusqueda){
+        include_once ('../bussines/DAO/ProgramaAcademicoDAO.php');
+        $pracDAO = new ProgramaAcademicoDAO();
+        return $pracDAO->getListaCodigos($criterioBusqueda);
+    }
+
+    public function getComboCarreras(){
+        include_once ('../bussines/DAO/ProgramaAcademicoDAO.php');
+        $pracDAO = new ProgramaAcademicoDAO();
+
+        $lista = $pracDAO->listarProgramasAcademicos();
+
+        $opcion = " <option value=\"0\">Seleccione Carrera</option> ";
+
+        if(count($lista)>0){
+            foreach ($lista as $prac) {
+                $id = $prac->_GET('id');
+                $descripcion = $prac->_GET('descripcion');
+                $opcion.= " <option value=\"$id\">$descripcion</option> ";
+            }
+        }//fin si
+
+        return $opcion;
+
+    }//fin getComboCarreras
 
 }

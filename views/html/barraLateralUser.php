@@ -86,7 +86,7 @@
                             echo '<li class="treeview" >
                             <a href="reportePdf.php">
                                 <i class="fa fa-file-pdf-o"></i> <span>Generar Informe PDF</span>
-                            </a>                            
+                            </a>
                         </li>';
                         }
                         ?>

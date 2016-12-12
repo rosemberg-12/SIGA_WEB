@@ -15,9 +15,9 @@ class AsistenciaDAO
      * @param $path ruta para acceder a los archivos desde donde se llama
      * @return array lista de objects tipo Asistencia con la información
      */
-    public function listarAsistenciaResportePorSemestreAno($criterioBusqueda,$path){
-        include($path.'bussines/DAO/Conection.php');
-        require_once ($path.'bussines/DTO/Asistencia.php');
+    public function listarAsistenciaResportePorSemestreAno($criterioBusqueda){
+        include('../bussines/DAO/Conection.php');
+        require_once ('../bussines/DTO/Asistencia.php');
 
         $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
         $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
@@ -29,7 +29,7 @@ class AsistenciaDAO
         $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
         $consulta.= " WHERE acti.acti_ano = ? ";
 
-        $validar = (is_null($criterioBusqueda['semestre']))? 1:0;
+        $validar = (is_null($criterioBusqueda['semestre']) or $criterioBusqueda['semestre'] == 1)? 1:0;
         if($validar == 0){
             $consulta.= " AND acti.acti_semestre = ? ";
         }
@@ -112,9 +112,28 @@ class AsistenciaDAO
      * @param $criterioBusqueda criterio de busqueda para la consulta
      * @param $path ruta para acceder a los archivos desde donde se llama
      */
-    public function listarAsistenciaResportePorCarrera($criterioBusqueda,$path){
-        include($path.'bussines/DAO/Conection.php');
-        require_once ($path.'bussines/DTO/Asistencia.php');
+    public function listarAsistenciaResportePorCarrera($criterioBusqueda){
+        include('../bussines/DAO/Conection.php');
+        require_once ('../bussines/DTO/Asistencia.php');
+
+        $consulta = " SELECT * ";
+        $consulta.= " FROM siga.codigoprac ";
+        $consulta.= " WHERE prac_id = ? ";
+        $consulta.= " ORDER BY prac_id; ";
+
+        $result = $conexion->prepare($consulta);
+        $result->execute(array($criterioBusqueda['idCarrera']));
+
+        foreach ($result as $row) {
+
+            if(!isset($criterioBusqueda['codigoCarrera1'])){
+                $criterioBusqueda['codigoCarrera1'] = $row['copr_codigo'];
+            }else{
+                $criterioBusqueda['codigoCarrera2'] = $row['copr_codigo'];
+            }
+        }
+
+        unset($consulta);
 
         $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
         $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
@@ -128,7 +147,7 @@ class AsistenciaDAO
 
         $consulta.= " AND asis.asis_codigobeneficiario like '".$criterioBusqueda['codigoCarrera1']."' ";
 
-        $validar = (is_null($criterioBusqueda['codigoCarrera2']))? 1:0;
+        $validar = (!isset($criterioBusqueda['codigoCarrera2']) or is_null($criterioBusqueda['codigoCarrera2']))? 1:0;
 
         if($validar == 0){
             $consulta.= " OR asis.asis_codigobeneficiario like '".$criterioBusqueda['codigoCarrera2']."' ";
@@ -168,9 +187,9 @@ class AsistenciaDAO
      * @param $criterioBusqueda criterio de busqueda para la consulta
      * @param $path ruta para acceder a los archivos desde donde se llama
      */
-    public function listarAsistenciaReportePorActividad($criterioBusqueda,$path){
-        include($path.'bussines/DAO/Conection.php');
-        require_once ($path.'bussines/DTO/Asistencia.php');
+    public function listarAsistenciaReportePorActividad($criterioBusqueda){
+        include('../bussines/DAO/Conection.php');
+        require_once ('../bussines/DTO/Asistencia.php');
 
         $consulta = " SELECT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
         $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";

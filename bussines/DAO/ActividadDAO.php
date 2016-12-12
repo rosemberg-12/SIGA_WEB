@@ -105,7 +105,6 @@ class ActividadDAO
         include_once ($path.'bussines/DAO/Conection.php');
 
         $consulta =" INSERT INTO siga.actividad (unid_id , acti_descripcion, tiac_id, acti_semestre,acti_ano,acti_fechainicio, acti_fechafin, acti_dedicacion, tipr_id, acti_estado, acti_responsable, acti_registradopor) ";
-
         $consulta .=" VALUES (?,?,?,?,?,?,?,?,?,?,?,?); ";
         $result = $conexion->prepare($consulta);
         $result->execute(array(

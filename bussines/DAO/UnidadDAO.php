@@ -34,7 +34,7 @@ class UnidadDAO
                 $registradopor=$_SESSION['usuario']->_GET('id');
             }
             include_once ('../../bussines/DAO/Conection.php');
-            $consulta='INSERT INTO unidad(divi_id, unid_nombre, unid_abreviatura, unid_codigo, unid_estado, unid_coordinador, unid_registradopor) VALUES(?,?,?,?,?,?,?)';
+            $consulta='INSERT INTO siga.unidad(divi_id, unid_nombre, unid_abreviatura, unid_codigo, unid_estado, unid_coordinador, unid_registradopor) VALUES(?,?,?,?,?,?,?)';
             $result=$conexion->prepare($consulta);
 
             $result->execute(array($divi,$nombre, $abreviatura,$cod,"A",1,$registradopor));

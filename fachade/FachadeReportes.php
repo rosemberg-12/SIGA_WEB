@@ -19,10 +19,19 @@ class FachadeReportes
         $reportes->crearInformeExcelMEN($criterioBusqueda,$objPHPExcel,$path);
     }
 
-    public function generarReportePDF($criterioBusqueda, $path){
-        require_once($path.'model/ControllerReportes.php');
+    public function generarReportePDF($criterioBusqueda){
+        require_once('../model/ControllerReportes.php');
         $reportes = new ControllerReportes();
-        return $reportes->listarAsistenciaReportePDF($criterioBusqueda,$path);
+        return $reportes->listarAsistenciaReportePDF($criterioBusqueda);
     }
+
+
+    public function getComboCarreras(){
+        require_once('../model/ControllerReportes.php');
+        $reportes = new ControllerReportes();
+        return $reportes->getComboCarreras();
+    }
+
+
 
 }
