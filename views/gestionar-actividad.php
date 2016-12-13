@@ -104,9 +104,11 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                                     <div class="box-body">
                                         <div id="detalles" name="detalles" style="padding-left: 20px;">
                                             <p><b>Nombre de la actividad:  </b> <span id="nombre_unidad"></span></p>
-                                            <p><b>Codigo de la actividad :</b><span id="codigo_unidad"></span></p>
                                             <p><b>Nombre del responsable :</b><span id="nombre_encargado"></span></p>
-                                            <p><b>Abreviatura:</b><span id="abr_unidad"></span></p>
+                                            <p><b>Fecha inicio :</b><span id="nombre_encargado"></span></p>
+                                            <p><b>Fecha Fin :</b><span id="nombre_encargado"></span></p>
+                                            <p><b>Año :</b><span id="nombre_encargado"></span></p>
+                                            <p><b>Semestre :</b><span id="nombre_encargado"></span></p>
                                         </div>
                                     </div>
                                 </div>

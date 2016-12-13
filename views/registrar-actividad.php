@@ -113,7 +113,7 @@ session_start();
                                 </div>
                                 <div class="form-group">
                                     <label>Ingrese la dedicación</label>
-                                    <input type="number" class="form-control"  placeholder="Nombre de la actividad" id="dedic" name="dedic" required>
+                                    <input type="number" class="form-control"  placeholder="Cantidad de dedicacion a la actividad en horas" id="dedic" name="dedic" required>
                                 </div>
 
                                 <input type="hidden" id="uni" name="uni" value=<?php echo "'".$_GET['uni']."'"; ?> />

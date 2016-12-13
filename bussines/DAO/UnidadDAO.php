@@ -162,7 +162,7 @@ class UnidadDAO
         require_once ($path.'bussines/DTO/Unidad.php');
         require_once ($path.'bussines/DTO/Persona.php');
 
-        $consulta = 'SELECT unidad.*, persona.* from unidad, persona, actividad where unidad.divi_id='.$divi.' AND unidad.unid_id=actividad.unid_id AND persona.usu_id='.$idCoordinador.' AND  actividad.acti_responsable='.$idCoordinador;
+        $consulta = 'SELECT distinct unidad.*, persona.* from unidad, persona, actividad where unidad.divi_id='.$divi.' AND unidad.unid_id=actividad.unid_id AND persona.usu_id='.$idCoordinador.' AND  actividad.acti_responsable='.$idCoordinador;
 
 
         $result = $conexion->prepare($consulta);

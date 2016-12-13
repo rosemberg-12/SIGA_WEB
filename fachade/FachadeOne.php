@@ -68,8 +68,17 @@ class FachadeOne
         return $cDivision->actualizarActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $acti, $status);
     }
 
-    public function crearAsistencia($tipoben, $tipodoc, $doc, $nom, $doc, $acti){
 
+    public function actualizarAsistencia($tipoben, $tipodoc, $doc, $nom, $cod, $asis){
+        require_once('../../model/ControllerAsistencia.php');
+        $cActividad = new ControllerAsistencia();
+        return $cActividad->actualizarAsistencia($tipoben, $tipodoc, $doc, $nom, $cod, $asis);
+    }
+
+    public function crearAsistencia($tipoben, $tipodoc, $doc, $nom, $cod, $acti){
+        require_once('../../model/ControllerAsistencia.php');
+        $cActividad = new ControllerAsistencia();
+        return $cActividad->crearAsistencia($tipoben, $tipodoc, $doc, $nom, $cod, $acti);
     }
 
     public function  crearActividad($nombre, $tipoAct, $tipoProg, $anio, $sem, $f_ini, $f_fin, $dedic, $uni ){
@@ -154,6 +163,12 @@ class FachadeOne
         require_once($path.'model/ControllerActividad.php');
         $cDivision = new ControllerActividad();
         return $cDivision->getActInformation($id, $path);
+    }
+
+    public function getAsisInformation($id, $path){
+        require_once($path.'model/ControllerAsistencia.php');
+        $cDivision = new ControllerAsistencia();
+        return $cDivision->getAsisInformation($id, $path);
     }
 
     /**

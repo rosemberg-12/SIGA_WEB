@@ -29,7 +29,7 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
       ?>
 
     <body class="skin-red">
-      
+    <div class="modal"><!-- Place at bottom of page --></div>
         <div class="wrapper">
             <!-- Encabezado -->
             

@@ -184,11 +184,12 @@ class ControllerDivision
 
             return $concat;
         }
+
         elseif($_SESSION['tipo_usuario']==4){
             $divisionDAO =new DivisionDAO();
             $idUsuario=$_SESSION['usuario']->_GET('id');
             $listaDivisiones = $divisionDAO->listarDivisionesEncargadoActividad($idUsuario);
-            $concat="";
+            $concat="<option value='-1'>Seleccione uno</option>";
             foreach ($listaDivisiones as $div) {
                 if(strcmp(($div->_GET('estado')),'A')==0)
                     $concat.='<option value="'.$div->_GET('id').'">'.$div->_GET('nombre').'</option>';

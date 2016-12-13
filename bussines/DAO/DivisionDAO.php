@@ -14,7 +14,7 @@ class DivisionDAO
         require_once ('../bussines/DTO/Division.php');
         require_once ('../bussines/DTO/Persona.php');
 
-        $consulta = 'SELECT division.*, persona.* FROM division, unidad, actividad, persona where unidad.divi_id= division.divi_id AND unidad.unid_id=actividad.unid_id AND persona.usu_id='.$idUsuario.' AND  actividad.acti_responsable='.$idUsuario;
+        $consulta = 'SELECT distinct division.*, persona.* FROM division, unidad, actividad, persona where unidad.divi_id= division.divi_id AND unidad.unid_id=actividad.unid_id AND persona.usu_id='.$idUsuario.' AND  actividad.acti_responsable='.$idUsuario;
 
         $result = $conexion->query($consulta);
 
