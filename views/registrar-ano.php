@@ -5,7 +5,16 @@ require_once '../fachade/FachadeOne.php';
 
 session_start();
 
+$muestra="";
+if(isset($_GET['estado'])){
+
+    if($_GET['estado']==0)
+        $muestra= '<script type="text/javascript">alertify.success("Operación completada");</script>';
+    else
+        $muestra= '<script type="text/javascript">alertify.error("Ha ocurrido un error");</script>';
+}
 $facade = new FachadeOne();
+
 
 
 ?>
@@ -56,7 +65,7 @@ include('html/head.html');
                             <div class="box-body">
                                     <div class="form-group">
                                         <label>Digite año registrar</label>
-                                        <input value="" class="form-control" id="ano" name="ano"/>
+                                        <input value="" placeholder="Digite año a registrar" class="form-control" id="ano" name="ano"/>
                                     </div>
 
                                 <div class="box-footer">
@@ -114,7 +123,7 @@ include('html/head.html');
 <script src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js" type="text/javascript"></script>
 
 <script src="js/jszip.js" type="text/javascript"></script>
-
+<?php echo $muestra;?>
 </body>
 
 </html>

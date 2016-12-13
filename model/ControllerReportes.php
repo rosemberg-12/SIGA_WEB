@@ -344,8 +344,9 @@ class ControllerReportes
             $listaAsistencia = $asistenciaDAO->listarAsistenciaResportePorSemestreAno($criterioBusqueda);
         }
 
-        $table = " <div class=\"col-md-12\"> ";
-        $table.= " <div class=\"box\"> ";
+        $table = " <div class=\"box\"> ";
+        $table.= " <div class=\"row\"> ";
+        $table.= " <div class=\"col-md-12\"> ";
         $table.= " <div class=\"box-body\"> ";
         $table.= " <table id='tabla-pdf' class='table table-bordered table-hover'> ";
         $table.= " <thead> ";
@@ -382,8 +383,10 @@ class ControllerReportes
         }
         $table.= " </table><!-- tabla-pdf --> ";
         $table.= " </div><!-- box-body --> ";
-        $table.= " </div><!-- box --> ";
         $table.= " </div><!-- col-md-12 --> ";
+        $table.= " </div><!-- row --> ";
+        $table.= " </div><!-- box --> ";
+
         $conexion = null;
         return $table;
     }

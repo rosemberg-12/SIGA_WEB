@@ -35,20 +35,19 @@ class ControllerActividad
     public function getComboTipoActividad(){
         include_once ('../bussines/DAO/ActividadDAO.php');
         $actividadDAO = new ActividadDAO();
-
         $listadoActividades=$actividadDAO->getTipoActividades();
-        $concat="";
 
-        foreach ($listadoActividades as $ta) {
+        $concat="<option value >Seleccione Tipo de Actividad</option>";
 
-                $concat.='<option value="'.$ta->_GET('id').'">'.$ta->_GET('descripcion').'</option>';
+        if(count($listadoActividades)>0){
+            foreach ($listadoActividades as $ta) {
+                $concat.="<option value=\"".$ta->_GET('id')."\">".$ta->_GET('descripcion')."</option>";
+            }
+        }else{
+            $concat = " <option value>No hay Tipos de actividad a cargar para cargar</option> ";
         }
 
-        if(empty($concat)){
-            return "<option value>No hay Tipos de actividad a cargar para cargar</option>";
-        }
-
-        return "<option value>Selecciona uno</option>".$concat;
+        return $concat;
 
     }
 
@@ -91,7 +90,7 @@ class ControllerActividad
             return "<option value>No hay Tipos de actividad a cargar para cargar</option>";
         }
 
-        return "<option value>Selecciona uno</option>".$concat;
+        return "<option value>Selecciona un tipo de programa</option>".$concat;
 
     }
 
@@ -223,6 +222,28 @@ class ControllerActividad
 
         return $opcion;
     }
+
+    public function getComboAniosSelected($anio){
+        include_once ('../bussines/DAO/AnoDAO.php');
+        $anoDAO = new AnoDAO();
+
+        $lista = $anoDAO->listarAnios();
+
+        $opcion = " <option value >Seleccione Año</option> ";
+
+        if(count($lista)>0){
+            foreach ($lista as $ano){
+                if($anio == $ano){
+                    $opcion.= " <option value=\"$ano\" selected>$ano</option> ";
+                }else{
+                    $opcion.= " <option value=\"$ano\" >$ano</option> ";
+                }
+            }
+        }
+
+        return $opcion;
+    }
+
 
     /**
      * Metodo para registrar un año para las actividades

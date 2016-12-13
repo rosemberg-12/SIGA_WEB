@@ -9,7 +9,7 @@ $inactivo="";
 session_start();
 
     $facade = new FachadeOne();
-$comboAnios = $facade->getComboAnios();
+
  if(!isset($_GET['uni'])){
      header("Location: gestionar-unidad.php");
  }
@@ -53,62 +53,78 @@ $comboAnios = $facade->getComboAnios();
                         <b><a href="#" style="color:#dd4b39">Registrar Actividad</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="box box-info">
+                                <div class="login-box-body">
+                                    <form role="form" action="scripts/scriptCrearActividad.php" method="post">
+                                        <!-- text input -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nombre de la actividad</label>
+                                                    <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="act_name" name="act_name" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione el tipo de actividad</label>
+                                                    <select class="form-control" id="tipo_act" name="tipo_act" required="">
+                                                        <?php echo $facade->getComboTipoActividad();?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione el programa al que pertenece la actividad</label>
+                                                    <select class="form-control" id="tipo_prog" name="tipo_prog" required="">
+                                                        <?php echo $facade->getComboPrograma();?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione el año</label>
+                                                    <select class="form-control" id="anio" name="anio" required="">
+                                                        <?php echo $facade->getComboAnios(); ?>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptCrearActividad.php" method="post">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre de la actividad</label>
-                                    <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="act_name" name="act_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el tipo de actividad</label>
-                                    <select class="form-control" id="tipo_act" name="tipo_act" required="">
-                                        <?php echo $facade->getComboTipoActividad();?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el programa al que pertenece la actividad</label>
-                                    <select class="form-control" id="tipo_prog" name="tipo_prog" required="">
-                                        <?php echo $facade->getComboPrograma();?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el año</label>
-                                    <select class="form-control" id="anio" name="anio" required="">
-                                        <?php echo $comboAnios; ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el semestre</label>
-                                    <select class="form-control" id="sem" name="sem" required="">
-                                        <option value >Seleccione el semestre</option>
-                                        <option value="I" >I</option>
-                                        <option value="II" >II</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione la fecha de inicio</label>
-                                    <input type="datetime-local" class="form-control" placeholder="Fecha de inicio" id="fecha_ini" name="fecha_ini" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione la fecha de fin</label>
-                                    <input type="datetime-local" class="form-control" placeholder="Fecha de fin" id="fecha_fin" name="fecha_fin" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ingrese la dedicación</label>
-                                    <input type="number" class="form-control"  placeholder="Cantidad de dedicacion a la actividad en horas" id="dedic" name="dedic" required>
-                                </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Seleccione el semestre</label>
+                                                    <select class="form-control" id="sem" name="sem" required="">
+                                                        <option value >Seleccione el semestre</option>
+                                                        <option value="I" >I</option>
+                                                        <option value="II" >II</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione la fecha de inicio</label>
+                                                    <input type="datetime-local" class="form-control" placeholder="Fecha de inicio" id="fecha_ini" name="fecha_ini" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione la fecha de fin</label>
+                                                    <input type="datetime-local" class="form-control" placeholder="Fecha de fin" id="fecha_fin" name="fecha_fin" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Ingrese la dedicación</label>
+                                                    <input type="number" class="form-control"  placeholder="Cantidad de dedicacion a la actividad en horas" id="dedic" name="dedic" required>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                <input type="hidden" id="uni" name="uni" value=<?php echo "'".$_GET['uni']."'"; ?> />
+                                        <input type="hidden" id="uni" name="uni" value=<?php echo "'".$_GET['uni']."'"; ?> />
 
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-success">Registrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            </form>
+                                    </form>
 
+                                </div>
+                            </div>
                         </div>
                     </div>
 

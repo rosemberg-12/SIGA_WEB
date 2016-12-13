@@ -244,7 +244,7 @@ class FachadeOne
     public function cargarAllUsersForActividad($selected, $unid){
         require_once("../".'model/ControllerUsuario.php');
         $cDivision = new ControllerUsuario();
-        return $cDivision->cargarAllUsersForUnidad($selected, $unid);
+        return $cDivision->cargarAllUsersForActividad($selected, $unid);
     }
 
     public function getComboTipoActividad(){
@@ -282,6 +282,16 @@ class FachadeOne
     }
 
     /**
+     * Metodo para obtener las option del select del año
+     * @return string HTML con el listado de opciones para el select
+     */
+    public function getComboAniosSelected($ano){
+        require_once('../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->getComboAniosSelected($ano);
+    }
+
+    /**
      * Metodo para registrar un año para las actividades
      * @param $ano valor del año a registrar
      * @return string resultado de la operacion
@@ -292,4 +302,22 @@ class FachadeOne
         return $cDivision->crearAno($ano);
     }
 
+
+    public function listarCarreras($path){
+        require_once($path.'model/ControllerCarrera.php');
+        $cCarrera = new ControllerCarrera();
+        return $cCarrera->getListaCarrera($path);
+    }
+
+    public function crearCarrera($prac){
+        require_once('../../model/ControllerCarrera.php');
+        $cCarrera = new ControllerCarrera();
+        return $cCarrera->crearCarrera($prac);
+    }
+
+    public function agregarCodigoCarrera($prac){
+        require_once('../../model/ControllerCarrera.php');
+        $cCarrera = new ControllerCarrera();
+        return $cCarrera->agregarCodigoCarrera($prac);
+    }
 }

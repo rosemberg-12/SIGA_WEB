@@ -36,12 +36,19 @@ class AnoDAO
         $lista = array();
         try{
             $consulta = " SELECT ano_id FROM siga.ano; ";
+            if(!isset($conexion)){
+                try{
+                    $conexion = new PDO('mysql:host=localhost;dbname=siga', "siga", "sigaUFPS2016");
+                    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                }
+                catch (Exception $e){
+                    die("Unable to connect: " . $e->getMessage());
+                }
+            }
             $result = $conexion->query($consulta);
-
             foreach ($result as $row){
                 $lista[] = $row['ano_id'];
             }
-
             $conexion = null;
             return $lista;
         }catch (Exception $e){

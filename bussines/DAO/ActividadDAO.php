@@ -24,35 +24,27 @@ class ActividadDAO
     }
 
     public function getTipoActividades(){
-
-        /*===========================*/
-        $user = "root" ;//usuario para la conexion a  la BD
-        $clave = "";//clave del usuario para la conexion a la BD
-        $conexion="";//Variable para realizar los llamados fuera de la clase
-
-        try
-        {
-            $conexion = new PDO('mysql:host=localhost;dbname=siga', $user, $clave);
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        }
-        catch (Exception $e)
-        {
-            die("Unable to connect: " . $e->getMessage());
-        }
-        //include_once ('../bussines/DAO/Conection.php');
+        include_once ('../bussines/DAO/Conection.php');
         include_once ('../bussines/DTO/TipoActividad.php');
 
-        $consulta= "Select * from tipoactividad";
-        $result = $conexion->prepare($consulta);
-        $result->execute(array());
+        $consulta= " Select * from siga.tipoactividad ";
+        if(!isset($conexion)){
+            try{
+                $conexion = new PDO('mysql:host=localhost;dbname=siga', "siga", "sigaUFPS2016");
+                $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            }
+            catch (Exception $e){
+                die("Unable to connect: " . $e->getMessage());
+            }
+        }
+        $result = $conexion->query($consulta);
         $tactividades=array();
 
         foreach ($result as $row){
 
             $tactividad= new TipoActividad();
             $tactividad->_SET("id",$row[0]);
-            $tactividad->_SET("descripcion",$row[1]);
+            $tactividad->_SET("descripcion",utf8_encode($row[1]));
             $tactividades[]=$tactividad;
         }
         $conexion=null;
@@ -60,39 +52,34 @@ class ActividadDAO
     }
 
     public function getProg(){
-        /*===========================*/
-        $user = "root" ;//usuario para la conexion a  la BD
-        $clave = "";//clave del usuario para la conexion a la BD
-        $conexion="";//Variable para realizar los llamados fuera de la clase
-
-        try
-        {
-            $conexion = new PDO('mysql:host=localhost;dbname=siga', $user, $clave);
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        }
-        catch (Exception $e)
-        {
-            die("Unable to connect: " . $e->getMessage());
-        }
         //include_once ('../bussines/DAO/Conection.php');
         include_once ('../bussines/DTO/TipoPrograma.php');
 
-        $consulta= "Select * from tipoprograma";
-        $result = $conexion->prepare($consulta);
-        $result->execute(array());
+        $consulta= " Select * from siga.tipoprograma ";
+        if(!isset($conexion)){
+            try{
+                $conexion = new PDO('mysql:host=localhost;dbname=siga', "siga", "sigaUFPS2016");
+                $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            }
+            catch (Exception $e){
+                die("Unable to connect: " . $e->getMessage());
+            }
+        }
+        $result = $conexion->query($consulta);
         $tactividades=array();
 
         foreach ($result as $row){
 
             $tactividad= new TipoPrograma();
             $tactividad->_SET("id",$row[0]);
-            $tactividad->_SET("descripcion",$row[1]);
+            $tactividad->_SET("descripcion",utf8_encode($row[1]));
             $tactividades[]=$tactividad;
         }
         $conexion=null;
         return $tactividades;
     }
+
+
 
     /**
      * Metodo para registrar una nueva actividad

@@ -54,7 +54,7 @@ class ControllerUsuario
                 $table.= " <td>".$persona->_GET('nombre')."</td> ";
                 $table.= " <td>".$persona->_GET('apellido')."</td> ";
                 $table.= " <td >".$persona->_GET('abreviaturaTipoDocumento')." ".$persona->_GET('numeroDocumento')."</td> ";
-                $table.= " <td ><a href='scripts/scriptAsignarCoordinador.php?nuevoJ=$encrypt&act=".$unid."'>Seleccionar</a> </td> ";
+                $table.= " <td ><a href='scripts/scriptAsignarCoordinador.php?nuevoJ=$encrypt&uni=".$unid."'>Seleccionar</a> </td> ";
                 $table.= " </tr> ";
             }
         }
@@ -62,6 +62,31 @@ class ControllerUsuario
         return $table;
     }
 
+    public function cargarAllUsersForActividad($selected, $acti){
+        include_once ('../bussines/DAO/UsuarioDAO.php');
+        //include_once ('../model/General.php');
+
+        $usuarioDAO =new UsuarioDAO();
+        $listaUsuarios = $usuarioDAO->listarUsuarios();
+        $table="";
+        foreach ($listaUsuarios as $usuario){
+
+            if(strcmp($usuario->_GET('id'),"1")!=0 && strcmp(($usuario->_GET('estado')),'A')==0 && strcmp($usuario->_GET('id'),$selected)!=0){
+
+                $persona= $usuario->_GET('persona');
+                $encrypt = ($usuario->_GET('id'));
+
+                $table.= " <tr> ";
+                $table.= " <td>".$persona->_GET('nombre')."</td> ";
+                $table.= " <td>".$persona->_GET('apellido')."</td> ";
+                $table.= " <td >".$persona->_GET('abreviaturaTipoDocumento')." ".$persona->_GET('numeroDocumento')."</td> ";
+                $table.= " <td ><a href='scripts/scriptAsignarResponsable.php?act=$acti&nuevoJ=".$encrypt."'>Seleccionar</a> </td> ";
+                $table.= " </tr> ";
+            }
+        }
+
+        return $table;
+    }
 
     public function actualizarUser($nombre, $apellido, $tipoDoc, $doc, $pass,$id, $estado ){
 

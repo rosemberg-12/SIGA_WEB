@@ -53,64 +53,65 @@ session_start();
                         <b><a href="#" style="color:#dd4b39">Registrar Asistencia</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-success">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptCrearAsistencia.php" method="post">
+                                        <!-- text input -->
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptCrearAsistencia.php" method="post">
-                                <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Seleccione el tipo de beneficiario</label>
+                                            <select class="form-control" id="tipoben"name="tipoben" required="">
+                                                <option value>Seleccione el tipo de beneficiario</option>
+                                                <option value="1">Estudiante</option>
+                                                <option value="2">Docente</option>
+                                                <option value="3">Administrativo</option>
+                                                <option value="4">Graduado</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Seleccione el tipo de documento</label>
+                                            <select class="form-control" id="tipodoc"name="tipodoc" required="">
+                                                <option value>Seleccione el tipo de documento</option>
+                                                <option value="1">Pasaporte</option>
+                                                <option value="2">Tarjeta de Identidad</option>
+                                                <option value="3">Cedula de ciudadania</option>
+                                                <option value="4">Documento de identidad extrajera</option>
+                                                <option value="5">Cedula de extrajeria</option>
+                                                <option value="6">Certificado cabildo</option>
+                                                <option value="7">Visa de extrajeria</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ingrese el numero de documento</label>
+                                            <input type="number" class="form-control"  placeholder="Nombre de la actividad" id="doc" name="doc" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Digite el nombre de la persona a inscribirse</label>
+                                            <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="nom" name="nom" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Digite el código de la persona a inscribirse</label>
+                                            <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="cod" name="cod" required>
+                                        </div>
 
-                                <div class="form-group">
-                                    <label>Seleccione el tipo de beneficiario</label>
-                                    <select class="form-control" id="tipoben"name="tipoben" required="">
-                                        <option value>Seleccione el tipo de beneficiario</option>
-                                        <option value="1">Estudiante</option>
-                                        <option value="2">Docente</option>
-                                        <option value="3">Administrativo</option>
-                                        <option value="4">Graduado</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el tipo de documento</label>
-                                    <select class="form-control" id="tipodoc"name="tipodoc" required="">
-                                        <option value>Seleccione el tipo de documento</option>
-                                        <option value="1">Pasaporte</option>
-                                        <option value="2">Tarjeta de Identidad</option>
-                                        <option value="3">Cedula de ciudadania</option>
-                                        <option value="4">Documento de identidad extrajera</option>
-                                        <option value="5">Cedula de extrajeria</option>
-                                        <option value="6">Certificado cabildo</option>
-                                        <option value="7">Visa de extrajeria</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ingrese el numero de documento</label>
-                                    <input type="number" class="form-control"  placeholder="Nombre de la actividad" id="doc" name="doc" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Digite el nombre de la persona a inscribirse</label>
-                                    <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="nom" name="nom" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Digite el código de la persona a inscribirse</label>
-                                    <input type="text" class="form-control"  placeholder="Nombre de la actividad" id="cod" name="cod" required>
-                                </div>
+                                        <input type="hidden" id="acti" name="acti" value=<?php echo "'".$_GET['acti']."'"; ?> />
 
-                                <input type="hidden" id="acti" name="acti" value=<?php echo "'".$_GET['acti']."'"; ?> />
-
-                                <div class="box-footer">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="col-md-2 col-md-offset-5">
-                                                <button type="submit" class="btn btn-success">Registrar</button>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-success">Registrar</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+
+                                    </form>
+
                                 </div>
-
-                            </form>
-
+                            </div>
                         </div>
                     </div>
 

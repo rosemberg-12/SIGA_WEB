@@ -6,22 +6,6 @@ require_once '../fachade/FachadeOne.php';
 
 session_start();
 
-if(isset($_GET['acti']) && isset($_GET['jefe'])){
-    include_once ('../model/General.php');
-
-    $unid= ($_GET['acti']);
-    $jefe= ($_GET['jefe']);
-    $facade = new FachadeOne();
-    $muestra="";
-    if(strcmp($jefe+"",1)==0){
-        $muestra="<b>Esta unidad no tiene un responsable Asignado</b>";
-    }
-    else{
-    $usuario=$facade->getUserInformation($jefe, "../");
-        $muestra= "El responsable de esta actividad es <b>".$usuario->_GET('persona')->_GET('nombre')." ".$usuario->_GET('persona')->_GET('apellido').",</b> Con el documento <b>".$usuario->_GET('persona')->_GET('numeroDocumento')."</b>";
-    }
-}
-
 $facade = new FachadeOne();
 
 ?>
@@ -52,59 +36,46 @@ $facade = new FachadeOne();
             <div class="content-wrapper inicio">
                 <!-- Encabezado -->
 
-
+                <!-- Contenido Principal de la pagina-->
                 <section class="content">
                     <!-- Incluir aqui el contenido-->
                     <br>
+
                     <div class="login-logo titulo" style="color: #fff;">
-                        <b><a href="#" style="color:#dd4b39">Asignar Responsable de actividad</a></b>
+                       <b><a href="#" style="color:#dd4b39">Registrar Programa Académico</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <br>
-
                     <div class="row">
-
                         <div class="col-md-6 col-md-offset-3">
-                            <div class="box box-info">
-                                <div class="box-body" align="center">
-                                    <?php echo $muestra ;?>
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptCrearCarrera.php" method="post">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Nombre del programa académico</label>
+                                            <input type="text" class="form-control" placeholder="Nombre del programa académico" id="nombre_carre" name="nombre_carre" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Codigo pensum</label>
+                                            <input type="text" class="form-control" placeholder="Codigo pensum" id="codigo" name="codigo" required>
+                                        </div>
+
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-success">Registrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="login-logo titulo" style="color: #fff;">
-                            <b><a href="#" style="color:#dd4b39">Usuarios a asignar</a></b>
-                        </div><!-- /.login-logo -->
-
-                        <div class="col-md-6 col-md-offset-3">
-                            <div class="box box-info">
-                                <div class="box-body">
-                                    <table id="usuarios" class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Documento</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php echo $facade->cargarAllUsersForActividad($jefe, $unid);?>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Documento</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-
+                    </div>
                 </section><!-- /.contenido principal-->
 
             </div><!-- /.content-wrapper -->

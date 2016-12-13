@@ -82,77 +82,86 @@ $ii="";
                         <b><a href="#" style="color:#dd4b39">Editar Actividad</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="box box-info">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptEditarActividad.php" method="POST">
+                                        <!-- text input -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Nombre de la actividad</label>
+                                                    <input type="text" class="form-control" value='<?php echo $act->_GET('descripcion'); ?>'  placeholder="Nombre de la actividad" id="act_name" name="act_name" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione el tipo de actividad</label>
+                                                    <select class="form-control" id="tipo_act" name="tipo_act" required="">
+                                                        <?php echo $facade->getComboTipoActividadSelected($act->_GET('idTipoActividad'));?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione el programa al que pertenece la actividad</label>
+                                                    <select class="form-control" id="tipo_prog" name="tipo_prog" required="">
+                                                        <?php echo $facade->getComboProgramaSelected($act->_GET('idTipoPrograma'));?>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione el año</label>
+                                                    <select class="form-control" id="anio" name="anio" required="">
+                                                        <?php echo $facade->getComboAniosSelected($act->_GET('anoActividad')); ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Seleccione el semestre</label>
+                                                    <select class="form-control" id="sem" name="sem" required="">
+                                                        <option value >Seleccione el semestre</option>
+                                                        <option value="I" <?php echo $i ?> >I</option>
+                                                        <option value="II" <?php echo $ii ?>>II</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione la fecha de inicio</label>
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptEditarActividad.php" method="POST">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre de la actividad</label>
-                                    <input type="text" class="form-control" value='<?php echo $act->_GET('descripcion'); ?>'  placeholder="Nombre de la actividad" id="act_name" name="act_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el tipo de actividad</label>
-                                    <select class="form-control" id="tipo_act" name="tipo_act" required="">
-                                        <?php echo $facade->getComboTipoActividadSelected($act->_GET('idTipoActividad'));?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el programa al que pertenece la actividad</label>
-                                    <select class="form-control" id="tipo_prog" name="tipo_prog" required="">
-                                        <?php echo $facade->getComboProgramaSelected($act->_GET('idTipoPrograma'));?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el año</label>
-                                    <select class="form-control" id="anio" name="anio" required="">
-                                        <option value >Seleccione el año</option>
-                                        <option  value="16"selected  >16</option>
-                                        <option value="17" <?php $anio2?> >17</option>
-                                        <option value="18" <?php $anio3?>>18</option>
-                                        <option value="19"<?php $anio4?> >19</option>
-                                        <option value="20"<?php $anio5?> >20</option>
-                                        <option value="21"<?php $anio6?> >21</option>
-                                        <option value="22" <?php $anio7?>>22</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione el semestre</label>
-                                    <select class="form-control" id="sem" name="sem" required="">
-                                        <option value >Seleccione el semestre</option>
-                                        <option value="I" <?php echo $i ?> >I</option>
-                                        <option value="II" <?php echo $ii ?>>II</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione la fecha de inicio</label>
+                                                    <input type="date" value='<?php echo $act->_GET('fechaInicio'); ?>' class="form-control" placeholder="Fecha de inicio" id="fecha_ini" name="fecha_ini" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Seleccione la fecha de fin</label>
+                                                    <input type="date" value='<?php echo $act->_GET('fechaFin'); ?>' class="form-control" placeholder="Fecha de fin" id="fecha_fin" name="fecha_fin" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Ingrese la dedicación</label>
+                                                    <input type="number" class="form-control" value='<?php echo $act->_GET('dedicacion'); ?>'  placeholder="Nombre de la actividad" id="dedic" name="dedic" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Estado</label>
+                                                    <select class="form-control" id=rol name="act_status" required="">
+                                                        <option value>Seleccione el estado de la división</option>
+                                                        <option value="A" <?php echo $activo;?>>Activo</option>
+                                                        <option value="D" <?php echo $inactivo;?>>Inactivo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <input type="date" value='<?php echo $act->_GET('fechaInicio'); ?>' class="form-control" placeholder="Fecha de inicio" id="fecha_ini" name="fecha_ini" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Seleccione la fecha de fin</label>
-                                    <input type="date" value='<?php echo $act->_GET('fechaFin'); ?>' class="form-control" placeholder="Fecha de fin" id="fecha_fin" name="fecha_fin" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ingrese la dedicación</label>
-                                    <input type="number" class="form-control" value='<?php echo $act->_GET('dedicacion'); ?>'  placeholder="Nombre de la actividad" id="dedic" name="dedic" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                    <select class="form-control" id=rol name="act_status" required="">
-                                        <option value>Seleccione el estado de la división</option>
-                                        <option value="A" <?php echo $activo;?>>Activo</option>
-                                        <option value="D" <?php echo $inactivo;?>>Inactivo</option>
-                                    </select>
-                                </div>
-                                <input type="hidden" value='<?php echo $_GET['acti']; ?>' name="acti"/>
+                                        <input type="hidden" value='<?php echo $_GET['acti']; ?>' name="acti"/>
 
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Editar</button>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            </form>
+                                    </form>
 
+                                </div>
+                            </div>
                         </div>
                     </div>
 

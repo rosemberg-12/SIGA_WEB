@@ -24,6 +24,7 @@ class UnidadDAO
     }
 
     public function  crearUnidad($nombre, $abreviatura, $cod, $divi){
+        include_once ('../../bussines/DAO/Conection.php');
         try {
 
             session_start();
@@ -33,15 +34,14 @@ class UnidadDAO
             else{
                 $registradopor=$_SESSION['usuario']->_GET('id');
             }
-            include_once ('../../bussines/DAO/Conection.php');
+
             $consulta='INSERT INTO siga.unidad(divi_id, unid_nombre, unid_abreviatura, unid_codigo, unid_estado, unid_coordinador, unid_registradopor) VALUES(?,?,?,?,?,?,?)';
             $result=$conexion->prepare($consulta);
-
             $result->execute(array($divi,$nombre, $abreviatura,$cod,"A",1,$registradopor));
-
-
+            $conexion = null;
             return "0";
         } catch (Exception $e) {
+            $conexion = null;
             return "1";
         }
     }
@@ -51,8 +51,8 @@ class UnidadDAO
 
             include_once ('../../bussines/DAO/Conection.php');
             $consulta ='UPDATE unidad SET unid_nombre="'.$nombre.'", unid_abreviatura="'.$abr.'", unid_estado="'.$estado.'", unid_codigo="'.$codigo.'" WHERE unid_id="'.$id.'"';
-            $result=$conexion->prepare($consulta);
-            $result->execute();
+            $result=$conexion->query($consulta);
+            $conexion = null;
             return "0";
         } catch (Exception $e) {
             echo "1";
@@ -72,31 +72,25 @@ class UnidadDAO
 
         $result = $conexion->prepare($consulta);
         $result->execute(array($id));
-
+        $unidad = new Unidad();
         foreach($result as $row){
-            $unidad = new Unidad();
-
             $unidad->_SET('id',$row['unid_id']);
             $unidad->_SET('idDivision',$row['divi_id']);
             $unidad->_SET('nombre',$row['unid_nombre']);
             $unidad->_SET('abreviatura',$row['unid_abreviatura']);
             $unidad->_SET('codigo',$row['unid_codigo']);
             $unidad->_SET('estado',$row['unid_estado']);
-
             $coordinador = new Persona();
-
             $coordinador->_SET('id',$row['usu_id']);
             $coordinador->_SET('nombre',$row['pers_nombre']);
             $coordinador->_SET('apellido',$row['pers_apellido']);
             $coordinador->_SET('numeroDocumento',$row['pers_numdocumento']);
             $coordinador->_SET('abreviaturaTipoDocumento',$row['tido_abreviatura']);
             $coordinador->_SET('idTipoDocumento',$row['tido_id']);
-
-
-
             $unidad->_SET('coordinador',$coordinador);
-            return $unidad;
         }
+        $conexion = null;
+        return $unidad;
 
     }
 
@@ -163,9 +157,7 @@ class UnidadDAO
         $consulta = 'SELECT distinct unidad.*, persona.* from unidad, persona, actividad where unidad.divi_id='.$divi.' AND unidad.unid_id=actividad.unid_id AND persona.usu_id='.$idCoordinador.' AND  actividad.acti_responsable='.$idCoordinador;
 
 
-        $result = $conexion->prepare($consulta);
-        $result->execute();
-
+        $result = $conexion->query($consulta);
 
         $lista = array();
 

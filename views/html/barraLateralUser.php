@@ -83,6 +83,15 @@
                         </li>';}?>
 
                         <?php
+                        if( $_SESSION['tipo_usuario']==1 || $_SESSION['tipo_usuario']==2 || $_SESSION['tipo_usuario']==3 || $_SESSION['tipo_usuario']==4){
+                            echo '<li class="treeview" >
+                             <a href="gestionar-carrera.php">
+                                <i class="fa fa-graduation-cap"></i>
+                                <span>Gestion de programa académico</span>
+                            </a>
+                        </li>';}?>
+
+                        <?php
                         if( $_SESSION['tipo_usuario']==1 ){
                             echo '<li class="treeview" >
                             <a href="reporte-excel.php">

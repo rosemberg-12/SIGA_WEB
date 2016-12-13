@@ -36,7 +36,7 @@ class ControllerAsistencia
         include_once ('../../bussines/DAO/AsistenciaDAO.php');
         include_once ('../../model/General.php');
 
-       $asistencia = array($acti,$tipoben,  $tipodoc, $doc, $nom, $cod );
+        $asistencia = array($acti,$tipoben,  $tipodoc, $doc, $nom, $cod );
         $asistenciaDAO = new AsistenciaDAO();
 
         return $asistenciaDAO->registrarAsistencia($asistencia);
@@ -102,12 +102,17 @@ class ControllerAsistencia
      */
     public function listarAsistenciaPorActividadServices($idActividad, $path){
         include_once ($path.'bussines/DAO/AsistenciaDAO.php');
-        include_once ($path.'model/General.php');
+        include_once ($path.'bussines/DAO/ProgramaAcademicoDAO.php');
 
         $asistenciaDAO = new AsistenciaDAO();
         $listaAsistencias = $asistenciaDAO->listarAsistenciaPorActividadServices($idActividad, $path);
 
-        $table = " <table id='tabla-asistencias' class='table table-bordered table-hover'> ";
+        $pracDAO = new ProgramaAcademicoDAO();
+        $carreras = $pracDAO->getListaCodigos($path);
+
+        $table = " <div class='box box-success'> ";
+        $table.= " <div class='box-body'> ";
+        $table.= " <table id='tabla-asistencias' class='table table-bordered table-hover'> ";
         $table.= " <thead> ";
         $table.= " <tr> ";
         $table.= " <th style='text-align: center'>NOMBRE BENEFICIARIO</th> ";
@@ -122,8 +127,8 @@ class ControllerAsistencia
         if(count($listaAsistencias)>0){
             $table.= " <tbody> ";
             foreach ($listaAsistencias as $asistencia){
-                $carrera = getNombreCarrera($asistencia->_GET('codigoBeneficiario'));
-                $encrypt = encriptar($asistencia->_GET('id'));
+                $carrera = $this->getNombreCarrera($asistencia->_GET('codigoBeneficiario'),$carreras);
+                $encrypt = ($asistencia->_GET('id'));
 
                 $table.= " <tr> ";
                 $table.= " <td style='text-align: center'>".$asistencia->_GET('nombreBeneficiario')."</td> ";
@@ -142,7 +147,18 @@ class ControllerAsistencia
             $table.= " </tr> ";
             $table.= " </tbody> ";
         }
+        $table.= " <tfoot> ";
+        $table.= " <tr> ";
+        $table.= " <th style='text-align: center'>NOMBRE BENEFICIARIO</th> ";
+        $table.= " <th style='text-align: center'>TIPO DOCUMENTO</th> ";
+        $table.= " <th style='text-align: center'>NUMERO DE DOCUMENTO</th> ";
+        $table.= " <th style='text-align: center'>TIPO BENEFICIARIO</th> ";
+        $table.= " <th style='text-align: center'>CARRERA</th> ";
+        $table.= " <th style='text-align: center'>ACCIONES</th> ";
+        $table.= " </tfoot> ";
         $table.= " </table> ";
+        $table.= " </div> ";
+        $table.= " </div> ";
 
         return $table;
     }
@@ -157,5 +173,16 @@ class ControllerAsistencia
 
         $asistenciaDAO =new AsistenciaDAO();
         return $asistenciaDAO->registrarAsistencia($asistencia);
+    }
+
+
+    function getNombreCarrera($codigo,$carreras){
+        $cod = "";
+        if(strlen($codigo)>3){
+            $cod = substr($codigo,0,3);
+        }else{
+            $cod = $codigo;
+        }
+        return $carreras[$cod];
     }
 }
