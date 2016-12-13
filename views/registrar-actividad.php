@@ -9,7 +9,7 @@ $inactivo="";
 session_start();
 
     $facade = new FachadeOne();
-
+$comboAnios = $facade->getComboAnios();
  if(!isset($_GET['uni'])){
      header("Location: gestionar-unidad.php");
  }
@@ -79,20 +79,7 @@ session_start();
                                 <div class="form-group">
                                     <label>Seleccione el año</label>
                                     <select class="form-control" id="anio" name="anio" required="">
-                                        <option value >Seleccione el año</option>
-                                        <option value="2016" >2016</option>
-                                        <option value="2017" >2017</option>
-                                        <option value="2018" >2018</option>
-                                        <option value="2019" >2019</option>
-                                        <option value="2020" >2020</option>
-                                        <option value="2021" >2021</option>
-                                        <option value="2022" >2022</option>
-                                        <option value="2023" >2023</option>
-                                        <option value="2024" >2024</option>
-                                        <option value="2025" >2025</option>
-                                        <option value="2026" >2026</option>
-                                        <option value="2027" >2027</option>
-                                        <option value="2028" >2028</option>
+                                        <?php echo $comboAnios; ?>
                                     </select>
                                 </div>
                                 <div class="form-group">

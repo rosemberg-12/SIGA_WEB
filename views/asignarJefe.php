@@ -59,16 +59,15 @@ $facade = new FachadeOne();
                     <div class="login-logo titulo" style="color: #fff;">
                         <b><a href="#" style="color:#dd4b39">Asignar jefe de Division</a></b>
                     </div><!-- /.login-logo -->
-                    <br>
-                    <br>
+                    <br/><br/>
+
 
                     <div class="row">
 
-                        <div class="col-xs-12">
-                            <div class="box">
-
-                                <div class="box-body">
-                                    <div style="text-align: center;"><?php echo $muestra ;?> </div>
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-primary">
+                                <div class="box-body" align="center">
+                                    <?php echo $muestra ;?>
                                 </div>
                             </div>
                         </div>
@@ -76,43 +75,39 @@ $facade = new FachadeOne();
                         <div class="login-logo titulo" style="color: #fff;">
                             <b><a href="#" style="color:#dd4b39">Usuarios a asignar</a></b>
                         </div><!-- /.login-logo -->
+                        <br/><br/>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="box box-primary">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="box-body">
+                                            <table id="usuarios" class="table table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Apellido</th>
+                                                    <th>Documento</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php echo $facade->cargarAllUsers($jefe, $divi);?>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Apellido</th>
+                                                    <th>Documento</th>
+                                                    <th>Acciones</th>
 
-                        <div class="col-xs-12">
-                            <div class="box">
-
-                                <div class="box-body">
-
-                                    <table id="usuarios" class="table table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Documento</th>
-                                            <th>Acciones</th>
-
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <?php echo $facade->cargarAllUsers($jefe, $divi);?>
-
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Documento</th>
-                                            <th>Acciones</th>
-
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div><!-- /.box-body -->
-
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div><!-- /.box-body -->
+                                    </div>
+                                </div>
                             </div><!-- /.box -->
-
                         </div><!-- /.col -->
-
                     </div><!-- /.row -->
 
 

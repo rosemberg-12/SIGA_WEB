@@ -60,22 +60,24 @@ $facade = new FachadeOne();
                     <br>
 
                     <div class="row">
-                        <div class="col-xs-12" style="display: flex;  justify-content: center; padding-bottom: 50px" >
-                            <div class="col-xs-6" >
-                                <a href="registrar-usuario.php" class="btn btn-info btn-block btn-flat">Crear nuevo usuario</a>
+                        <div class="col-md-12">
+                            <div class="col-md-2 col-md-offset-8" >
+                                <a href="registrar-usuario.php" class="btn btn-success"><i class="fa fa-user-plus"></i> Crear nuevo usuario</a>
                             </div>
                         </div>
-                        <br>
-                        <br>
-                        <div class="col-xs-12">
-                            <div class="box">
+                        <div class="col-md-12">
+                            &nbsp;
+                        </div>
 
-                                <div class="box-body">
-
-                                    <?php echo $facade->listarUsuarios();?>
-
-                                </div><!-- /.box-body -->
-
+                        <div class="col-md-12">
+                            <div class="box box-success">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="box-body">
+                                            <?php echo $facade->listarUsuarios();?>
+                                        </div><!-- /.box-body -->
+                                    </div>
+                                </div>
                             </div><!-- /.box -->
 
                         </div><!-- /.col -->

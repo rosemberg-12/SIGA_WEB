@@ -63,3 +63,30 @@ body.loading {
 body.loading .modal {
     display: block;
 }
+
+@font-face {
+    font-family: "siga";
+    src: url(../fonts/batmanforeveralternate.ttf) format("truetype");
+}
+
+.main-header .logo-siga {
+    display: block;
+    float: left;
+    height: 50px;
+    font-size: 25px;
+    line-height: 50px;
+    text-align: center;
+    width: 230px;
+    font-family: siga;
+    padding: 0 15px;
+    font-weight: 300;
+}
+
+.skin-red .main-header .logo-siga:hover {
+    background: #222d32;
+}
+
+.skin-red .main-header .logo-siga {
+    background-color: #1a2226;
+    border-bottom: 0 solid transparent;
+}

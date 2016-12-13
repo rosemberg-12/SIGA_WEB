@@ -1,6 +1,6 @@
 <header class="main-header">
                 <!-- Logo -->
-                <a href="index.php" class="logo"><strong>SIGA UFPS</strong> </a>
+                <a href="index.php" class="logo-siga"><img src="img/logoSIGA.png"></a>
                 <!-- Header Navbar: style se encuentra en header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->

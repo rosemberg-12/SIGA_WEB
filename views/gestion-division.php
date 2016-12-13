@@ -60,25 +60,24 @@ $facade = new FachadeOne();
                     <br>
 
                     <div class="row">
-                        <div class="col-xs-12" style="display: flex;  justify-content: center; padding-bottom: 50px" >
-                            <div class="col-xs-6" >
-
-                                <a href="registrar-division.php" class="btn btn-info btn-block btn-flat">Crear nueva división</a>
+                        <div class="col-md-12">
+                            <div class="col-md-2 col-md-offset-8" >
+                                <a href="registrar-division.php" class="btn btn-success"> Crear nueva división</a>
+                                <br/><br/>
                             </div>
                         </div>
                         <br>
                         <br>
-                        <div class="col-xs-12">
-                            <div class="box">
-
-                                <div class="box-body">
-
-                                    <?php echo $facade->listarDivisiones("../");?>
-
-                                </div><!-- /.box-body -->
-
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="box-body">
+                                            <?php echo $facade->listarDivisiones("../");?>
+                                        </div><!-- /.box-body -->
+                                    </div>
+                                </div>
                             </div><!-- /.box -->
-
                         </div><!-- /.col -->
                     </div><!-- /.row -->
 

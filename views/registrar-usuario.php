@@ -41,51 +41,60 @@ $facade = new FachadeOne();
                     <!-- Incluir aqui el contenido-->
                     <br>
 
-                    <div class="login-logo titulo" style="color: #fff;">
+                    <div class="login-logo titulo">
                        <b><a href="#" style="color:#dd4b39">Registrar Usuario</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-success">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptCrearrUsuario.php" method="post">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Nombre del usuario</label>
+                                            <input type="text" class="form-control" placeholder="Nombre del usuario" id="id" name="user_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Apellido del usuario</label>
+                                            <input type="text" class="form-control" placeholder="Apellido del usuario" id="id" name="user_lastname" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipo de documento</label>
+                                            <select class="form-control" id=rol name="user_tipodoc" required="">
+                                                <option value>Seleccione el tipo de documento</option>
+                                                <option value="1">Pasaporte</option>
+                                                <option value="2">Tarjeta de Identidad</option>
+                                                <option value="3">Cedula de ciudadania</option>
+                                                <option value="4">Documento de identidad extrajera</option>
+                                                <option value="5">Cedula de extrajeria</option>
+                                                <option value="6">Certificado cabildo</option>
+                                                <option value="7">Visa de extrajeria</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Documento de identidad (Esta será su credencial de acceso al sistema)</label>
+                                            <input type="number" class="form-control" placeholder="Documento de identificacion del nuevo usuario" id="id" name="user_doc" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contraseña</label>
+                                            <input type="password" class="form-control" placeholder="Contraseña de acceso" id="id" name="user_pass" required>
+                                        </div>
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptCrearrUsuario.php" method="post">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre del usuario</label>
-                                    <input type="text" class="form-control" placeholder="Nombre del usuario" id="id" name="user_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Apellido del usuario</label>
-                                    <input type="text" class="form-control" placeholder="Apellido del usuario" id="id" name="user_lastname" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tipo de documento</label>
-                                    <select class="form-control" id=rol name="user_tipodoc" required="">
-                                        <option value>Seleccione el tipo de documento</option>
-                                        <option value="1">Pasaporte</option>
-                                        <option value="2">Tarjeta de Identidad</option>
-                                        <option value="3">Cedula de ciudadania</option>
-                                        <option value="4">Documento de identidad extrajera</option>
-                                        <option value="5">Cedula de extrajeria</option>
-                                        <option value="6">Certificado cabildo</option>
-                                        <option value="7">Visa de extrajeria</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Documento de identidad (Esta será su credencial de acceso al sistema)</label>
-                                    <input type="number" class="form-control" placeholder="Documento de identificacion del nuevo usuario" id="id" name="user_doc" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <input type="text" class="form-control" placeholder="Contraseña de acceso" id="id" name="user_pass" required>
-                                </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-success">Registrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+                                    </form>
 
-                            </form>
-
+                                </div>
+                            </div>
                         </div>
                     </div>
 

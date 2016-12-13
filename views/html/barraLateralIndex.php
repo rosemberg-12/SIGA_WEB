@@ -8,7 +8,7 @@
                         <li class="header">MENÚ PRINCIPAL</li>
                         <li class="active treeview">
                             <a href=index.php>
-                                <i class="fa fa-dashboard"></i> <span>Inicio</span>
+                                <i class="fa fa-home"></i> <span>Inicio</span>
                             </a>                            
                         </li>
 

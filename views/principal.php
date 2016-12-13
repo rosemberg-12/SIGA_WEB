@@ -36,11 +36,23 @@ $facade = new FachadeOne();
             <!-- Columna derecha. contiene navbar y la ruta de la pagina -->
             <div class="content-wrapper inicio">
                 <!-- Encabezado -->
-                
 
                 <!-- Contenido Principal de la pagina -->
                 <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6 col-md-offset-3" align="center">
+                                <img src="img/siga2.png" class="img-responsive"><br/>
+                            </div>
 
+                            <div class="col-md-6" align="right">
+                                <img src="img/bienestar.png" width="50%" class="img-responsive">
+                            </div>
+                            <div class="col-md-6" align="left">
+                                <img src="img/logobienestar.png" width="90%" style="padding-top: 30%;" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
                 </section><!-- /.contenido principal-->
             </div><!-- /.content-wrapper -->
             

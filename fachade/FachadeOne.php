@@ -256,6 +256,25 @@ class FachadeOne
         return $cDivision->getComboProgramaSelected($selected);
     }
 
+    /**
+     * Metodo para obtener las option del select del año
+     * @return string HTML con el listado de opciones para el select
+     */
+    public function getComboAnios(){
+        require_once('../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->getComboAnios();
+    }
 
+    /**
+     * Metodo para registrar un año para las actividades
+     * @param $ano valor del año a registrar
+     * @return string resultado de la operacion
+     */
+    public function crearAno($ano){
+        require_once('../../model/ControllerActividad.php');
+        $cDivision = new ControllerActividad();
+        return $cDivision->crearAno($ano);
+    }
 
 }

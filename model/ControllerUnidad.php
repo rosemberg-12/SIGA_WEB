@@ -125,9 +125,11 @@ class ControllerUnidad
 
         $unidadDAO = new UnidadDAO();
         $listaUnidades = $unidadDAO->listarUnidadesPorDivisionServices($idDivision, $path);
-        $table=' <div style="text-align: center;"><h3>Unidades de la división</h3> </div>';
 
-        $table.= " <table id='tabla-unidades' class='table table-bordered table-hover'> ";
+        $table = " <div class=\"box box-warning\"> ";
+        $table.= " <div class=\"box-body\"> ";
+        $table.= " <h3 align=\"center\">Unidades de la división</h3> ";
+        $table.= " <table id=\"tabla-unidades\" class=\"table table-bordered table-hover\"> ";
         $table.= " <thead> ";
         $table.= " <tr> ";
         $table.= " <th>CODIGO</th> ";
@@ -178,8 +180,21 @@ class ControllerUnidad
             $table.= " <td colspan='4'>No hay registros en el sistema</td>";
             $table.= " </tr> ";
             $table.= " </tbody> ";
+            $table.= " <tfoot> ";
+            $table.= " <tr> ";
+            $table.= " <th>CODIGO</th> ";
+            $table.= " <th>UNIDAD</th> ";
+            $table.= " <th>ABREVIATURA</th> ";
+            $table.= " <th>COORDINADOR</th> ";
+            $table.= " <th>ESTADO</th> ";
+            $table.= " <th>ACCIONES</th> ";
+            $table.= " </tr> ";
+            $table.= " </tfoot> ";
         }
+
         $table.= " </table> ";
+        $table.= " </div> ";
+        $table.= " </div> ";
 
         return $table;
     }

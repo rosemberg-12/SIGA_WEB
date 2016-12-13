@@ -58,14 +58,11 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                     <br>
 
                     <div class="row">
-
-
-                        <div class="col-xs-12" style="display: flex;  justify-content: center;">
-                            <div class="col-xs-8">
-
-                                <div class="box">
+                        <div class="col-md-12">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="box box-warning">
                                     <div class="box-body">
-                                        <div style="text-align: center;"><h3>Seleccione la división a gestionar</h3> </div>
+                                        <h3 align="center"><b>Seleccione la división a gestionar</b></h3>
                                         <div class="form-group">
                                             <select class="form-control" id="division1" name="division1" required="">
                                                 <?php echo $comboDivisiones ?>
@@ -76,9 +73,9 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                             </div>
                         </div>
 
-                        <div class="col-xs-12" style="display: flex;  justify-content: center;">
-                            <div class="col-xs-10">
-                                <div class="box">
+                        <div class="col-md-12">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="box box-warning">
                                     <div class="box-body">
                                         <div id="detalles" name="detalles" style="padding-left: 20px;">
                                             <p><b>Nombre de la división:  </b> <span id="nombre_div"></span></p>
@@ -92,15 +89,10 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
 
                         <div id="botonCrearUnidad" name="botonCrearUnidad"></div>
 
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div id="tabla-unidadesD" name="tabla-unidadesD" class="box-body">
-
-                                </div>
-                            </div>
+                        <div class="col-md-8 col-md-offset-2" id="tabla-unidadesD" name="tabla-unidadesD">
                         </div>
 
-                                </div><!-- /.row -->
+                    </div><!-- /.row -->
 
                 </section><!-- /.contenido principal-->
 

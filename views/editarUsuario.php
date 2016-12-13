@@ -103,56 +103,66 @@ $facade = new FachadeOne();
                             </a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-success">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptEditarUsuario.php" method="post">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Nombre del usuario</label>
+                                            <input type="text" value='<?php echo $usuario->_GET('persona')->_GET('nombre'); ?>' class="form-control" placeholder="Nombre del usuario" id="id" name="user_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Apellido del usuario</label>
+                                            <input type="text" value=' <?php echo $usuario->_GET('persona')->_GET('apellido'); ?>'  class="form-control" placeholder="Apellido del usuario" id="id" name="user_lastname" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tipo de documento</label>
+                                            <select class="form-control" id=rol name="user_tipodoc" required="">
+                                                <option value>Seleccione el tipo de documento</option>
+                                                <option value="1" <?php echo $ps;?>>Pasaporte</option>
+                                                <option value="2" <?php echo $ti;?>>Tarjeta de Identidad</option>
+                                                <option value="3" <?php echo $cc;?>>Cedula de ciudadania</option>
+                                                <option value="4" <?php echo $de;?>>Documento de identidad extrajera</option>
+                                                <option value="5" <?php echo $ce;?>>Cedula de extrajeria</option>
+                                                <option value="6" <?php echo $ca;?>>Certificado cabildo</option>
+                                                <option value="7" <?php echo $ci;?>>Visa de extrajeria</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Estado</label>
+                                            <select class="form-control" id=rol name="user_status" required="">
+                                                <option value>Seleccione el estado del usuario</option>
+                                                <option value="A" <?php echo $activo;?>>Activo</option>
+                                                <option value="D" <?php echo $inactivo;?>>Inactivo</option>
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptEditarUsuario.php" method="post">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre del usuario</label>
-                                    <input type="text" value='<?php echo $usuario->_GET('persona')->_GET('nombre'); ?>' class="form-control" placeholder="Nombre del usuario" id="id" name="user_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Apellido del usuario</label>
-                                    <input type="text" value=' <?php echo $usuario->_GET('persona')->_GET('apellido'); ?>'  class="form-control" placeholder="Apellido del usuario" id="id" name="user_lastname" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Tipo de documento</label>
-                                    <select class="form-control" id=rol name="user_tipodoc" required="">
-                                        <option value>Seleccione el tipo de documento</option>
-                                        <option value="1" <?php echo $ps;?>>Pasaporte</option>
-                                        <option value="2" <?php echo $ti;?>>Tarjeta de Identidad</option>
-                                        <option value="3" <?php echo $cc;?>>Cedula de ciudadania</option>
-                                        <option value="4" <?php echo $de;?>>Documento de identidad extrajera</option>
-                                        <option value="5" <?php echo $ce;?>>Cedula de extrajeria</option>
-                                        <option value="6" <?php echo $ca;?>>Certificado cabildo</option>
-                                        <option value="7" <?php echo $ci;?>>Visa de extrajeria</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                    <select class="form-control" id=rol name="user_status" required="">
-                                        <option value>Seleccione el estado del usuario</option>
-                                        <option value="A" <?php echo $activo;?>>Activo</option>
-                                        <option value="D" <?php echo $inactivo;?>>Inactivo</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Documento de identidad</label>
+                                            <input type="number" class="form-control" value='<?php echo $usuario->_GET('persona')->_GET('numeroDocumento'); ?>'  placeholder="Documento de identificacion del nuevo usuario" id="user_doc" name="user_doc" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Contraseña</label>
+                                            <input type="text" class="form-control" value='<?php echo $usuario->_GET('contrasena'); ?>'  placeholder="Contraseña de acceso" id="id" name="user_pass" required>
+                                        </div>
 
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Documento de identidad</label>
-                                    <input type="number" class="form-control" value='<?php echo $usuario->_GET('persona')->_GET('numeroDocumento'); ?>'  placeholder="Documento de identificacion del nuevo usuario" id="user_doc" name="user_doc" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <input type="text" class="form-control" value='<?php echo $usuario->_GET('contrasena'); ?>'  placeholder="Contraseña de acceso" id="id" name="user_pass" required>
-                                </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Editar</button>
-                                <input type="hidden" value='<?php echo $_GET['user']; ?>' name="user_id"/>
-                            </form>
+                                        <input type="hidden" value='<?php echo $_GET['user']; ?>' name="user_id"/>
+                                    </form>
 
+                                </div>
+                            </div>
                         </div>
                     </div>
 

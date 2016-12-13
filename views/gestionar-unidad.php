@@ -60,12 +60,12 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                     <div class="row">
 
 
-                        <div class="col-xs-12" style="display: flex;  justify-content: center;">
-                            <div class="col-xs-5">
+                        <div class="col-md-12">
 
-                                <div class="box">
+                            <div class="col-md-5 col-md-offset-1">
+                                <div class="box box-danger">
                                     <div class="box-body">
-                                        <div style="text-align: center;"><h3>Seleccione una división</h3> </div>
+                                        <h3 align="center"><b>Seleccione una división</b></h3>
                                         <div class="form-group">
                                             <select class="form-control" id="division2" name="division2" required="">
                                                 <?php echo $comboDivisiones ?>
@@ -74,11 +74,11 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-5">
 
-                                <div class="box">
+                            <div class="col-md-5 col-md-offset-1">
+                                <div class="box box-danger">
                                     <div class="box-body">
-                                        <div style="text-align: center;"><h3>Seleccione la unidad a gestionar</h3> </div>
+                                        <h3 align="center"><b>Seleccione la unidad a gestionar</b></h3>
                                         <div class="form-group">
                                             <select class="form-control" id="unidad2" name="unidad2" required="">
                                                 <option value='-1'>Seleccione uno</option>
@@ -87,17 +87,18 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
-                        <div class="col-xs-12" style="display: flex;  justify-content: center;">
-                            <div class="col-xs-10">
-                                <div class="box">
+                        <div class="col-md-12">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="box box-danger">
                                     <div class="box-body">
                                         <div id="detalles" name="detalles" style="padding-left: 20px;">
                                             <p><b>Nombre de la unidad:  </b> <span id="nombre_unidad"></span></p>
-                                            <p><b>Codigo de la unidad :</b><span id="codigo_unidad"></span></p>
-                                            <p><b>Nombre del coordinador :</b><span id="nombre_encargado"></span></p>
-                                            <p><b>Abreviatura:</b><span id="abr_unidad"></span></p>
+                                            <p><b>Codigo de la unidad :</b> <span id="codigo_unidad"></span></p>
+                                            <p><b>Nombre del coordinador :</b> <span id="nombre_encargado"></span></p>
+                                            <p><b>Abreviatura:</b> <span id="abr_unidad"></span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -106,13 +107,8 @@ $comboDivisiones=$facade->cargarDivisionesGestionDivision();
 
                         <div id="botonCrearActividad" name="botonCrearActividad"></div>
 
-                        <div class="col-xs-12">
-                            <div class="box">
-                                <div id="tabla-act" name="tabla-act" class="box-body">
 
-                                </div>
-                            </div>
-                        </div>
+                        <div class="col-md-8 col-md-offset-2" id="tabla-act" name="tabla-act"></div>
 
                                 </div><!-- /.row -->
 

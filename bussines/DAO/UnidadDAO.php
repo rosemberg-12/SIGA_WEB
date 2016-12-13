@@ -10,16 +10,16 @@ class UnidadDAO
 {
 
     public function asignarCoordinadorUnidad($jefe, $uni){
+        include_once ('../../bussines/DAO/Conection.php');
         try {
-            include_once ('../../bussines/DAO/Conection.php');
-            $consulta ='UPDATE unidad SET unid_coordinador="'.$jefe.'" WHERE unid_id="'.$uni.'"';
-            echo $consulta."<br>";
+            $consulta ='UPDATE unidad SET unid_coordinador = ? WHERE unid_id= ?';
             $result=$conexion->prepare($consulta);
-            $result->execute();
-
+            $result->execute(array($jefe,$uni));
+            $conexion = null;
             return "0";
         } catch (Exception $e) {
-            echo "1";
+            $conexion = null;
+            return "1";
         }
     }
 
@@ -51,10 +51,8 @@ class UnidadDAO
 
             include_once ('../../bussines/DAO/Conection.php');
             $consulta ='UPDATE unidad SET unid_nombre="'.$nombre.'", unid_abreviatura="'.$abr.'", unid_estado="'.$estado.'", unid_codigo="'.$codigo.'" WHERE unid_id="'.$id.'"';
-            echo $consulta;
             $result=$conexion->prepare($consulta);
             $result->execute();
-
             return "0";
         } catch (Exception $e) {
             echo "1";

@@ -74,34 +74,43 @@ $facade = new FachadeOne();
                         <b><a href="#" style="color:#dd4b39">Editar Division</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptEditarDivision.php" method="post">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Nombre de la división</label>
+                                            <input type="text" class="form-control" value='<?php echo $division->_GET('nombre'); ?>' placeholder="Nombre de la división" id="div_name" name="div_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Abreviatura de la división</label>
+                                            <input type="text" class="form-control" value='<?php echo $division->_GET('abreviatura'); ?>' placeholder="Abreviatura de la división" id="div_abr" name="div_abr" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Estado</label>
+                                            <select class="form-control" id=rol name="div_status" required="">
+                                                <option value>Seleccione el estado de la división</option>
+                                                <option value="A" <?php echo $activo;?>>Activo</option>
+                                                <option value="D" <?php echo $inactivo;?>>Inactivo</option>
+                                            </select>
+                                        </div>
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptEditarDivision.php" method="post">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre de la división</label>
-                                    <input type="text" class="form-control" value='<?php echo $division->_GET('nombre'); ?>' placeholder="Nombre de la división" id="div_name" name="div_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Abreviatura de la división</label>
-                                    <input type="text" class="form-control" value='<?php echo $division->_GET('abreviatura'); ?>' placeholder="Abreviatura de la división" id="div_abr" name="div_abr" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                    <select class="form-control" id=rol name="div_status" required="">
-                                        <option value>Seleccione el estado de la división</option>
-                                        <option value="A" <?php echo $activo;?>>Activo</option>
-                                        <option value="D" <?php echo $inactivo;?>>Inactivo</option>
-                                    </select>
-                                </div>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" value='<?php echo $_GET['divi']; ?>' name="divi"/>
+                                    </form>
 
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Actualizar</button>
-                                <input type="hidden" value='<?php echo $_GET['divi']; ?>' name="divi"/>
-                            </form>
-
+                                </div>
+                            </div>
                         </div>
                     </div>
 

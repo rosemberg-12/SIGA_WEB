@@ -64,11 +64,10 @@ $facade = new FachadeOne();
 
                     <div class="row">
 
-                        <div class="col-xs-12">
-                            <div class="box">
-
-                                <div class="box-body">
-                                    <div style="text-align: center;"><?php echo $muestra ;?> </div>
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-warning">
+                                <div class="box-body" align="center">
+                                    <?php echo $muestra ;?>
                                 </div>
                             </div>
                         </div>
@@ -77,11 +76,9 @@ $facade = new FachadeOne();
                             <b><a href="#" style="color:#dd4b39">Usuarios a asignar</a></b>
                         </div><!-- /.login-logo -->
 
-                        <div class="col-xs-12">
-                            <div class="box">
-
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-warning">
                                 <div class="box-body">
-
                                     <table id="usuarios" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
@@ -89,13 +86,10 @@ $facade = new FachadeOne();
                                             <th>Apellido</th>
                                             <th>Documento</th>
                                             <th>Acciones</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
-
                                         <?php echo $facade->cargarAllUsersForUnidad($jefe, $unid);?>
-
                                         </tbody>
                                         <tfoot>
                                         <tr>
@@ -103,16 +97,12 @@ $facade = new FachadeOne();
                                             <th>Apellido</th>
                                             <th>Documento</th>
                                             <th>Acciones</th>
-
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </div><!-- /.box-body -->
-
                             </div><!-- /.box -->
-
                         </div><!-- /.col -->
-
                     </div><!-- /.row -->
 
 

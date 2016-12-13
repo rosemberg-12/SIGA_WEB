@@ -45,29 +45,37 @@ $facade = new FachadeOne();
                        <b><a href="#" style="color:#dd4b39">Registrar Division</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptCrearDivision.php" method="post">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Nombre de la división</label>
+                                            <input type="text" class="form-control" placeholder="Nombre de la nueva división" id="div_name" name="div_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Abreviatura de la división</label>
+                                            <input type="text" class="form-control" placeholder="Abreviatura de la división" id="div_abr" name="div_abr" required>
+                                        </div>
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptCrearDivision.php" method="post">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre de la división</label>
-                                    <input type="text" class="form-control" placeholder="Nombre de la nueva división" id="div_name" name="div_name" required>
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <button type="submit" class="btn btn-success">Registrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
                                 </div>
-                                <div class="form-group">
-                                    <label>Abreviatura de la división</label>
-                                    <input type="text" class="form-control" placeholder="Abreviatura de la división" id="div_abr" name="div_abr" required>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
-
-                            </form>
-
+                            </div>
                         </div>
                     </div>
-
                 </section><!-- /.contenido principal-->
 
             </div><!-- /.content-wrapper -->

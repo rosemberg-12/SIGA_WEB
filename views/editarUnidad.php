@@ -74,39 +74,50 @@ $facade = new FachadeOne();
                         <b><a href="#" style="color:#dd4b39">Editar Unidad</a></b>
                     </div><!-- /.login-logo -->
                     <br>
-                    <div class="box" style="width: 70%; margin: 3% auto;">
-                        <div class="box-header">
 
-                        </div><!-- /.box-header -->
-                        <div class="login-box-body">
-                            <form role="form" action="scripts/scriptEditarUnidad.php" method="post">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Nombre de la Unidad</label>
-                                    <input type="text" class="form-control" value='<?php echo $unidad->_GET('nombre'); ?>' placeholder="Nombre de la unidad" id="unid_name" name="unid_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Abreviatura de la Unidad</label>
-                                    <input type="text" class="form-control" value='<?php echo $unidad->_GET('abreviatura'); ?>' placeholder="Abreviatura de la Unidad" id="unid_abr" name="unid_abr" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Codigo de la Unidad</label>
-                                    <input type="text" class="form-control" value='<?php echo $unidad->_GET('codigo'); ?>' placeholder="Codigo de la Unidad" id="unid_cod" name="unid_cod" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Estado</label>
-                                    <select class="form-control" id=rol name="unid_status" required="">
-                                        <option value>Seleccione el estado de la unidad</option>
-                                        <option value="A" <?php echo $activo;?>>Activo</option>
-                                        <option value="D" <?php echo $inactivo;?>>Inactivo</option>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="box box-warning">
+                                <div class="box-body">
+                                    <form role="form" action="scripts/scriptEditarUnidad.php" method="post">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Nombre de la Unidad</label>
+                                            <input type="text" class="form-control" value='<?php echo $unidad->_GET('nombre'); ?>' placeholder="Nombre de la unidad" id="unid_name" name="unid_name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Abreviatura de la Unidad</label>
+                                            <input type="text" class="form-control" value='<?php echo $unidad->_GET('abreviatura'); ?>' placeholder="Abreviatura de la Unidad" id="unid_abr" name="unid_abr" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Codigo de la Unidad</label>
+                                            <input type="text" class="form-control" value='<?php echo $unidad->_GET('codigo'); ?>' placeholder="Codigo de la Unidad" id="unid_cod" name="unid_cod" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Estado</label>
+                                            <select class="form-control" id=rol name="unid_status" required="">
+                                                <option value>Seleccione el estado de la unidad</option>
+                                                <option value="A" <?php echo $activo;?>>Activo</option>
+                                                <option value="D" <?php echo $inactivo;?>>Inactivo</option>
 
-                                    </select>
+                                            </select>
+                                        </div>
+
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2 col-md-offset-5">
+                                                        <input type="submit" class="btn btn-primary" value="Editar"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" value='<?php echo $_GET['unid']; ?>' name="unid"/>
+                                    </form>
+
                                 </div>
-
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Actualizar</button>
-                                <input type="hidden" value='<?php echo $_GET['unid']; ?>' name="unid"/>
-                            </form>
-
+                            </div>
                         </div>
                     </div>
 

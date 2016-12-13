@@ -3,14 +3,10 @@ require_once '../bussines/DTO/Usuario.php';
 require_once '../bussines/DTO/Persona.php';
 require_once '../fachade/FachadeOne.php';
 
-$activo="";
-$inactivo="";
-
 session_start();
 
 $facade = new FachadeOne();
 
-$comboAnios = $facade->getComboAnios();
 
 ?>
 
@@ -47,39 +43,30 @@ include('html/head.html');
             <br>
 
             <div class="login-logo titulo" style="color: #fff;">
-                <b><a href="#" style="color:#dd4b39">Generar Informe Semestral MEN</a></b>
+                <b><a href="#" style="color:#dd4b39">Registrar Año</a></b>
             </div><!-- /.login-logo -->
 
             <br/><br/>
             <div class="col-md-12">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="box box-success">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="box box-danger">
                         <div class="box-header"></div>
-                        <form role="form" action="http://gidis.ufps.edu.co:8088/siga_reportes/xls/index.jsp" method="post">
+                        <form role="form" action="scripts/scriptCrearAno.php" method="post">
                             <!-- text input -->
                             <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Seleccione el año</label>
-                                            <select class="form-control" id="anoActividad" name="anoActividad" required="">
-                                                <?php echo $comboAnios; ?>
-                                            </select>
+                                    <div class="form-group">
+                                        <label>Digite año registrar</label>
+                                        <input value="" class="form-control" id="ano" name="ano"/>
+                                    </div>
+
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-2 col-md-offset-8">
+                                                <button type="submit" class="btn btn-success">Registrar</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Seleccione el semestre</label>
-                                            <select class="form-control" id="semestre" name="semestre" required="">
-                                                <option value >Seleccione el semestre</option>
-                                                <option value="I" >I</option>
-                                                <option value="I" >II</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box-footer" align="right">
-                                    <button type="submit" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Generar Excel</button>
                                 </div>
                             </div>
 

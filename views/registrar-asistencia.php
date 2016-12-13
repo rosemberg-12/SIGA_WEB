@@ -99,7 +99,15 @@ session_start();
 
                                 <input type="hidden" id="acti" name="acti" value=<?php echo "'".$_GET['acti']."'"; ?> />
 
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-2 col-md-offset-5">
+                                                <button type="submit" class="btn btn-success">Registrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </form>
 

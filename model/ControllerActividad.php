@@ -130,7 +130,9 @@ class ControllerActividad
 
         $listaActividad = $actividadDAO->listarActividadesPorUnidad($idUnidad, $path);
 
-        $table = " <table id='tabla-actividades' name='tabla-actividades' class='table table-bordered table-hover'> ";
+        $table = " <div class='box box-danger'> ";
+        $table.= " <div class='box-body'> ";
+        $table.= " <table id='tabla-actividades' name='tabla-actividades' class='table table-bordered table-hover'> ";
         $table.= " <thead> ";
         $table.= " <tr> ";
         $table.= " <th>ACTIVIDAD</th> ";
@@ -182,9 +184,55 @@ class ControllerActividad
             $table.= " <td colspan='8'>No hay registros en el sistema</td>";
             $table.= " </tr> ";
             $table.= " </tbody> ";
+            $table.= " <tfoot> ";
+            $table.= " <tr> ";
+            $table.= " <th>ACTIVIDAD</th> ";
+            $table.= " <th>RESPONSABLE</th> ";
+            $table.= " <th >SEMESTRE</th> ";
+            $table.= " <th>AÑO</th> ";
+            $table.= " <th >FECHA INICIO</th> ";
+            $table.= " <th >FECHA FIN</th> ";
+            $table.= " <th >ESTADO</th> ";
+            $table.= " <th >ACCIONES</th> ";
+            $table.= " </tr> ";
+            $table.= " </tfoot> ";
         }
         $table.= " </table> ";
-
+        $table.= " </div> ";
+        $table.= " </div> ";
         return $table;
     }
+
+    /**
+     * Metodo para obtener las option del select del año
+     * @return string HTML con el listado de opciones para el select
+     */
+    public function getComboAnios(){
+        include_once ('../bussines/DAO/AnoDAO.php');
+        $anoDAO = new AnoDAO();
+
+        $lista = $anoDAO->listarAnios();
+
+        $opcion = " <option value >Seleccione Año</option> ";
+
+        if(count($lista)>0){
+            foreach ($lista as $ano){
+                $opcion.= " <option value=\"$ano\" >$ano</option> ";
+            }
+        }
+
+        return $opcion;
+    }
+
+    /**
+     * Metodo para registrar un año para las actividades
+     * @param $ano valor del año a registrar
+     * @return string resultado de la operacion
+     */
+    public function crearAno($ano){
+        include_once ('../../bussines/DAO/AnoDAO.php');
+        $anoDAO = new AnoDAO();
+        return $anoDAO->crearAno($ano);
+    }
+
 }
