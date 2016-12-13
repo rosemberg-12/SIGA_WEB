@@ -5,8 +5,8 @@
  * Date: 23/11/2016
  * Time: 09:04 PM
  */
-    $usuario = "siga";
-    $clave = "sigaUFPS2016";
+    $usuario = "root";
+    $clave = "";
 
     try
     {

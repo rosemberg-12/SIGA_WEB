@@ -10,6 +10,53 @@
 class AsistenciaDAO
 {
     /**
+     * Metodo para listar asistencias por una actividad especifica
+     * @param $idActividad identificador de la actividad
+     * @return array lista con la informacion
+     */
+    public function getAsistenciaByID($idAsis, $path){
+        include($path.'bussines/DAO/Conection.php');
+        require_once ($path.'bussines/DTO/Asistencia.php');
+
+        $consulta = " SELECT DISTINCT tiac.tiac_descripcion, tibe.tibe_descripcion, tido.tido_abreviatura, ";
+        $consulta.= " asis.*, acti.acti_descripcion, tipr.tipr_descripcion ";
+        $consulta.= " FROM siga.actividad acti ";
+        $consulta.= " LEFT JOIN siga.asistencia asis ON (asis.acti_id = acti.acti_id) ";
+        $consulta.= " INNER JOIN siga.tipoactividad tiac ON (tiac.tiac_id = acti.tiac_id) ";
+        $consulta.= " INNER JOIN siga.tipobeneficiario tibe ON (tibe.tibe_id = asis.tibe_id) ";
+        $consulta.= " INNER JOIN siga.tipodocumento tido ON (tido.tido_id = asis.tido_id) ";
+        $consulta.= " INNER JOIN siga.tipoprograma tipr ON (tipr.tipr_id = acti.tipr_id) ";
+        $consulta.= " WHERE asis.asis_id = ? ";
+        $consulta.= " ORDER BY acti.acti_id DESC; ";
+
+        $result = $conexion->prepare($consulta);
+        $result->execute(array($idAsis));
+
+
+        foreach ($result as $row){
+            $asistencia = new Asistencia();
+
+            $asistencia->_SET('descripcionTipoActividad',$row['tiac_descripcion']);
+            $asistencia->_SET('descripcionTipoBeneficiario',$row['tibe_descripcion']);
+            $asistencia->_SET('abreviaturaTipoDocumento',$row['tido_abreviatura']);
+            $asistencia->_SET('id',$row['asis_id']);
+            $asistencia->_SET('idActividad',$row['acti_id']);
+            $asistencia->_SET('idTipoBeneficiario',$row['tibe_id']);
+            $asistencia->_SET('idTipoDocumento',$row['tido_id']);
+            $asistencia->_SET('documentoBeneficiario',$row['asis_documento']);
+            $asistencia->_SET('nombreBeneficiario',$row['asis_nombrebeneficiario']);
+            $asistencia->_SET('codigoBeneficiario',$row['asis_codigobeneficiario']);
+            $asistencia->_SET('descripcionActividad',$row['acti_descripcion']);
+            $asistencia->_SET('descripcionTipoPrograma',$row['tipr_descripcion']);
+
+            return $asistencia;
+        }
+        $conexion = null;
+        return null;
+    }
+
+
+    /**
      * Metodo para listar Asistencia con la informacion necesaria para mostrar en los reportes
      * @param $criterioBusqueda criterio de busqueda para la consulta
      * @param $path ruta para acceder a los archivos desde donde se llama
@@ -341,21 +388,49 @@ class AsistenciaDAO
                 $registradopor=$_SESSION['usuario']->_GET('id');
             }
 
-            include('../bussines/DAO/Conection.php');
+            include('../../bussines/DAO/Conection.php');
 
             $consulta = " INSERT INTO `siga`.`asistencia`(`acti_id`, `tibe_id`, `tido_id`, `asis_documento`, `asis_nombrebeneficiario`, `asis_codigobeneficiario`, `asis_registradopor`) ";
             $consulta.= " VALUES (?,?,?,?,?,?,?); ";
 
             $result = $conexion->prepare($consulta);
-            $result->execute(array($asistencia['idActividad'],
-                $asistencia['idTipoBeneficiario'],
-                $asistencia['idTipoDocumento'],
-                $asistencia['documentoBeneficiario'],
-                $asistencia['nombreBeneficiario'],
-                $asistencia['codigoBeneficiario'],
+            $result->execute(array($asistencia[0],
+                $asistencia[1],
+                $asistencia[2],
+                $asistencia[3],
+                $asistencia[4],
+                $asistencia[5],
                 $registradopor));
 
             $conexion = null;
+            return "0";
+        }catch (Exception $e){
+            return "1";
+        }
+
+    }
+
+    public function actualizarAsistencia($asistencia){
+        try{
+            session_start();
+
+            include('../../bussines/DAO/Conection.php');
+
+            foreach($asistencia as $row){
+                echo $row."<br>";
+            }
+
+            $consulta = "update asistencia set tibe_id=?, tido_id=?, asis_documento=?, asis_nombrebeneficiario=?, asis_codigobeneficiario=?  where asis_id=".$asistencia[0];
+            $result = $conexion->prepare($consulta);
+            $result->execute(array($asistencia[1],
+                $asistencia[2],
+                $asistencia[3],
+                $asistencia[4],
+                $asistencia[5]));
+
+            $conexion = null;
+
+            echo $consulta;
             return "0";
         }catch (Exception $e){
             return "1";

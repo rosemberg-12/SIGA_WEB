@@ -4,16 +4,16 @@ require_once '../../bussines/DTO/Persona.php';
 require_once '../../fachade/FachadeOne.php';
 
 
-if( isset($_POST['tipoben']) && isset($_POST['tipodoc']) && isset($_POST['doc'])  && isset($_POST['nom']) && isset($_POST['doc'])  && isset($_POST['acti']))
+if( isset($_POST['tipoben']) && isset($_POST['tipodoc']) && isset($_POST['doc'])  && isset($_POST['nom']) && isset($_POST['cod'])  && isset($_POST['acti']))
 {
 
     $facade = new FachadeOne();
 
-    $cadena=$facade->crearAsistencia($_POST['tipoben'] , $_POST['tipodoc']  , $_POST['doc']  , $_POST['nom'], $_POST['doc']  , $_POST['acti'] );
+   $cadena=$facade->crearAsistencia($_POST['tipoben'] , $_POST['tipodoc']  , $_POST['doc']  , $_POST['nom'], $_POST['cod']  , $_POST['acti'] );
 
-    header('Location: ../gestionar-actividad.php?estado='.$cadena);
+   header('Location: ../gestionar-actividad.php?estado='.$cadena);
 
-
+    echo $cadena;
 }else{
     header('Location: ../gestionar-actividad.php?estado=1)');
 }

@@ -9,6 +9,39 @@
 class ControllerAsistencia
 {
 
+    public function getAsisInformation($id, $path){
+        include_once ($path.'bussines/DAO/AsistenciaDAO.php');
+
+        $actdDao =new AsistenciaDAO();
+        $act = $actdDao->getAsistenciaByID($id, $path);
+
+        if($act==null){
+            return 1;
+        }
+
+
+        return $act;
+    }
+    public function actualizarAsistencia($tipoben, $tipodoc, $doc, $nom, $cod, $asis){
+        include_once ('../../bussines/DAO/AsistenciaDAO.php');
+        include_once ('../../model/General.php');
+
+        $asistencia = array($asis,$tipoben,  $tipodoc, $doc, $nom, $cod );
+        $asistenciaDAO = new AsistenciaDAO();
+
+        return $asistenciaDAO->actualizarAsistencia($asistencia);
+    }
+
+    public function crearAsistencia($tipoben, $tipodoc, $doc, $nom, $cod, $acti){
+        include_once ('../../bussines/DAO/AsistenciaDAO.php');
+        include_once ('../../model/General.php');
+
+       $asistencia = array($acti,$tipoben,  $tipodoc, $doc, $nom, $cod );
+        $asistenciaDAO = new AsistenciaDAO();
+
+        return $asistenciaDAO->registrarAsistencia($asistencia);
+    }
+
     /**
      * Metodo para lsitar Asistencias por una actividad especifica
      * @param $idActividad identificador de la actividad
